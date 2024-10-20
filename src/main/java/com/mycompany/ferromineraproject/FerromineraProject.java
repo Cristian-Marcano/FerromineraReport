@@ -1,5 +1,8 @@
 package com.mycompany.ferromineraproject;
 
+import java.awt.BorderLayout;
+import javax.swing.JPanel;
+
 /**
  *
  * @author Cristian
@@ -7,10 +10,21 @@ package com.mycompany.ferromineraproject;
 public class FerromineraProject extends javax.swing.JFrame {
 
     /**
-     * Creates new form ferromineraProject
+     * Creates new form FerromineraProject
      */
     public FerromineraProject() {
         initComponents();
+//        InitContent();
+    }
+    
+    private void ShowJPanel(JPanel p) {
+        p.setSize(848, 720);
+        p.setLocation(0, 0);
+        
+        content.removeAll();
+        content.add(p, BorderLayout.CENTER);
+        content.revalidate();
+        content.repaint();
     }
 
     /**
@@ -22,18 +36,126 @@ public class FerromineraProject extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        background = new javax.swing.JPanel();
+        dashboard = new javax.swing.JPanel();
+        tittle = new javax.swing.JLabel();
+        labelUsername = new javax.swing.JLabel();
+        separatorUsername = new javax.swing.JSeparator();
+        inputUsername = new javax.swing.JTextField();
+        labelPassword = new javax.swing.JLabel();
+        separatorPassword = new javax.swing.JSeparator();
+        inputPassword = new javax.swing.JPasswordField();
+        content = new javax.swing.JPanel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(1032, 640));
+        setMinimumSize(new java.awt.Dimension(1032, 680));
+        setPreferredSize(new java.awt.Dimension(1280, 720));
+
+        dashboard.setBackground(new java.awt.Color(247, 34, 34));
+
+        tittle.setBackground(new java.awt.Color(255, 255, 255));
+        tittle.setFont(new java.awt.Font("Segoe UI Black", 1, 36)); // NOI18N
+        tittle.setForeground(new java.awt.Color(255, 255, 255));
+        tittle.setText("Iniciar Sesión");
+
+        labelUsername.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        labelUsername.setForeground(new java.awt.Color(255, 255, 255));
+        labelUsername.setLabelFor(inputUsername);
+        labelUsername.setText("Nombre de Usuario:");
+
+        separatorUsername.setForeground(new java.awt.Color(255, 255, 255));
+
+        inputUsername.setBackground(new java.awt.Color(255, 255, 255));
+        inputUsername.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        inputUsername.setForeground(new java.awt.Color(50, 50, 50));
+
+        labelPassword.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        labelPassword.setForeground(new java.awt.Color(255, 255, 255));
+        labelPassword.setText("Clave:");
+
+        separatorPassword.setForeground(new java.awt.Color(255, 255, 255));
+
+        inputPassword.setBackground(new java.awt.Color(255, 255, 255));
+        inputPassword.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        inputPassword.setForeground(new java.awt.Color(50, 50, 50));
+
+        javax.swing.GroupLayout dashboardLayout = new javax.swing.GroupLayout(dashboard);
+        dashboard.setLayout(dashboardLayout);
+        dashboardLayout.setHorizontalGroup(
+            dashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dashboardLayout.createSequentialGroup()
+                .addGroup(dashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(dashboardLayout.createSequentialGroup()
+                        .addGap(77, 77, 77)
+                        .addComponent(tittle))
+                    .addGroup(dashboardLayout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addGroup(dashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(labelPassword)
+                            .addComponent(labelUsername)
+                            .addComponent(separatorUsername)
+                            .addComponent(inputUsername)
+                            .addComponent(separatorPassword)
+                            .addComponent(inputPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE))))
+                .addContainerGap(33, Short.MAX_VALUE))
+        );
+        dashboardLayout.setVerticalGroup(
+            dashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dashboardLayout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addComponent(tittle)
+                .addGap(66, 66, 66)
+                .addComponent(labelUsername)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(separatorUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(inputUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(71, 71, 71)
+                .addComponent(labelPassword)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(separatorPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(inputPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(349, Short.MAX_VALUE))
+        );
+
+        content.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout contentLayout = new javax.swing.GroupLayout(content);
+        content.setLayout(contentLayout);
+        contentLayout.setHorizontalGroup(
+            contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 880, Short.MAX_VALUE)
+        );
+        contentLayout.setVerticalGroup(
+            contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout backgroundLayout = new javax.swing.GroupLayout(background);
+        background.setLayout(backgroundLayout);
+        backgroundLayout.setHorizontalGroup(
+            backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(backgroundLayout.createSequentialGroup()
+                .addGap(400, 400, 400)
+                .addComponent(content, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(dashboard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        backgroundLayout.setVerticalGroup(
+            backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(content, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(dashboard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1032, Short.MAX_VALUE)
+            .addComponent(background, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 640, Short.MAX_VALUE)
+            .addComponent(background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -49,6 +171,7 @@ public class FerromineraProject extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
+        /*
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -65,9 +188,7 @@ public class FerromineraProject extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(FerromineraProject.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+        */
         //</editor-fold>
 
         /* Create and display the form */
@@ -79,5 +200,15 @@ public class FerromineraProject extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel background;
+    private javax.swing.JPanel content;
+    private javax.swing.JPanel dashboard;
+    private javax.swing.JPasswordField inputPassword;
+    private javax.swing.JTextField inputUsername;
+    private javax.swing.JLabel labelPassword;
+    private javax.swing.JLabel labelUsername;
+    private javax.swing.JSeparator separatorPassword;
+    private javax.swing.JSeparator separatorUsername;
+    private javax.swing.JLabel tittle;
     // End of variables declaration//GEN-END:variables
 }
