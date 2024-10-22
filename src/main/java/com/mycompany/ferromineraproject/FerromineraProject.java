@@ -45,11 +45,12 @@ public class FerromineraProject extends javax.swing.JFrame {
         labelPassword = new javax.swing.JLabel();
         separatorPassword = new javax.swing.JSeparator();
         inputPassword = new javax.swing.JPasswordField();
+        jButton1 = new javax.swing.JButton();
         content = new javax.swing.JPanel();
+        logo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1032, 680));
-        setPreferredSize(new java.awt.Dimension(1280, 720));
 
         dashboard.setBackground(new java.awt.Color(247, 34, 34));
 
@@ -79,6 +80,11 @@ public class FerromineraProject extends javax.swing.JFrame {
         inputPassword.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         inputPassword.setForeground(new java.awt.Color(50, 50, 50));
 
+        jButton1.setBackground(new java.awt.Color(65, 75, 178));
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Inicio");
+
         javax.swing.GroupLayout dashboardLayout = new javax.swing.GroupLayout(dashboard);
         dashboard.setLayout(dashboardLayout);
         dashboardLayout.setHorizontalGroup(
@@ -96,7 +102,10 @@ public class FerromineraProject extends javax.swing.JFrame {
                             .addComponent(separatorUsername)
                             .addComponent(inputUsername)
                             .addComponent(separatorPassword)
-                            .addComponent(inputPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE))))
+                            .addComponent(inputPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)))
+                    .addGroup(dashboardLayout.createSequentialGroup()
+                        .addGap(100, 100, 100)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
         dashboardLayout.setVerticalGroup(
@@ -116,20 +125,26 @@ public class FerromineraProject extends javax.swing.JFrame {
                 .addComponent(separatorPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(inputPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(349, Short.MAX_VALUE))
+                .addGap(100, 100, 100)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(192, Short.MAX_VALUE))
         );
 
         content.setBackground(new java.awt.Color(255, 255, 255));
+
+        logo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ferrominera_logo.png"))); // NOI18N
+        logo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout contentLayout = new javax.swing.GroupLayout(content);
         content.setLayout(contentLayout);
         contentLayout.setHorizontalGroup(
             contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 880, Short.MAX_VALUE)
+            .addComponent(logo, javax.swing.GroupLayout.DEFAULT_SIZE, 880, Short.MAX_VALUE)
         );
         contentLayout.setVerticalGroup(
             contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addComponent(logo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout backgroundLayout = new javax.swing.GroupLayout(background);
@@ -205,8 +220,10 @@ public class FerromineraProject extends javax.swing.JFrame {
     private javax.swing.JPanel dashboard;
     private javax.swing.JPasswordField inputPassword;
     private javax.swing.JTextField inputUsername;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel labelPassword;
     private javax.swing.JLabel labelUsername;
+    private javax.swing.JLabel logo;
     private javax.swing.JSeparator separatorPassword;
     private javax.swing.JSeparator separatorUsername;
     private javax.swing.JLabel tittle;
