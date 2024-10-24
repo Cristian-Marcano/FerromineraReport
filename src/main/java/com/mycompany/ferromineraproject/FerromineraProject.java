@@ -96,6 +96,11 @@ public class FerromineraProject extends javax.swing.JFrame {
         btnLogin.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         btnLogin.setForeground(new java.awt.Color(255, 255, 255));
         btnLogin.setText("Inicio");
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
+            }
+        });
 
         forgotPassword.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         forgotPassword.setForeground(new java.awt.Color(12, 127, 220));
@@ -216,6 +221,14 @@ public class FerromineraProject extends javax.swing.JFrame {
         background.repaint();
         this.repaint();
     }//GEN-LAST:event_formComponentResized
+
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        // TODO add your handling code here:
+        /*
+        *  Get to inputUsername & inputPassword
+        *  insert into the Database
+        */
+    }//GEN-LAST:event_btnLoginActionPerformed
 
     /**
      * @param args the command line arguments
