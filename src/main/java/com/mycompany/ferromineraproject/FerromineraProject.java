@@ -1,8 +1,10 @@
 package com.mycompany.ferromineraproject;
 
+import com.mycompany.view.LoginBar;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
 import java.awt.Dimension;
+import javax.swing.GroupLayout;
 
 /**
  *
@@ -15,10 +17,38 @@ public class FerromineraProject extends javax.swing.JFrame {
      */
     public FerromineraProject() {
         initComponents();
-//        InitContent();
+        ShowBoard(new LoginBar());
     }
     
-    private void ShowJPanel(JPanel p) {
+//    private void InitDashboard(JPanel board) {
+//        board.setSize(d);
+//    }
+    
+    private void ShowBoard(JPanel board) {
+        board.setSize(405,720);
+        board.setLocation(0,0);
+
+        GroupLayout dashboardLayout = new GroupLayout(dashboard);
+        
+        dashboard.removeAll();
+        dashboardLayout.setHorizontalGroup(
+            dashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(board, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        dashboardLayout.setVerticalGroup(
+            dashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dashboardLayout.createSequentialGroup()
+                .addComponent(board, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
+        );
+        
+        dashboard.setLayout(dashboardLayout);
+
+        dashboard.revalidate();
+        dashboard.repaint();
+    }
+    
+    private void ShowContentPanel(JPanel p) {
         p.setSize(875, 720);
         p.setLocation(0, 0);
         
@@ -39,15 +69,6 @@ public class FerromineraProject extends javax.swing.JFrame {
 
         background = new javax.swing.JPanel();
         dashboard = new javax.swing.JPanel();
-        tittle = new javax.swing.JLabel();
-        labelUsername = new javax.swing.JLabel();
-        separatorUsername = new javax.swing.JSeparator();
-        inputUsername = new javax.swing.JTextField();
-        labelPassword = new javax.swing.JLabel();
-        separatorPassword = new javax.swing.JSeparator();
-        inputPassword = new javax.swing.JPasswordField();
-        btnLogin = new javax.swing.JButton();
-        forgotPassword = new javax.swing.JLabel();
         content = new javax.swing.JPanel();
         logo = new javax.swing.JLabel();
 
@@ -65,98 +86,15 @@ public class FerromineraProject extends javax.swing.JFrame {
         dashboard.setToolTipText("");
         dashboard.setMinimumSize(new java.awt.Dimension(405, 720));
 
-        tittle.setBackground(new java.awt.Color(255, 255, 255));
-        tittle.setFont(new java.awt.Font("Segoe UI Black", 1, 36)); // NOI18N
-        tittle.setForeground(new java.awt.Color(255, 255, 255));
-        tittle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        tittle.setText("Iniciar Sesión");
-
-        labelUsername.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        labelUsername.setForeground(new java.awt.Color(255, 255, 255));
-        labelUsername.setLabelFor(inputUsername);
-        labelUsername.setText("Nombre de Usuario:");
-
-        separatorUsername.setForeground(new java.awt.Color(255, 255, 255));
-
-        inputUsername.setBackground(new java.awt.Color(255, 255, 255));
-        inputUsername.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        inputUsername.setForeground(new java.awt.Color(50, 50, 50));
-
-        labelPassword.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        labelPassword.setForeground(new java.awt.Color(255, 255, 255));
-        labelPassword.setText("Clave:");
-
-        separatorPassword.setForeground(new java.awt.Color(255, 255, 255));
-
-        inputPassword.setBackground(new java.awt.Color(255, 255, 255));
-        inputPassword.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        inputPassword.setForeground(new java.awt.Color(50, 50, 50));
-
-        btnLogin.setBackground(new java.awt.Color(65, 75, 178));
-        btnLogin.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        btnLogin.setForeground(new java.awt.Color(255, 255, 255));
-        btnLogin.setText("Inicio");
-        btnLogin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLoginActionPerformed(evt);
-            }
-        });
-
-        forgotPassword.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
-        forgotPassword.setForeground(new java.awt.Color(12, 127, 220));
-        forgotPassword.setText("¿Olvido la Contreseña? ");
-        forgotPassword.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
         javax.swing.GroupLayout dashboardLayout = new javax.swing.GroupLayout(dashboard);
         dashboard.setLayout(dashboardLayout);
         dashboardLayout.setHorizontalGroup(
             dashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(dashboardLayout.createSequentialGroup()
-                .addGap(111, 111, 111)
-                .addComponent(btnLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
-                .addGap(111, 111, 111))
-            .addGroup(dashboardLayout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addGroup(dashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(dashboardLayout.createSequentialGroup()
-                        .addComponent(forgotPassword)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(dashboardLayout.createSequentialGroup()
-                        .addGroup(dashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(tittle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(separatorUsername, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(inputUsername, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(separatorPassword, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(inputPassword, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, dashboardLayout.createSequentialGroup()
-                                .addGroup(dashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(labelPassword, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(labelUsername, javax.swing.GroupLayout.Alignment.LEADING))
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGap(33, 33, 33))))
+            .addGap(0, 405, Short.MAX_VALUE)
         );
         dashboardLayout.setVerticalGroup(
             dashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(dashboardLayout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(tittle)
-                .addGap(73, 73, 73)
-                .addComponent(labelUsername)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(separatorUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(inputUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(71, 71, 71)
-                .addComponent(labelPassword)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(separatorPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(inputPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(forgotPassword)
-                .addGap(70, 70, 70)
-                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(235, Short.MAX_VALUE))
+            .addGap(0, 772, Short.MAX_VALUE)
         );
 
         content.setBackground(new java.awt.Color(255, 255, 255));
@@ -222,14 +160,6 @@ public class FerromineraProject extends javax.swing.JFrame {
         this.repaint();
     }//GEN-LAST:event_formComponentResized
 
-    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        // TODO add your handling code here:
-        /*
-        *  Get to inputUsername & inputPassword
-        *  insert into the Database
-        */
-    }//GEN-LAST:event_btnLoginActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -269,17 +199,8 @@ public class FerromineraProject extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel background;
-    private javax.swing.JButton btnLogin;
     private javax.swing.JPanel content;
     private javax.swing.JPanel dashboard;
-    private javax.swing.JLabel forgotPassword;
-    private javax.swing.JPasswordField inputPassword;
-    private javax.swing.JTextField inputUsername;
-    private javax.swing.JLabel labelPassword;
-    private javax.swing.JLabel labelUsername;
     private javax.swing.JLabel logo;
-    private javax.swing.JSeparator separatorPassword;
-    private javax.swing.JSeparator separatorUsername;
-    private javax.swing.JLabel tittle;
     // End of variables declaration//GEN-END:variables
 }
