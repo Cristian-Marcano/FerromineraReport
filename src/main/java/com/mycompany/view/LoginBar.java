@@ -66,6 +66,7 @@ public class LoginBar extends javax.swing.JPanel {
         btnLogin.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         btnLogin.setForeground(new java.awt.Color(255, 255, 255));
         btnLogin.setText("Inicio");
+        btnLogin.setPreferredSize(new java.awt.Dimension(94, 57));
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLoginActionPerformed(evt);
