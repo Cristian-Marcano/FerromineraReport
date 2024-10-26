@@ -37,29 +37,29 @@ public class LoginBar extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(405, 720));
 
         tittle.setBackground(new java.awt.Color(255, 255, 255));
-        tittle.setFont(new java.awt.Font("Segoe UI Black", 1, 36)); // NOI18N
+        tittle.setFont(new java.awt.Font("Bahnschrift", 1, 40)); // NOI18N
         tittle.setForeground(new java.awt.Color(255, 255, 255));
         tittle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         tittle.setText("Iniciar Sesión");
 
-        labelUsername.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        labelUsername.setFont(new java.awt.Font("Bahnschrift", 1, 16)); // NOI18N
         labelUsername.setForeground(new java.awt.Color(255, 255, 255));
         labelUsername.setText("Nombre de Usuario:");
 
         separatorUsername.setForeground(new java.awt.Color(255, 255, 255));
 
         inputUsername.setBackground(new java.awt.Color(255, 255, 255));
-        inputUsername.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        inputUsername.setFont(new java.awt.Font("Bahnschrift", 0, 15)); // NOI18N
         inputUsername.setForeground(new java.awt.Color(50, 50, 50));
 
         separatorPassword.setForeground(new java.awt.Color(255, 255, 255));
 
-        labelPassword.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        labelPassword.setFont(new java.awt.Font("Bahnschrift", 1, 16)); // NOI18N
         labelPassword.setForeground(new java.awt.Color(255, 255, 255));
         labelPassword.setText("Clave:");
 
         inputPassword.setBackground(new java.awt.Color(255, 255, 255));
-        inputPassword.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        inputPassword.setFont(new java.awt.Font("Bahnschrift", 0, 15)); // NOI18N
         inputPassword.setForeground(new java.awt.Color(50, 50, 50));
 
         btnLogin.setBackground(new java.awt.Color(65, 75, 178));
@@ -73,7 +73,7 @@ public class LoginBar extends javax.swing.JPanel {
             }
         });
 
-        forgotPassword.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        forgotPassword.setFont(new java.awt.Font("Bahnschrift", 1, 15)); // NOI18N
         forgotPassword.setForeground(new java.awt.Color(12, 127, 220));
         forgotPassword.setText("¿Olvido la Contreseña? ");
         forgotPassword.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -127,7 +127,7 @@ public class LoginBar extends javax.swing.JPanel {
                 .addComponent(forgotPassword)
                 .addGap(70, 70, 70)
                 .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(187, Short.MAX_VALUE))
+                .addContainerGap(198, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

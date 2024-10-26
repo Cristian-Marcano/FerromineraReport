@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package com.mycompany.view;
 
 import java.awt.Color;
@@ -65,78 +61,85 @@ public class InitBar extends javax.swing.JPanel {
         init.setRequestFocusEnabled(false);
 
         inputPassword.setBackground(new java.awt.Color(255, 255, 255));
-        inputPassword.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        inputPassword.setFont(new java.awt.Font("Bahnschrift", 0, 15)); // NOI18N
         inputPassword.setForeground(new java.awt.Color(50, 50, 50));
 
         separatorPassword.setForeground(new java.awt.Color(255, 255, 255));
 
-        labelPassword.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        labelPassword.setFont(new java.awt.Font("Bahnschrift", 1, 16)); // NOI18N
         labelPassword.setForeground(new java.awt.Color(255, 255, 255));
+        labelPassword.setLabelFor(inputPassword);
         labelPassword.setText("Clave:");
 
         inputUsername.setBackground(new java.awt.Color(255, 255, 255));
-        inputUsername.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        inputUsername.setFont(new java.awt.Font("Bahnschrift", 0, 15)); // NOI18N
         inputUsername.setForeground(new java.awt.Color(50, 50, 50));
 
         separatorUsername.setForeground(new java.awt.Color(255, 255, 255));
 
-        labelUsername.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        labelUsername.setFont(new java.awt.Font("Bahnschrift", 1, 16)); // NOI18N
         labelUsername.setForeground(new java.awt.Color(255, 255, 255));
+        labelUsername.setLabelFor(inputUsername);
         labelUsername.setText("Nombre de Usuario:");
 
         inputTlf.setBackground(new java.awt.Color(255, 255, 255));
-        inputTlf.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        inputTlf.setFont(new java.awt.Font("Bahnschrift", 0, 15)); // NOI18N
         inputTlf.setForeground(new java.awt.Color(50, 50, 50));
 
         separatorTlf.setForeground(new java.awt.Color(255, 255, 255));
 
-        labelTlf.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        labelTlf.setFont(new java.awt.Font("Bahnschrift", 1, 16)); // NOI18N
         labelTlf.setForeground(new java.awt.Color(255, 255, 255));
+        labelTlf.setLabelFor(inputTlf);
         labelTlf.setText("Telefono:");
 
         inputFicha.setBackground(new java.awt.Color(255, 255, 255));
-        inputFicha.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        inputFicha.setFont(new java.awt.Font("Bahnschrift", 0, 15)); // NOI18N
         inputFicha.setForeground(new java.awt.Color(50, 50, 50));
 
         separatorFicha.setForeground(new java.awt.Color(255, 255, 255));
 
-        labelFicha.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        labelFicha.setFont(new java.awt.Font("Bahnschrift", 1, 16)); // NOI18N
         labelFicha.setForeground(new java.awt.Color(255, 255, 255));
+        labelFicha.setLabelFor(inputFicha);
         labelFicha.setText("Ficha:");
 
         inputCI.setBackground(new java.awt.Color(255, 255, 255));
-        inputCI.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        inputCI.setFont(new java.awt.Font("Bahnschrift", 0, 15)); // NOI18N
         inputCI.setForeground(new java.awt.Color(50, 50, 50));
 
         separatorCI.setForeground(new java.awt.Color(255, 255, 255));
 
-        labelCI.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        labelCI.setFont(new java.awt.Font("Bahnschrift", 1, 16)); // NOI18N
         labelCI.setForeground(new java.awt.Color(255, 255, 255));
-        labelCI.setText("CI:");
+        labelCI.setLabelFor(inputCI);
+        labelCI.setText("Cedula:");
 
         inputLastName.setBackground(new java.awt.Color(255, 255, 255));
-        inputLastName.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        inputLastName.setFont(new java.awt.Font("Bahnschrift", 0, 15)); // NOI18N
         inputLastName.setForeground(new java.awt.Color(50, 50, 50));
 
         separetorLastName.setForeground(new java.awt.Color(255, 255, 255));
 
-        labelLastName.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        labelLastName.setFont(new java.awt.Font("Bahnschrift", 1, 16)); // NOI18N
         labelLastName.setForeground(new java.awt.Color(255, 255, 255));
+        labelLastName.setLabelFor(inputLastName);
         labelLastName.setText("Apellido:");
 
         inputName.setBackground(new java.awt.Color(255, 255, 255));
-        inputName.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        inputName.setFont(new java.awt.Font("Bahnschrift", 0, 15)); // NOI18N
         inputName.setForeground(new java.awt.Color(50, 50, 50));
 
         separatorName.setForeground(new java.awt.Color(255, 255, 255));
 
-        tittle.setFont(new java.awt.Font("Segoe UI Black", 1, 36)); // NOI18N
+        tittle.setFont(new java.awt.Font("Bahnschrift", 1, 40)); // NOI18N
         tittle.setForeground(new java.awt.Color(255, 255, 255));
         tittle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         tittle.setText("Bienvenido ");
 
-        labelName.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        labelName.setFont(new java.awt.Font("Bahnschrift", 1, 16)); // NOI18N
         labelName.setForeground(new java.awt.Color(255, 255, 255));
+        labelName.setLabelFor(inputName);
         labelName.setText("Nombre:");
 
         btnInit.setBackground(new java.awt.Color(65, 75, 178));
@@ -178,9 +181,6 @@ public class InitBar extends javax.swing.JPanel {
                         .addComponent(labelFicha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(301, 301, 301))
                     .addGroup(initLayout.createSequentialGroup()
-                        .addComponent(labelCI, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(326, 326, 326))
-                    .addGroup(initLayout.createSequentialGroup()
                         .addComponent(labelUsername, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(192, 192, 192))
                     .addGroup(initLayout.createSequentialGroup()
@@ -191,7 +191,10 @@ public class InitBar extends javax.swing.JPanel {
                         .addGap(276, 276, 276))
                     .addGroup(initLayout.createSequentialGroup()
                         .addComponent(labelPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(299, 299, 299)))
+                        .addGap(299, 299, 299))
+                    .addGroup(initLayout.createSequentialGroup()
+                        .addComponent(labelCI, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(28, 28, 28))
             .addGroup(initLayout.createSequentialGroup()
                 .addGap(126, 126, 126)
