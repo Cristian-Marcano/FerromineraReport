@@ -57,7 +57,7 @@ public class InitBar extends javax.swing.JPanel {
         scroll.setPreferredSize(new java.awt.Dimension(405, 720));
 
         init.setBackground(new java.awt.Color(247, 34, 34));
-        init.setPreferredSize(new java.awt.Dimension(386, 790));
+        init.setPreferredSize(new java.awt.Dimension(386, 770));
         init.setRequestFocusEnabled(false);
 
         inputPassword.setBackground(new java.awt.Color(255, 255, 255));
@@ -198,8 +198,8 @@ public class InitBar extends javax.swing.JPanel {
                 .addGap(28, 28, 28))
             .addGroup(initLayout.createSequentialGroup()
                 .addGap(126, 126, 126)
-                .addComponent(btnInit, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(btnInit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(126, 126, 126))
         );
         initLayout.setVerticalGroup(
             initLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -263,7 +263,7 @@ public class InitBar extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(scroll, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
+            .addComponent(scroll, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
