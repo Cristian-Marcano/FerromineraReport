@@ -100,6 +100,7 @@ public class ForgotBar extends javax.swing.JPanel {
         btnForgot.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         btnForgot.setForeground(new java.awt.Color(255, 255, 255));
         btnForgot.setText("Ingresar");
+        btnForgot.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnForgot.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnForgotActionPerformed(evt);
@@ -183,6 +184,8 @@ public class ForgotBar extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    //* Funcion que se acciona cuando se presiona el btnForgot
+    //* Valida los input si se estan usando y verifica en la DB si se encuentra el usuario
     private void btnForgotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnForgotActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnForgotActionPerformed
