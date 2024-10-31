@@ -66,6 +66,7 @@ public class LoginBar extends javax.swing.JPanel {
         btnLogin.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         btnLogin.setForeground(new java.awt.Color(255, 255, 255));
         btnLogin.setText("Inicio");
+        btnLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnLogin.setPreferredSize(new java.awt.Dimension(94, 57));
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -130,7 +131,9 @@ public class LoginBar extends javax.swing.JPanel {
                 .addContainerGap(198, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    //* Funcion que se ejecuta cuando se presiona el btnLogin 
+    //* Valida si usuario esta usando los inputs y si el usuario se encuentra en la DB
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
         /*

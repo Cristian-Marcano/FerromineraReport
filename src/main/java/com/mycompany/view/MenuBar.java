@@ -44,6 +44,7 @@ public class MenuBar extends javax.swing.JPanel {
         btnHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/home_logo.png"))); // NOI18N
         btnHome.setText("Inicio");
         btnHome.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 1));
+        btnHome.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnHome.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnHome.setIconTextGap(15);
 
@@ -53,6 +54,7 @@ public class MenuBar extends javax.swing.JPanel {
         btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/search_logo.png"))); // NOI18N
         btnSearch.setText("Buscar");
         btnSearch.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 1));
+        btnSearch.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSearch.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnSearch.setIconTextGap(15);
         btnSearch.setPreferredSize(new java.awt.Dimension(75, 34));
@@ -63,6 +65,7 @@ public class MenuBar extends javax.swing.JPanel {
         btnPublish.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publish_logo.png"))); // NOI18N
         btnPublish.setText("Publicar Reporte");
         btnPublish.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 1));
+        btnPublish.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnPublish.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnPublish.setIconTextGap(15);
 
@@ -72,6 +75,7 @@ public class MenuBar extends javax.swing.JPanel {
         btnLogOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logout_logo.png"))); // NOI18N
         btnLogOut.setText("Cerrar Sesión");
         btnLogOut.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 1));
+        btnLogOut.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnLogOut.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnLogOut.setIconTextGap(15);
 
