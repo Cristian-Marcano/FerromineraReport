@@ -54,6 +54,7 @@ public class InitBar extends javax.swing.JPanel {
         setBackground(new java.awt.Color(247, 34, 34));
         setPreferredSize(new java.awt.Dimension(405, 720));
 
+        scroll.setBorder(null);
         scroll.setPreferredSize(new java.awt.Dimension(405, 720));
 
         init.setBackground(new java.awt.Color(247, 34, 34));
@@ -146,6 +147,7 @@ public class InitBar extends javax.swing.JPanel {
         btnInit.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         btnInit.setForeground(new java.awt.Color(255, 255, 255));
         btnInit.setText("Cargar");
+        btnInit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnInit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnInitActionPerformed(evt);
@@ -267,6 +269,8 @@ public class InitBar extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    //* Funcion que se acciona cuando el btnInit es presionado
+    //* Valida los input se estan usando y integra los datos a la DB
     private void btnInitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInitActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnInitActionPerformed
