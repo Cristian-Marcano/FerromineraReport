@@ -117,4 +117,16 @@ public class ShowJPanel {
             panelContent.setPreferredSize(new Dimension(panelContent.getPreferredSize().width, heightSize));
         } else throw new Exception("the panel does not contain a JScrollPane");
     }
+    
+    public void RemoveThisComponent(Component comp) {
+        if(panel.getComponent(0) instanceof JScrollPane) {
+            JScrollPane scroll = (JScrollPane) panel.getComponent(0);
+            
+            JPanel panelContent = (JPanel) scroll.getViewport().getView();
+            
+            panelContent.remove(comp);
+        } else panel.remove(comp);
+            
+        RefreshContainer();
+    }
 }
