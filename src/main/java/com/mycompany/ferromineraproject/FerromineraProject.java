@@ -1,62 +1,52 @@
 package com.mycompany.ferromineraproject;
 
+import com.mycompany.utils.ShowJPanel;
+import com.mycompany.view.ForgotBar;
 import com.mycompany.view.InitBar;
 import com.mycompany.view.LoginBar;
-import java.awt.BorderLayout;
+import com.mycompany.view.MenuAdminBar;
+import com.mycompany.view.MenuBar;
+import com.mycompany.view.ReportForm;
+import com.mycompany.view.ScrollReportContent;
+import com.mycompany.view.ScrollUserContent;
 import javax.swing.JPanel;
 import java.awt.Dimension;
-import javax.swing.GroupLayout;
 
 /**
  *
  * @author Cristian
+ * Clase principal donde se ejecuta la ventana del programa
+ * y confirma si los demas modulos/paquetes estan listos
  */
 public class FerromineraProject extends javax.swing.JFrame {
+    
+    /** 
+     * Objetos que ayudan la integracion de componentes a la ventana
+     * 
+     * board: objeto que ayuda la integracion de paneles al dashboard
+     * contentP: objeto que ayuda la integracion de paneles al content
+     */
+    public static ShowJPanel board, contentP;
     
     /**
      * Creates new form FerromineraProject
      */
     public FerromineraProject() {
         initComponents();
-        ShowBoard(new InitBar());
+        
+        board = InitPanel(new MenuAdminBar(), dashboard, new Dimension(405,720));
+//        contentP = InitPanel(new ScrollReportContent(), content, new Dimension(875,720));
+//        contentP = InitPanel(new ScrollUserContent(), content, new Dimension(875,720));
+        contentP = InitPanel(new ReportForm(), content, new Dimension(875,720));
+
+//        ScrollReportContent.InitReportContent();
+//        ScrollUserContent.InitUserContent();
     }
     
-//    private void InitDashboard(JPanel board) {
-//        board.setSize(d);
-//    }
-    
-    private void ShowBoard(JPanel board) {
-        board.setSize(405,720);
-        board.setLocation(0,0);
-
-        GroupLayout dashboardLayout = new GroupLayout(dashboard);
-        
-        dashboard.removeAll();
-        dashboardLayout.setHorizontalGroup(
-            dashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(board, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        dashboardLayout.setVerticalGroup(
-            dashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(dashboardLayout.createSequentialGroup()
-                .addComponent(board, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
-        );
-
-        dashboard.setLayout(dashboardLayout);
-
-        dashboard.revalidate();
-        dashboard.repaint();
-    }
-    
-    private void ShowContentPanel(JPanel p) {
-        p.setSize(875, 720);
-        p.setLocation(0, 0);
-        
-        content.removeAll();
-        content.add(p, BorderLayout.CENTER);
-        content.revalidate();
-        content.repaint();
+    private ShowJPanel InitPanel(JPanel panel, JPanel container, Dimension size) {
+        ShowJPanel show = new ShowJPanel(panel, container, size);
+        show.ShowPanel();
+        return show;
     }
 
     /**
@@ -95,10 +85,11 @@ public class FerromineraProject extends javax.swing.JFrame {
         );
         dashboardLayout.setVerticalGroup(
             dashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 720, Short.MAX_VALUE)
         );
 
         content.setBackground(new java.awt.Color(255, 255, 255));
+        content.setMinimumSize(new java.awt.Dimension(600, 720));
         content.setPreferredSize(new java.awt.Dimension(875, 720));
 
         logo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -113,7 +104,7 @@ public class FerromineraProject extends javax.swing.JFrame {
         );
         contentLayout.setVerticalGroup(
             contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(logo, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)
+            .addComponent(logo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout backgroundLayout = new javax.swing.GroupLayout(background);
@@ -128,7 +119,7 @@ public class FerromineraProject extends javax.swing.JFrame {
         backgroundLayout.setVerticalGroup(
             backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(content, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(dashboard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(dashboard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -146,6 +137,7 @@ public class FerromineraProject extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    //* Reescalamiento del dashboard, para cuando aumente de tamaño la ventana
     private void formComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentResized
         // TODO add your handling code here:
         int width = this.getWidth() / 4;
