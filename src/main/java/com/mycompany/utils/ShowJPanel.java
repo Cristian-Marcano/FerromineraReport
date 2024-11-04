@@ -37,7 +37,7 @@ public class ShowJPanel {
     }
     
     public void ShowPanel() {
-        panel.setSize(size);
+        panel.setPreferredSize(size);
         
         container.removeAll();
         containerLayout.setHorizontalGroup(
