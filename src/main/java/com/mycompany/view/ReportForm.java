@@ -11,7 +11,7 @@ public class ReportForm extends javax.swing.JPanel {
      */
     public ReportForm() {
         initComponents();
-        for(int i = 5; i < 25; i ++) 
+        for(int i = 5; i <= 25; i ++) 
             selectNew.addItem("Novedad " + i);
     }
 
