@@ -69,8 +69,6 @@
                           <Component id="inputTlf" alignment="0" max="32767" attributes="0"/>
                           <Component id="separatorTlf" alignment="0" max="32767" attributes="0"/>
                           <Component id="inputFicha" alignment="0" max="32767" attributes="0"/>
-                          <Component id="inputCI" alignment="0" max="32767" attributes="0"/>
-                          <Component id="separatorCI" alignment="0" max="32767" attributes="0"/>
                           <Component id="inputLastName" alignment="0" max="32767" attributes="0"/>
                           <Component id="separetorLastName" alignment="0" max="32767" attributes="0"/>
                           <Component id="tittle" alignment="1" max="32767" attributes="0"/>
@@ -102,10 +100,6 @@
                               <Component id="labelPassword" max="32767" attributes="0"/>
                               <EmptySpace min="299" pref="299" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="labelCI" min="-2" pref="85" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          </Group>
                       </Group>
                       <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                   </Group>
@@ -134,12 +128,6 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="inputLastName" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="labelCI" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="separatorCI" min="-2" pref="10" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="inputCI" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="labelFicha" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="separatorFicha" min="-2" pref="10" max="-2" attributes="0"/>
@@ -163,9 +151,9 @@
                       <Component id="separatorPassword" min="-2" pref="10" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="inputPassword" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="113" max="-2" attributes="0"/>
                       <Component id="btnInit" min="-2" pref="56" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="53" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -305,40 +293,6 @@
                   <ComponentRef name="inputFicha"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Ficha:"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="inputCI">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                </Property>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Bahnschrift" size="15" style="0"/>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="32" green="32" red="32" type="rgb"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JSeparator" name="separatorCI">
-              <Properties>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="labelCI">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Bahnschrift" size="16" style="1"/>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                </Property>
-                <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
-                  <ComponentRef name="inputCI"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Cedula:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="inputLastName">

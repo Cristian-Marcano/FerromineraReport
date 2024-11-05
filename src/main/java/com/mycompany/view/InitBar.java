@@ -39,9 +39,6 @@ public class InitBar extends javax.swing.JPanel {
         inputFicha = new javax.swing.JTextField();
         separatorFicha = new javax.swing.JSeparator();
         labelFicha = new javax.swing.JLabel();
-        inputCI = new javax.swing.JTextField();
-        separatorCI = new javax.swing.JSeparator();
-        labelCI = new javax.swing.JLabel();
         inputLastName = new javax.swing.JTextField();
         separetorLastName = new javax.swing.JSeparator();
         labelLastName = new javax.swing.JLabel();
@@ -105,17 +102,6 @@ public class InitBar extends javax.swing.JPanel {
         labelFicha.setLabelFor(inputFicha);
         labelFicha.setText("Ficha:");
 
-        inputCI.setBackground(new java.awt.Color(255, 255, 255));
-        inputCI.setFont(new java.awt.Font("Bahnschrift", 0, 15)); // NOI18N
-        inputCI.setForeground(new java.awt.Color(50, 50, 50));
-
-        separatorCI.setForeground(new java.awt.Color(255, 255, 255));
-
-        labelCI.setFont(new java.awt.Font("Bahnschrift", 1, 16)); // NOI18N
-        labelCI.setForeground(new java.awt.Color(255, 255, 255));
-        labelCI.setLabelFor(inputCI);
-        labelCI.setText("Cedula:");
-
         inputLastName.setBackground(new java.awt.Color(255, 255, 255));
         inputLastName.setFont(new java.awt.Font("Bahnschrift", 0, 15)); // NOI18N
         inputLastName.setForeground(new java.awt.Color(50, 50, 50));
@@ -167,8 +153,6 @@ public class InitBar extends javax.swing.JPanel {
                     .addComponent(inputTlf)
                     .addComponent(separatorTlf)
                     .addComponent(inputFicha)
-                    .addComponent(inputCI)
-                    .addComponent(separatorCI)
                     .addComponent(inputLastName)
                     .addComponent(separetorLastName)
                     .addComponent(tittle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -193,10 +177,7 @@ public class InitBar extends javax.swing.JPanel {
                         .addGap(276, 276, 276))
                     .addGroup(initLayout.createSequentialGroup()
                         .addComponent(labelPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(299, 299, 299))
-                    .addGroup(initLayout.createSequentialGroup()
-                        .addComponent(labelCI, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(299, 299, 299)))
                 .addGap(28, 28, 28))
             .addGroup(initLayout.createSequentialGroup()
                 .addGap(126, 126, 126)
@@ -221,12 +202,6 @@ public class InitBar extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(inputLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(labelCI)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(separatorCI, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(inputCI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(labelFicha)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(separatorFicha, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -250,9 +225,9 @@ public class InitBar extends javax.swing.JPanel {
                 .addComponent(separatorPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(inputPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
+                .addGap(113, 113, 113)
                 .addComponent(btnInit, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
         scroll.setViewportView(init);
@@ -279,14 +254,12 @@ public class InitBar extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnInit;
     private javax.swing.JPanel init;
-    private javax.swing.JTextField inputCI;
     private javax.swing.JTextField inputFicha;
     private javax.swing.JTextField inputLastName;
     private javax.swing.JTextField inputName;
     private javax.swing.JPasswordField inputPassword;
     private javax.swing.JTextField inputTlf;
     private javax.swing.JTextField inputUsername;
-    private javax.swing.JLabel labelCI;
     private javax.swing.JLabel labelFicha;
     private javax.swing.JLabel labelLastName;
     private javax.swing.JLabel labelName;
@@ -294,7 +267,6 @@ public class InitBar extends javax.swing.JPanel {
     private javax.swing.JLabel labelTlf;
     private javax.swing.JLabel labelUsername;
     private javax.swing.JScrollPane scroll;
-    private javax.swing.JSeparator separatorCI;
     private javax.swing.JSeparator separatorFicha;
     private javax.swing.JSeparator separatorName;
     private javax.swing.JSeparator separatorPassword;
