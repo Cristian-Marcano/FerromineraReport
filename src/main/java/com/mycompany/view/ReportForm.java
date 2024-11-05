@@ -61,6 +61,7 @@ public class ReportForm extends javax.swing.JPanel {
         btnPublish.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         btnPublish.setForeground(new java.awt.Color(255, 255, 255));
         btnPublish.setText("Publicar");
+        btnPublish.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnPublish.setMaximumSize(new java.awt.Dimension(135, 39));
         btnPublish.setPreferredSize(new java.awt.Dimension(124, 45));
 
@@ -75,9 +76,9 @@ public class ReportForm extends javax.swing.JPanel {
                     .addComponent(inputTitle))
                 .addGap(76, 76, 76))
             .addGroup(panelFormContentLayout.createSequentialGroup()
-                .addGap(225, 225, 225)
-                .addComponent(btnPublish, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(225, 225, 225))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnPublish, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelFormContentLayout.setVerticalGroup(
             panelFormContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -102,7 +103,7 @@ public class ReportForm extends javax.swing.JPanel {
 
         selectHours.setBackground(new java.awt.Color(255, 255, 255));
         selectHours.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        selectHours.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Diurno", "Nocturno" }));
+        selectHours.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cualquiera", "Diurno", "Nocturno" }));
 
         labelNew.setFont(new java.awt.Font("Bahnschrift", 0, 16)); // NOI18N
         labelNew.setForeground(new java.awt.Color(65, 75, 178));
@@ -112,7 +113,7 @@ public class ReportForm extends javax.swing.JPanel {
 
         selectNew.setBackground(new java.awt.Color(255, 255, 255));
         selectNew.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        selectNew.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Novedad 1", "Novedad 2", "Novedad 3", "Novedad 4" }));
+        selectNew.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cualquiera", "Novedad 1", "Novedad 2", "Novedad 3", "Novedad 4" }));
 
         javax.swing.GroupLayout panelFormTypeLayout = new javax.swing.GroupLayout(panelFormType);
         panelFormType.setLayout(panelFormTypeLayout);
