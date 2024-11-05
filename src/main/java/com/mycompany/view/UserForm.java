@@ -51,9 +51,6 @@ public class UserForm extends javax.swing.JPanel {
         labelLastName = new javax.swing.JLabel();
         separatorLastName = new javax.swing.JSeparator();
         inputLastName = new javax.swing.JTextField();
-        labelCI = new javax.swing.JLabel();
-        separatorCI = new javax.swing.JSeparator();
-        inputCI = new javax.swing.JTextField();
         labelFicha = new javax.swing.JLabel();
         separatorFicha = new javax.swing.JSeparator();
         inputFicha = new javax.swing.JTextField();
@@ -122,17 +119,6 @@ public class UserForm extends javax.swing.JPanel {
         inputLastName.setFont(new java.awt.Font("Bahnschrift", 0, 15)); // NOI18N
         inputLastName.setForeground(new java.awt.Color(50, 50, 50));
 
-        labelCI.setFont(new java.awt.Font("Bahnschrift", 0, 16)); // NOI18N
-        labelCI.setForeground(new java.awt.Color(65, 75, 178));
-        labelCI.setLabelFor(inputCI);
-        labelCI.setText("Cedula:");
-
-        separatorCI.setForeground(new java.awt.Color(65, 75, 178));
-
-        inputCI.setBackground(new java.awt.Color(255, 255, 255));
-        inputCI.setFont(new java.awt.Font("Bahnschrift", 0, 15)); // NOI18N
-        inputCI.setForeground(new java.awt.Color(50, 50, 50));
-
         labelFicha.setFont(new java.awt.Font("Bahnschrift", 0, 16)); // NOI18N
         labelFicha.setForeground(new java.awt.Color(65, 75, 178));
         labelFicha.setLabelFor(inputFicha);
@@ -188,7 +174,6 @@ public class UserForm extends javax.swing.JPanel {
                     .addComponent(inputTlf)
                     .addComponent(inputFicha)
                     .addComponent(separatorFicha)
-                    .addComponent(inputCI)
                     .addComponent(inputLastName)
                     .addComponent(separatorLastName)
                     .addComponent(inputName)
@@ -198,15 +183,11 @@ public class UserForm extends javax.swing.JPanel {
                         .addComponent(labelUsername, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(139, 139, 139))
                     .addComponent(separatorUsername)
-                    .addComponent(separatorCI)
                     .addComponent(separatorTlf)
                     .addGroup(formLayout.createSequentialGroup()
                         .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, formLayout.createSequentialGroup()
-                                .addComponent(labelCI, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(12, 12, 12))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, formLayout.createSequentialGroup()
-                                .addComponent(labelLastName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(labelLastName, javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE)
                                 .addGap(7, 7, 7))
                             .addComponent(labelTlf, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, formLayout.createSequentialGroup()
@@ -235,7 +216,7 @@ public class UserForm extends javax.swing.JPanel {
                 .addComponent(btnClose)
                 .addGap(8, 8, 8)
                 .addComponent(title)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addComponent(labelUsername)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(separatorUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -253,12 +234,6 @@ public class UserForm extends javax.swing.JPanel {
                 .addComponent(separatorLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(inputLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, Short.MAX_VALUE)
-                .addComponent(labelCI)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(separatorCI, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(inputCI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, Short.MAX_VALUE)
                 .addComponent(labelFicha)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -279,7 +254,7 @@ public class UserForm extends javax.swing.JPanel {
                 .addComponent(inputPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnAction, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
 
         scroll.setViewportView(form);
@@ -309,14 +284,12 @@ public class UserForm extends javax.swing.JPanel {
     private javax.swing.JButton btnAction;
     private javax.swing.JButton btnClose;
     private javax.swing.JPanel form;
-    private javax.swing.JTextField inputCI;
     private javax.swing.JTextField inputFicha;
     private javax.swing.JTextField inputLastName;
     private javax.swing.JTextField inputName;
     private javax.swing.JTextField inputPassword;
     private javax.swing.JTextField inputTlf;
     private javax.swing.JTextField inputUsername;
-    private javax.swing.JLabel labelCI;
     private javax.swing.JLabel labelFicha;
     private javax.swing.JLabel labelLastName;
     private javax.swing.JLabel labelName;
@@ -324,7 +297,6 @@ public class UserForm extends javax.swing.JPanel {
     private javax.swing.JLabel labelTlf;
     private javax.swing.JLabel labelUsername;
     private javax.swing.JScrollPane scroll;
-    private javax.swing.JSeparator separatorCI;
     private javax.swing.JSeparator separatorFicha;
     private javax.swing.JSeparator separatorLastName;
     private javax.swing.JSeparator separatorName;
