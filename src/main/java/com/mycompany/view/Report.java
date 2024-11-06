@@ -72,9 +72,9 @@ public class Report extends javax.swing.JPanel {
         scroll = new javax.swing.JScrollPane();
         text = new javax.swing.JTextArea();
         footer = new javax.swing.JPanel();
-        jSeparator1 = new javax.swing.JSeparator();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jLabel1 = new javax.swing.JLabel();
+        separatorFooter = new javax.swing.JSeparator();
+        check = new javax.swing.JCheckBox();
+        comments = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(230, 230, 230));
         setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(128, 128, 128)));
@@ -139,21 +139,22 @@ public class Report extends javax.swing.JPanel {
         footer.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 0, 0, 0, new java.awt.Color(128, 128, 128)));
         footer.setPreferredSize(new java.awt.Dimension(466, 40));
 
-        jSeparator1.setForeground(new java.awt.Color(128, 128, 128));
-        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        separatorFooter.setForeground(new java.awt.Color(128, 128, 128));
+        separatorFooter.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
-        jCheckBox1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jCheckBox1.setForeground(new java.awt.Color(30, 30, 30));
-        jCheckBox1.setText("Checado");
-        jCheckBox1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        check.setBackground(new java.awt.Color(230, 230, 230));
+        check.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        check.setForeground(new java.awt.Color(30, 30, 30));
+        check.setText("Checado");
+        check.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(30, 30, 30));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/comment_logo.png"))); // NOI18N
-        jLabel1.setText("Comentar");
-        jLabel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 5, 0, 0));
-        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel1.setIconTextGap(10);
+        comments.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        comments.setForeground(new java.awt.Color(30, 30, 30));
+        comments.setIcon(new javax.swing.ImageIcon(getClass().getResource("/comment_logo.png"))); // NOI18N
+        comments.setText("Comentar");
+        comments.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 5, 0, 0));
+        comments.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        comments.setIconTextGap(10);
 
         javax.swing.GroupLayout footerLayout = new javax.swing.GroupLayout(footer);
         footer.setLayout(footerLayout);
@@ -161,21 +162,21 @@ public class Report extends javax.swing.JPanel {
             footerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(footerLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jCheckBox1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(check, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(150, 150, 150)
-                .addComponent(jSeparator1)
+                .addComponent(separatorFooter)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(comments, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(126, 126, 126))
         );
         footerLayout.setVerticalGroup(
             footerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSeparator1)
+            .addComponent(separatorFooter)
             .addGroup(footerLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(footerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCheckBox1, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(check, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
+                    .addComponent(comments, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -226,15 +227,15 @@ public class Report extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBox check;
+    private javax.swing.JLabel comments;
     private javax.swing.JLabel date;
     private javax.swing.JPanel datetimePanel;
     private javax.swing.JLabel editor;
     private javax.swing.JPanel footer;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel publisher;
     private javax.swing.JScrollPane scroll;
+    private javax.swing.JSeparator separatorFooter;
     private javax.swing.JTextArea text;
     private javax.swing.JLabel tittle;
     // End of variables declaration//GEN-END:variables
