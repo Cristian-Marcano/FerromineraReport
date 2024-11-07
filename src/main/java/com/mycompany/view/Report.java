@@ -1,60 +1,23 @@
 package com.mycompany.view;
 
-import java.awt.Dimension;
+import com.mycompany.utils.ItemText;
 
 /**
  *
  * @author Cristian
  */
 public class Report extends javax.swing.JPanel {
-
-    private boolean first = true;
+    
+    public ItemText objItemText;
     
     /**
      * Creates new form report
      */
     public Report() {
         initComponents();
+        objItemText = new ItemText(this, scroll, text);
     }
     
-    private void textResize() {
-        int width = text.getWidth();
-        // Obtener la altura de la fuente
-        int lineHeight = text.getFontMetrics(text.getFont()).getHeight();
-        // Obtener el texto actual
-        String string = text.getText();
-        // Dividir el texto en líneas
-        String[] lines = string.split("\n");
-        int totalLines = 0;
-
-        // Calcular el número total de líneas necesarias
-        for (String line : lines) {
-            // Calcular el ancho del texto de la línea
-            int lineWidth = text.getFontMetrics(text.getFont()).stringWidth(line);
-            // Si el ancho de la línea es mayor que el ancho del JTextArea, se necesita más de una línea
-            if (lineWidth > width) {
-                totalLines += Math.ceil((double) lineWidth / width);
-            } else {
-                totalLines++;
-            }
-        }
-                
-        int heightText = ((lineHeight) * totalLines);
-        
-        int height = this.getPreferredSize().height + heightText - text.getPreferredSize().height;
-        
-        if(first) {
-            first = false;
-            this.setPreferredSize(new Dimension(this.getPreferredSize().width, this.getPreferredSize().height + heightText));
-        } else this.setPreferredSize(new Dimension(this.getPreferredSize().width, height));
-            
-        
-        text.setPreferredSize(new Dimension(text.getWidth(), heightText));
-        scroll.revalidate();
-        text.revalidate();
-        scroll.repaint();
-        text.repaint();
-    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -222,7 +185,7 @@ public class Report extends javax.swing.JPanel {
 
     private void textComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_textComponentResized
         // TODO add your handling code here:
-        textResize();
+        objItemText.TextResize();
     }//GEN-LAST:event_textComponentResized
 
 
