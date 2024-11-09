@@ -1,41 +1,90 @@
 package com.mycompany.DB;
 
+import java.util.Map;
+import java.util.HashMap;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.BufferedReader;
+import java.sql.ResultSet;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 /**
  *
  * @author Cristian
  */
 public class Database {
-    private final String host = "localhost";
-    private final int port = 3306;
-    private final String db = "ferrominera_project";
-    private final String username = "root";
-    private final String password = "Contraseña1/";
+    
+    private static String host;
+    private static Integer port;
+    private static String db;
+    private static String username;
+    private static String password;
     protected static Connection connection;
     protected static PreparedStatement statement;
     protected static ResultSet result;
     
-    public void applyConnection() throws SQLException {
+    public Database() {
+        Map<String, String> envVariables = new HashMap<>();
+        String line;
+        if(ValidateAttributes())
+        try (BufferedReader br = new BufferedReader(new FileReader(".env"))) {
+            while ((line = br.readLine()) != null) {
+                // Ignorar líneas vacías y comentarios
+                if (line.trim().isEmpty() || line.startsWith("#"))
+                    continue;
+                
+                String[] parts = line.split("=", 2);
+                
+                if(parts.length == 2) 
+                    envVariables.put(parts[0].trim(), parts[1].trim());
+            }
+            
+            if(!ValidateEnv(envVariables)) {
+                host = envVariables.get("host");
+                port = Integer.valueOf(envVariables.get("port"));
+                db = envVariables.get("database");
+                username = envVariables.get("user");
+                password = envVariables.get("password");
+            } else throw new IOException("environment variables not found");
+            
+        } catch (IOException | NumberFormatException e) { 
+            System.err.println(e.getMessage());
+                
+            host = "localhost";
+            port = 3306;
+            db = "ferrominera_project";
+            username = "root";
+            password = "Contraseña1/";
+        }
+    }
+    
+    private boolean ValidateAttributes() {
+        return host == null && port==null && db == null && username == null && password == null;
+    }
+    
+    private boolean ValidateEnv(Map<String, String> envs) {
+        return envs.get("host")==null && envs.get("port")==null && envs.get("database")==null && envs.get("user")==null && envs.get("password")==null; 
+    }
+    
+    public void ApplyConnection() throws SQLException {
         String url = String.format("jdbc:mysql://%s:%d/%s",host,port,db);
         connection = DriverManager.getConnection(url,username,password);
     }
     
-    public static boolean verifyController(){
+    public static boolean VerifyController(){
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             return true;
         } catch (ClassNotFoundException e) {
-            System.out.println("Error al cargar el controlador JDBC: " + e.getMessage());
+            System.err.println("Error al cargar el controlador JDBC: " + e.getMessage());
             return false;
         }
     }
     
-    public void closeConnection() throws SQLException {
+    public void CloseConnection() throws SQLException {
         if(connection!=null && (!connection.isClosed())) connection.close();
         if(statement!=null && (!statement.isClosed())) statement.close();
         if(result!=null && (!result.isClosed())) result.close();
