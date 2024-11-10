@@ -29,7 +29,7 @@ public class Database {
     public Database() {
         Map<String, String> envVariables = new HashMap<>();
         String line;
-        if(ValidateAttributes())
+        if(validateAttributes())
         try (BufferedReader br = new BufferedReader(new FileReader(".env"))) {
             while ((line = br.readLine()) != null) {
                 // Ignorar líneas vacías y comentarios
@@ -42,7 +42,7 @@ public class Database {
                     envVariables.put(parts[0].trim(), parts[1].trim());
             }
             
-            if(!ValidateEnv(envVariables)) {
+            if(!validateEnv(envVariables)) {
                 host = envVariables.get("host");
                 port = Integer.valueOf(envVariables.get("port"));
                 db = envVariables.get("database");
@@ -61,20 +61,20 @@ public class Database {
         }
     }
     
-    private boolean ValidateAttributes() {
+    private boolean validateAttributes() {
         return host == null && port==null && db == null && username == null && password == null;
     }
     
-    private boolean ValidateEnv(Map<String, String> envs) {
+    private boolean validateEnv(Map<String, String> envs) {
         return envs.get("host")==null && envs.get("port")==null && envs.get("database")==null && envs.get("user")==null && envs.get("password")==null; 
     }
     
-    public void ApplyConnection() throws SQLException {
+    public void applyConnection() throws SQLException {
         String url = String.format("jdbc:mysql://%s:%d/%s",host,port,db);
         connection = DriverManager.getConnection(url,username,password);
     }
     
-    public static boolean VerifyController(){
+    public static boolean verifyController(){
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             return true;
