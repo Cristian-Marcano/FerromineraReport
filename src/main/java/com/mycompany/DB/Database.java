@@ -14,8 +14,22 @@ import java.sql.PreparedStatement;
 /**
  *
  * @author Cristian
+ * Clase que realiza conexion con la base de datos MYSQL
+ * y clase padre de los servicios que ejecutan sentencias a la DB
  */
 public class Database {
+    
+    /**
+     * datos para realizar la conexion a la base de datos
+     * 
+     * host: ubicación de la base de datos (localhost o puede ser una direccion IP)
+     * port: puerto en el que esta encendido la base de datos
+     * db: nombre de la base de datos
+     * password: clave para poder ingresar
+     * connection: contiene la conexion con la base de datos
+     * statement: puente entre la conexion de la DB, datos de entradas y ejecutador de sentencias SQL hacia la DB
+     * result: almacenador de datos obtenidos una vez ejecutada las sentencias SQL del statement
+    */
     
     private static String host;
     private static Integer port;
@@ -26,6 +40,7 @@ public class Database {
     protected static PreparedStatement statement;
     protected static ResultSet result;
     
+    //* Constructor Lee las variables de entornos (las variables del .env)
     public Database() {
         Map<String, String> envVariables = new HashMap<>();
         String line;
@@ -50,9 +65,9 @@ public class Database {
                 password = envVariables.get("password");
             } else throw new IOException("environment variables not found");
             
-        } catch (IOException | NumberFormatException e) { 
+        } catch (IOException | NumberFormatException e) { //* Si las variables no son encontradas o no se encontro el .env
             System.err.println(e.getMessage());
-                
+            //*  Se les coloca estos por defecto (son los de mi PC xd)
             host = "localhost";
             port = 3306;
             db = "ferrominera_project";
@@ -61,19 +76,23 @@ public class Database {
         }
     }
     
+    //* Verificar si los atributos que almacenaran los datos de las variables de entorno (.env) estan vacios 
     private boolean validateAttributes() {
-        return host == null && port==null && db == null && username == null && password == null;
+        return host == null && port == null && db == null && username == null && password == null;
     }
     
+    //* Validar si se encuentra las variables de entorno esperadas
     private boolean validateEnv(Map<String, String> envs) {
         return envs.get("host")==null && envs.get("port")==null && envs.get("database")==null && envs.get("user")==null && envs.get("password")==null; 
     }
     
+    //* Aplicar conexion de la base de datos
     public void applyConnection() throws SQLException {
         String url = String.format("jdbc:mysql://%s:%d/%s",host,port,db);
         connection = DriverManager.getConnection(url,username,password);
     }
     
+    //* Verificar si se encuentra los controladores en el proyecto
     public static boolean verifyController(){
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -84,6 +103,7 @@ public class Database {
         }
     }
     
+    //* Cerrar conexion con la Base de datos
     public void CloseConnection() throws SQLException {
         if(connection!=null && (!connection.isClosed())) connection.close();
         if(statement!=null && (!statement.isClosed())) statement.close();
