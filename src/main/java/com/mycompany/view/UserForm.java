@@ -276,7 +276,7 @@ public class UserForm extends javax.swing.JPanel {
     private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
         // TODO add your handling code here:
         active = false;
-        FerromineraProject.contentP.RemoveThisComponent(this);
+        FerromineraProject.contentP.removeThisComponent(this);
     }//GEN-LAST:event_btnCloseActionPerformed
 
 

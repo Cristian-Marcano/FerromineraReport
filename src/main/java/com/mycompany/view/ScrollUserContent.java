@@ -34,23 +34,23 @@ public class ScrollUserContent extends javax.swing.JPanel {
             @Override
             public void adjustmentValueChanged(AdjustmentEvent e) {
                 // Actualizar la posición del botón sticky
-                ChangePosition();
+                changePosition();
             }
         });
     }
     
-    public static void InitUserContent() {
+    public static void initUserContent() {
         List<JPanel> reports = new ArrayList<>();
         
         for(int i = 0; i <  20; i++) 
             reports.add(new User());
         
         try {
-            FerromineraProject.contentP.ShowItemsPanel(reports);
+            FerromineraProject.contentP.showItemsPanel(reports);
         } catch (Exception e) { System.err.println(e.getMessage()); }
     }
     
-    private void ChangePosition() {
+    private void changePosition() {
         Dimension viewport = scroll.getViewport().getSize();
             
         Point p = new Point(viewport.width - 35, viewport.height - 100 + scroll.getVerticalScrollBar().getValue());
@@ -59,30 +59,30 @@ public class ScrollUserContent extends javax.swing.JPanel {
         btnUserAdd.setLocation(p.x - btnUserSearch.getSize().width - 10, p.y);
         
         if(searchUserForm.active)
-            FormActive(searchUserForm, viewport);
+            formActive(searchUserForm, viewport);
         else if(addUserForm.active)
-            FormActive(addUserForm, viewport);
+            formActive(addUserForm, viewport);
         else if(editUserForm.active)
-            FormActive(editUserForm, viewport);
+            formActive(editUserForm, viewport);
     }
     
-    private void FormActive(UserForm form, Dimension viewport) {
+    private void formActive(UserForm form, Dimension viewport) {
         form.setSize(new Dimension(365, viewport.height));
         form.setLocation(viewport.width - 365, scroll.getVerticalScrollBar().getValue());
         form.revalidate();
         form.repaint();
     }
     
-    private void BtnVisible(boolean active) {
+    private void btnVisible(boolean active) {
         btnUserAdd.setVisible(active);
         btnUserSearch.setVisible(active);
     }
     
-    public void ActiveEditUserForm() {
-        BtnVisible(false);
+    public void activeEditUserForm() {
+        btnVisible(false);
         editUserForm.active = true;
         userContent.add(editUserForm, 0);
-        ChangePosition();
+        changePosition();
     }
 
     /**
@@ -174,30 +174,30 @@ public class ScrollUserContent extends javax.swing.JPanel {
     private void formComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentResized
         // TODO add your handling code here:
         try {
-            FerromineraProject.contentP.ResizeScrollPane();
-            ChangePosition();
+            FerromineraProject.contentP.resizeScrollPane();
+            changePosition();
         } catch(Exception e) { System.err.println(e.getMessage()); }
     }//GEN-LAST:event_formComponentResized
 
     private void btnUserAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserAddActionPerformed
         // TODO add your handling code here:
-        BtnVisible(false);
+        btnVisible(false);
         addUserForm.active = true;
         userContent.add(addUserForm, 0);
-        ChangePosition();
+        changePosition();
     }//GEN-LAST:event_btnUserAddActionPerformed
 
     private void btnUserSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserSearchActionPerformed
         // TODO add your handling code here:
-        BtnVisible(false);
+        btnVisible(false);
         searchUserForm.active = true;
         userContent.add(searchUserForm, 0);
-        ChangePosition();
+        changePosition();
     }//GEN-LAST:event_btnUserSearchActionPerformed
 
     private void userContentComponentRemoved(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_userContentComponentRemoved
         // TODO add your handling code here:
-        BtnVisible(true);
+        btnVisible(true);
     }//GEN-LAST:event_userContentComponentRemoved
 
 

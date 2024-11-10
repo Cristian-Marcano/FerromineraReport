@@ -185,7 +185,7 @@ public class Report extends javax.swing.JPanel {
 
     private void textComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_textComponentResized
         // TODO add your handling code here:
-        objItemText.TextResize();
+        objItemText.textResize();
     }//GEN-LAST:event_textComponentResized
 
 

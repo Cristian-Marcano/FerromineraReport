@@ -135,7 +135,7 @@ public class User extends javax.swing.JPanel {
         
         if(comp instanceof ScrollUserContent) {
             ScrollUserContent userContentPane = (ScrollUserContent) comp;
-            userContentPane.ActiveEditUserForm();
+            userContentPane.activeEditUserForm();
         }
     }//GEN-LAST:event_btnUserEditActionPerformed
 

@@ -18,14 +18,17 @@ public class ScrollReportContent extends javax.swing.JPanel {
         initComponents();
     }
     
-    public static void InitReportContent() {
+    public static void initReportContent() {
         List<JPanel> reports = new ArrayList<>();
         
-        for(int i = 0; i <  20; i++) 
-            reports.add(new Report());
+//        for(int i = 0; i <  20; i++) 
+//            reports.add(new Report());
+
+        for(int i = 0; i < 20; i++)
+            reports.add(new Commentary());
         
         try {
-            FerromineraProject.contentP.ShowItemsPanel(reports);
+            FerromineraProject.contentP.showItemsPanel(reports);
         } catch (Exception e) { System.err.println(e.getMessage()); }
     }
 
@@ -81,7 +84,7 @@ public class ScrollReportContent extends javax.swing.JPanel {
     private void formComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentResized
         // TODO add your handling code here:
         try {
-            FerromineraProject.contentP.ResizeScrollPane();
+            FerromineraProject.contentP.resizeScrollPane();
         } catch(Exception e) { System.err.println(e.getMessage()); }
     }//GEN-LAST:event_formComponentResized
 
