@@ -39,6 +39,7 @@ public class ScrollUserContent extends javax.swing.JPanel {
         });
     }
     
+    //* Añadir lista de paneles que contienen informacion de los usuarios
     public static void initUserContent() {
         List<JPanel> reports = new ArrayList<>();
         
@@ -50,6 +51,7 @@ public class ScrollUserContent extends javax.swing.JPanel {
         } catch (Exception e) { System.err.println(e.getMessage()); }
     }
     
+    //* Cambiar de posicion a los stickyBtn (add y search) y sus respectivos formularios
     private void changePosition() {
         Dimension viewport = scroll.getViewport().getSize();
             
@@ -66,6 +68,7 @@ public class ScrollUserContent extends javax.swing.JPanel {
             formActive(editUserForm, viewport);
     }
     
+    //* Activar|Mostrar los formularios (add, search o edit)
     private void formActive(UserForm form, Dimension viewport) {
         form.setSize(new Dimension(365, viewport.height));
         form.setLocation(viewport.width - 365, scroll.getVerticalScrollBar().getValue());
@@ -73,11 +76,13 @@ public class ScrollUserContent extends javax.swing.JPanel {
         form.repaint();
     }
     
+    //* Cambiar la Visibilidad a los stickyBtn
     private void btnVisible(boolean active) {
         btnUserAdd.setVisible(active);
         btnUserSearch.setVisible(active);
     }
     
+    //* Funcion que se usa desde el item que se presiona el btnEdit
     public void activeEditUserForm() {
         btnVisible(false);
         editUserForm.active = true;
@@ -170,7 +175,7 @@ public class ScrollUserContent extends javax.swing.JPanel {
             .addComponent(scroll)
         );
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void formComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentResized
         // TODO add your handling code here:
         try {
@@ -194,7 +199,7 @@ public class ScrollUserContent extends javax.swing.JPanel {
         userContent.add(searchUserForm, 0);
         changePosition();
     }//GEN-LAST:event_btnUserSearchActionPerformed
-
+    
     private void userContentComponentRemoved(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_userContentComponentRemoved
         // TODO add your handling code here:
         btnVisible(true);

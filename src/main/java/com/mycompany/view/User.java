@@ -124,7 +124,8 @@ public class User extends javax.swing.JPanel {
                 .addContainerGap(7, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    //* Activa el formulario de edicion de usuarios 
     private void btnUserEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserEditActionPerformed
         // TODO add your handling code here:
         
