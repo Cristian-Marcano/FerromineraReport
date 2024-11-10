@@ -8,20 +8,30 @@ import javax.swing.JTextArea;
 /**
  *
  * @author Cristian
+ * Clase que ayuda en el reescalado de JTextArea y cambia el tamaño del panel contenedor
+ * del JTextArea para que no aparezcan el scroll en estos
  */
 public class ItemText {
+    
+    /**
+     * itemPanel: panel contenedor del JTextArea
+     * scroll: scroll del JTextArea
+     * text: el JTextArea
+    */
     
     private JPanel itemPanel;
     private JScrollPane scroll;
     private JTextArea text;
     private boolean first = true;
     
+    //* Constructor
     public ItemText(JPanel item, JScrollPane itemScroll, JTextArea itemText) {
         itemPanel = item;
         scroll = itemScroll;
         text = itemText;
     }
     
+    //* Reescalador del JTextArea y del panel
     public void textResize() {
         int width = text.getWidth();
         // Obtener la altura de la fuente

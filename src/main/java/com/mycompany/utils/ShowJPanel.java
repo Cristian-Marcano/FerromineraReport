@@ -10,12 +10,23 @@ import javax.swing.JScrollPane;
 /**
  *
  * @author Cristian
+ * Clase que facilita la conexion entre el panel y el contenedor,
+ * ayudando tambien en la iteracion y adicion de items que poco a poco se añaden al panel
+ * y facilitando el cambio entre paneles de forma resumida
  */
 public class ShowJPanel {
+    
+    /**
+     * size: tamaño que contendra el panel
+     * panel: interfaz de alguna parte de la app
+     * container: parte de la ventana donde se muestra el panel
+     * containerLayout: Layout del contenedor (forma de mostrar el panel en el contenedor)
+    */
     private Dimension size;
     private JPanel panel, container;
     private GroupLayout containerLayout;
     
+    //* Contructor
     public ShowJPanel(JPanel p, JPanel contain, Dimension size) {
         this.size = size; 
         panel = p;
@@ -23,15 +34,18 @@ public class ShowJPanel {
         containerLayout = new GroupLayout(container);
     }
     
+    //* Cambiar Panel
     public void setPanel(JPanel p) {
         panel = p;
     }
     
+    //* Refrescar contenedor (ayuda a actualizar la imagen en pantalla del contenedor)
     public void refreshContainer() {
         container.revalidate();
         container.repaint();
     }
     
+    //* Mostrar panel en el contenedor (adiriendo el panel al layout del contenedor)
     public void showPanel() {
         panel.setPreferredSize(size);
         
@@ -52,6 +66,7 @@ public class ShowJPanel {
         refreshContainer();
     }
     
+    //* mostrar un listado de items al panel en columna (adiere los items al panel si y solo si el panel tiene Scroll)
     public void showItemsPanel(List<JPanel> panelList) throws Exception {
         if(panel.getComponent(0) instanceof JScrollPane) {
             
@@ -97,6 +112,7 @@ public class ShowJPanel {
         } else throw new Exception("the panel does not contain a JScrollPane"); //! Si el panel no contiene un JScrollPane retorna una Excepcion
     }
     
+    //* Reescala el tamaño del JScrollPane de acuerdo a la cantidad de items que contiene el panel del JScrollPane
     public void resizeScrollPane() throws Exception {
         if(panel.getComponent(0) instanceof JScrollPane) {
             
@@ -114,6 +130,7 @@ public class ShowJPanel {
         } else throw new Exception("the panel does not contain a JScrollPane");
     }
     
+    //* Remueve un componente (un JPanel) del panel o del JScrollPane
     public void removeThisComponent(Component comp) {
         if(panel.getComponent(0) instanceof JScrollPane) {
             JScrollPane scroll = (JScrollPane) panel.getComponent(0);
