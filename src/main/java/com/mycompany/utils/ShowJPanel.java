@@ -17,26 +17,22 @@ public class ShowJPanel {
     private GroupLayout containerLayout;
     
     public ShowJPanel(JPanel p, JPanel contain, Dimension size) {
-        InitPanels(p, contain);
-        this.size = size;
-    }
-    
-    private void InitPanels(JPanel p, JPanel contain) {
+        this.size = size; 
         panel = p;
         container = contain;
         containerLayout = new GroupLayout(container);
     }
     
-    public void SetPanel(JPanel p) {
+    public void setPanel(JPanel p) {
         panel = p;
     }
     
-    public void RefreshContainer() {
+    public void refreshContainer() {
         container.revalidate();
         container.repaint();
     }
     
-    public void ShowPanel() {
+    public void showPanel() {
         panel.setPreferredSize(size);
         
         container.removeAll();
@@ -53,10 +49,10 @@ public class ShowJPanel {
 
         container.setLayout(containerLayout);
         
-        RefreshContainer();
+        refreshContainer();
     }
     
-    public void ShowItemsPanel(List<JPanel> panelList) throws Exception {
+    public void showItemsPanel(List<JPanel> panelList) throws Exception {
         if(panel.getComponent(0) instanceof JScrollPane) {
             
             JScrollPane scroll = (JScrollPane) panel.getComponent(0);
@@ -101,7 +97,7 @@ public class ShowJPanel {
         } else throw new Exception("the panel does not contain a JScrollPane"); //! Si el panel no contiene un JScrollPane retorna una Excepcion
     }
     
-    public void ResizeScrollPane() throws Exception {
+    public void resizeScrollPane() throws Exception {
         if(panel.getComponent(0) instanceof JScrollPane) {
             
             JScrollPane scroll = (JScrollPane) panel.getComponent(0);
@@ -118,7 +114,7 @@ public class ShowJPanel {
         } else throw new Exception("the panel does not contain a JScrollPane");
     }
     
-    public void RemoveThisComponent(Component comp) {
+    public void removeThisComponent(Component comp) {
         if(panel.getComponent(0) instanceof JScrollPane) {
             JScrollPane scroll = (JScrollPane) panel.getComponent(0);
             
@@ -127,6 +123,6 @@ public class ShowJPanel {
             panelContent.remove(comp);
         } else panel.remove(comp);
             
-        RefreshContainer();
+        refreshContainer();
     }
 }

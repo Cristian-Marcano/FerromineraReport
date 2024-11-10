@@ -22,7 +22,7 @@ public class ItemText {
         text = itemText;
     }
     
-    public void TextResize() {
+    public void textResize() {
         int width = text.getWidth();
         // Obtener la altura de la fuente
         int lineHeight = text.getFontMetrics(text.getFont()).getHeight();
