@@ -7,21 +7,26 @@ import java.sql.Timestamp;
  * @author Cristian
  */
 public class Report {
-    private int id, create_by;
+    private int id, createBy, noveltiesId;
     private String title, content;
     private boolean checked;
-    private Timestamp create_at;
+    private Timestamp createAt;
 
-    public Report(int id, int create_by, String title, String content, boolean checked, Timestamp create_at) {
+    public Report(int id, int createBy, int noveltiesId, String title, String content, boolean checked, Timestamp createAt) {
         this.id = id;
-        this.create_by = create_by;
+        this.createBy = createBy;
+        this.noveltiesId = noveltiesId;
         this.title = title;
         this.content = content;
         this.checked = checked;
-        this.create_at = create_at;
+        this.createAt = createAt;
     }
     
     //*Setters
+    public void noveltiesId(int noveltiesId) {
+        this.noveltiesId = noveltiesId;
+    }
+    
     public void setTitle(String title) {
         this.title = title;
     }
@@ -34,8 +39,8 @@ public class Report {
         this.checked = checked;
     }
 
-    public void setCreate_at(Timestamp create_at) {
-        this.create_at = create_at;
+    public void setCreateAt(Timestamp createAt) {
+        this.createAt = createAt;
     }
     
     //*Getters
@@ -43,8 +48,12 @@ public class Report {
         return id;
     }
 
-    public int getCreate_by() {
-        return create_by;
+    public int getCreateBy() {
+        return createBy;
+    }
+    
+    public int getNoveltiesId() {
+        return noveltiesId;
     }
 
     public String getTitle() {
@@ -59,7 +68,7 @@ public class Report {
         return checked;
     }
 
-    public Timestamp getCreate_at() {
-        return create_at;
+    public Timestamp getCreateAt() {
+        return createAt;
     }
 }

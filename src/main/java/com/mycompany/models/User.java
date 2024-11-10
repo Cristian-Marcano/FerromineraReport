@@ -7,12 +7,14 @@ package com.mycompany.models;
 public class User {
     private int id;
     private String username, password, role;
+    private boolean active;
 
-    public User(int id, String username, String password, String role) {
+    public User(int id, String username, String password, String role, boolean active) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.role = role;
+        this.active = active;
     }
     
     //* Setters
@@ -26,6 +28,10 @@ public class User {
 
     public void setRole(String role) {
         this.role = role;
+    }
+    
+    public void setActive(boolean active) {
+        this.active = active;
     }
     
     //* Getters
@@ -45,5 +51,7 @@ public class User {
         return role;
     }
     
-    
+    public boolean getActive() {
+        return active;
+    }
 }

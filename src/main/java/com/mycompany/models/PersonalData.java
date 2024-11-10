@@ -5,12 +5,12 @@ package com.mycompany.models;
  * @author Cristian
  */
 public class PersonalData {
-    private int id, user_id;
+    private int id, userId;
     private String name, lastName, ficha, tlf;
 
-    public PersonalData(int id, int user_id, String name, String lastName, String ficha, String tlf) {
+    public PersonalData(int id, int userId, String name, String lastName, String ficha, String tlf) {
         this.id = id;
-        this.user_id = user_id;
+        this.userId = userId;
         this.name = name;
         this.lastName = lastName;
         this.ficha = ficha;
@@ -39,8 +39,8 @@ public class PersonalData {
         return id;
     }
 
-    public int getUser_id() {
-        return user_id;
+    public int getUserId() {
+        return userId;
     }
 
     public String getName() {

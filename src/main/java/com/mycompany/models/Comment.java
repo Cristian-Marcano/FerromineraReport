@@ -7,16 +7,16 @@ import java.sql.Timestamp;
  * @author Cristian
  */
 public class Comment {
-    private int id, create_by, report_id;
+    private int id, createBy, reportId;
     private String content;
-    private Timestamp create_at;
+    private Timestamp createAt;
 
-    public Comment(int id, int create_by, int report_id, String content, Timestamp create_at) {
+    public Comment(int id, int createBy, int reportId, String content, Timestamp createAt) {
         this.id = id;
-        this.create_by = create_by;
-        this.report_id = report_id;
+        this.createBy = createBy;
+        this.reportId = reportId;
         this.content = content;
-        this.create_at = create_at;
+        this.createAt = createAt;
     }
     
     //*Setters
@@ -24,8 +24,8 @@ public class Comment {
         this.content = content;
     }
 
-    public void setCreate_at(Timestamp create_at) {
-        this.create_at = create_at;
+    public void setCreateAt(Timestamp createAt) {
+        this.createAt = createAt;
     }
     
     //* Getters
@@ -33,19 +33,19 @@ public class Comment {
         return id;
     }
 
-    public int getCreate_by() {
-        return create_by;
+    public int getCreateBy() {
+        return createBy;
     }
 
-    public int getReport_id() {
-        return report_id;
+    public int getReportId() {
+        return reportId;
     }
 
     public String getContent() {
         return content;
     }
 
-    public Timestamp getCreate_at() {
-        return create_at;
+    public Timestamp getCreateAt() {
+        return createAt;
     }
 }
