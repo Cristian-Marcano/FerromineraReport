@@ -104,7 +104,7 @@ public class Database {
     }
     
     //* Cerrar conexion con la Base de datos
-    public void CloseConnection() throws SQLException {
+    public void closeConnection() throws SQLException {
         if(connection!=null && (!connection.isClosed())) connection.close();
         if(statement!=null && (!statement.isClosed())) statement.close();
         if(result!=null && (!result.isClosed())) result.close();
