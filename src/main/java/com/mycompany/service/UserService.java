@@ -47,7 +47,7 @@ public class UserService extends Database {
                 sql += (sql.endsWith("? ")) ? "AND " + sentence[0] : sentence[0];
         }
         statement = connection.prepareStatement(sql);
-        for(int i=0; i<sentencesAndValues.size(); i++) statement.setString(i-1, sentencesAndValues.get(i)[1]);
+        for(int i=0; i<sentencesAndValues.size(); i++) statement.setString(i+1, sentencesAndValues.get(i)[1]);
         result = statement.executeQuery();
         Map<User,PersonalData> users = new HashMap<>();
         while(result.next()) 
