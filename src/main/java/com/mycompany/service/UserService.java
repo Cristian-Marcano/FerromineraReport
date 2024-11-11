@@ -27,7 +27,7 @@ public class UserService extends Database {
     }
     
     public User getUser(String username) throws Exception {
-        String sql = "SELECT * FROM user WHERE username = ?";
+        String sql = "SELECT * FROM user WHERE username = ? AND active = 1";
         applyConnection();
         statement = connection.prepareStatement(sql);
         statement.setString(1, username);
@@ -66,6 +66,40 @@ public class UserService extends Database {
         statement.setString(1, user.getUsername());
         statement.setString(2, user.getPassword());
         statement.setString(3, user.getRole());
+        statement.executeUpdate();
+        closeConnection();
+    }
+    
+    public void updateUser(User user) throws Exception {
+        String sql = "UPDATE user SET username = ?, password = ?, role = ? WHERE id = ?";
+        applyConnection();
+        statement = connection.prepareStatement(sql);
+        statement.setString(1, user.getUsername());
+        statement.setString(2, user.getPassword());
+        statement.setString(3, user.getRole());
+        statement.setInt(4, user.getId());
+        statement.executeUpdate();
+        closeConnection();
+    }
+    
+    public void updateUserPersonalData(PersonalData data) throws Exception {
+        String sql = "UPDATE personal_data SET name = ?, last_name = ?, ficha = ?, tlf = ? WHERE user_id = ?";
+        applyConnection();
+        statement = connection.prepareStatement(sql);
+        statement.setString(1, data.getName());
+        statement.setString(2, data.getLastName());
+        statement.setString(3, data.getFicha());
+        statement.setString(4, data.getTlf());
+        statement.setInt(5, data.getUserId());
+        statement.executeUpdate();
+        closeConnection();
+    }
+    
+    public void removeUser(int id) throws Exception {
+        String sql = "UPDATE user SET active = 0 WHERE id = ?";
+        applyConnection();
+        statement = connection.prepareStatement(sql);
+        statement.setInt(1, id);
         statement.executeUpdate();
         closeConnection();
     }
