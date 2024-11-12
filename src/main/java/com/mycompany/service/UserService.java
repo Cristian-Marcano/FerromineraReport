@@ -3,9 +3,8 @@ package com.mycompany.service;
 import com.mycompany.DB.Database;
 import com.mycompany.models.PersonalData;
 import com.mycompany.models.User;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  *
@@ -13,15 +12,17 @@ import java.util.Map;
  */
 public class UserService extends Database {
     
-    public User getUser(int id) throws Exception {
-        String sql = "SELECT * FROM user WHERE id = ?";
+    public Object[] getUser(int id) throws Exception {
+        String sql = "SELECT * FROM user JOIN personal_data AS pd ON user.id = pd.user_id WHERE id = ?";
         applyConnection();
         statement = connection.prepareStatement(sql);
         statement.setInt(1, id);
         result = statement.executeQuery();
-        User user = null;
-        if(result.next()) user = new User(result.getInt("id"), result.getString("username"), result.getString("password"), 
-                                          result.getString("role"), result.getBoolean("active"));
+        Object[] user = null;
+        if(result.next()) user = new Object[]{new User(result.getInt("user.id"), result.getString("user.username"), result.getString("user.password"), 
+                                                result.getString("user.role"), result.getBoolean("user.active")),
+                                              new PersonalData(result.getInt("pd.id"), result.getInt("pd.user_id"), result.getString("pd.name"),
+                                                result.getString("pd.last_name"), result.getString("pd.ficha"), result.getString("pd.tlf"))};
         closeConnection();
         return user;
     }
@@ -39,22 +40,23 @@ public class UserService extends Database {
         return user;
     }
     
-    public Map<User,PersonalData> searchUsers(List<String[]> sentencesAndValues) throws Exception {
+    public List<Object[]> searchUsers(List<String[]> sentencesAndValues) throws Exception {
         String sql = "SELECT * FROM user JOIN personal_data AS pd ON user.id = pd.user_id";
         if(!sentencesAndValues.isEmpty()) {
             sql += " WHERE ";
             for(String[] sentence: sentencesAndValues) 
                 sql += (sql.endsWith("? ")) ? "AND " + sentence[0] : sentence[0];
         }
+        applyConnection();
         statement = connection.prepareStatement(sql);
         for(int i=0; i<sentencesAndValues.size(); i++) statement.setString(i+1, sentencesAndValues.get(i)[1]);
         result = statement.executeQuery();
-        Map<User,PersonalData> users = new HashMap<>();
+        List<Object[]> users = new ArrayList<>();
         while(result.next()) 
-            users.put(new User(result.getInt("user.id"), result.getString("user.username"), 
+            users.add(new Object[]{new User(result.getInt("user.id"), result.getString("user.username"), 
                                 result.getString("user.password"), result.getString("user.role"), result.getBoolean("user.active")),
                       new PersonalData(result.getInt("pd.id"), result.getInt("pd.user_id"), result.getString("pd.name"),
-                                        result.getString("pd.last_name"), result.getString("pd.ficha"), result.getString("pd.tlf")));
+                                        result.getString("pd.last_name"), result.getString("pd.ficha"), result.getString("pd.tlf"))});
         closeConnection();
         return users;
     }
