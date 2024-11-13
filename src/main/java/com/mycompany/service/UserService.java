@@ -54,9 +54,9 @@ public class UserService extends Database {
         List<Object[]> users = new ArrayList<>();
         while(result.next()) 
             users.add(new Object[]{new User(result.getInt("user.id"), result.getString("user.username"), 
-                                result.getString("user.password"), result.getString("user.role"), result.getBoolean("user.active")),
-                      new PersonalData(result.getInt("pd.id"), result.getInt("pd.user_id"), result.getString("pd.name"),
-                                        result.getString("pd.last_name"), result.getString("pd.ficha"), result.getString("pd.tlf"))});
+                                            result.getString("user.password"), result.getString("user.role"), result.getBoolean("user.active")),
+                                   new PersonalData(result.getInt("pd.id"), result.getInt("pd.user_id"), result.getString("pd.name"),
+                                                    result.getString("pd.last_name"), result.getString("pd.ficha"), result.getString("pd.tlf"))});
         closeConnection();
         return users;
     }
