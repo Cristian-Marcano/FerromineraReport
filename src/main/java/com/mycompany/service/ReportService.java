@@ -26,14 +26,14 @@ public class ReportService extends Database {
         Object[] report = null;
         if(result.next()) 
             report = new Object[]{ new Report(result.getInt("r.id"), result.getInt("r.create_by"), result.getInt("r.novelties_id"), result.getString("r.title"), 
-                                    result.getString("r.content"), result.getBoolean("r.checked"), result.getTimestamp("r.create_at")),
-                                new Novelties(result.getInt("nv.id"), result.getString("nv.name")), 
-                                new ReportEdit(result.getInt("redit.id"), result.getInt("redit.report_id"), result.getInt("redit.user_edit_id"),
-                                                result.getTimestamp("redit.edit_at")),
-                                new User(result.getInt("user.id"), result.getString("user.username"), result.getString("user.password"),
-                                        result.getString("user.role"), result.getBoolean("user.active")),
-                                new User(result.getInt("u.id"), result.getString("u.username"), result.getString("u.password"),
-                                        result.getString("u.role"), result.getBoolean("u.active"))};
+                                              result.getString("r.content"), result.getBoolean("r.checked"), result.getTimestamp("r.create_at")),
+                                   new Novelties(result.getInt("nv.id"), result.getString("nv.name"), result.getBoolean("nv.active")), 
+                                   new ReportEdit(result.getInt("redit.id"), result.getInt("redit.report_id"), result.getInt("redit.user_edit_id"),
+                                                  result.getTimestamp("redit.edit_at")),
+                                   new User(result.getInt("user.id"), result.getString("user.username"), result.getString("user.password"),
+                                            result.getString("user.role"), result.getBoolean("user.active")),
+                                   new User(result.getInt("u.id"), result.getString("u.username"), result.getString("u.password"),
+                                            result.getString("u.role"), result.getBoolean("u.active"))};
         closeConnection();
         return report;
     }
@@ -51,14 +51,14 @@ public class ReportService extends Database {
         List<Object[]> reports = new ArrayList<>();
         while(result.next())
             reports.add(new Object[]{ new Report(result.getInt("r.id"), result.getInt("r.create_by"), result.getInt("r.novelties_id"), result.getString("r.title"), 
-                                    result.getString("r.content"), result.getBoolean("r.checked"), result.getTimestamp("r.create_at")),
-                                new Novelties(result.getInt("nv.id"), result.getString("nv.name")), 
-                                new ReportEdit(result.getInt("redit.id"), result.getInt("redit.report_id"), result.getInt("redit.user_edit_id"),
-                                                result.getTimestamp("redit.edit_at")),
-                                new User(result.getInt("user.id"), result.getString("user.username"), result.getString("user.password"),
-                                        result.getString("user.role"), result.getBoolean("user.active")),
-                                new User(result.getInt("u.id"), result.getString("u.username"), result.getString("u.password"),
-                                        result.getString("u.role"), result.getBoolean("u.active"))});
+                                                 result.getString("r.content"), result.getBoolean("r.checked"), result.getTimestamp("r.create_at")),
+                                      new Novelties(result.getInt("nv.id"), result.getString("nv.name"), result.getBoolean("nv.active")), 
+                                      new ReportEdit(result.getInt("redit.id"), result.getInt("redit.report_id"), result.getInt("redit.user_edit_id"),
+                                                     result.getTimestamp("redit.edit_at")),
+                                      new User(result.getInt("user.id"), result.getString("user.username"), result.getString("user.password"),
+                                               result.getString("user.role"), result.getBoolean("user.active")),
+                                      new User(result.getInt("u.id"), result.getString("u.username"), result.getString("u.password"),
+                                               result.getString("u.role"), result.getBoolean("u.active"))});
         closeConnection();
         return reports;
     }
@@ -84,14 +84,14 @@ public class ReportService extends Database {
         List<Object[]> reports = new ArrayList<>();
         while(result.next())
             reports.add(new Object[]{ new Report(result.getInt("r.id"), result.getInt("r.create_by"), result.getInt("r.novelties_id"), result.getString("r.title"), 
-                                    result.getString("r.content"), result.getBoolean("r.checked"), result.getTimestamp("r.create_at")),
-                                new Novelties(result.getInt("nv.id"), result.getString("nv.name")), 
-                                new ReportEdit(result.getInt("redit.id"), result.getInt("redit.report_id"), result.getInt("redit.user_edit_id"),
-                                                result.getTimestamp("redit.edit_at")),
-                                new User(result.getInt("user.id"), result.getString("user.username"), result.getString("user.password"),
-                                        result.getString("user.role"), result.getBoolean("user.active")),
-                                new User(result.getInt("u.id"), result.getString("u.username"), result.getString("u.password"),
-                                        result.getString("u.role"), result.getBoolean("u.active"))});
+                                                 result.getString("r.content"), result.getBoolean("r.checked"), result.getTimestamp("r.create_at")),
+                                      new Novelties(result.getInt("nv.id"), result.getString("nv.name"), result.getBoolean("nv.active")), 
+                                      new ReportEdit(result.getInt("redit.id"), result.getInt("redit.report_id"), result.getInt("redit.user_edit_id"),
+                                                     result.getTimestamp("redit.edit_at")),
+                                      new User(result.getInt("user.id"), result.getString("user.username"), result.getString("user.password"),
+                                               result.getString("user.role"), result.getBoolean("user.active")),
+                                      new User(result.getInt("u.id"), result.getString("u.username"), result.getString("u.password"),
+                                               result.getString("u.role"), result.getBoolean("u.active"))});
         closeConnection();
         return reports;
     }
