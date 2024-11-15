@@ -4,6 +4,7 @@ import com.mycompany.DB.Database;
 import com.mycompany.models.PersonalData;
 import com.mycompany.models.User;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -76,12 +77,13 @@ public class UserService extends Database {
     public int createUser(String username, String password, String role) throws SQLException {
         String sql = "INSERT INTO user(username, password, role) VALUES (?,?,?)";
         applyConnection();
-        statement = connection.prepareStatement(sql);
+        statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
         statement.setString(1, username);
         statement.setString(2, password);
         statement.setString(3, role);
         statement.executeUpdate();
         result = statement.getGeneratedKeys();
+        result.next();
         int id = result.getInt(1);
         closeConnection();
         return id;
