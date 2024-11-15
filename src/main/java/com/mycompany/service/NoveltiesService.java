@@ -2,6 +2,7 @@ package com.mycompany.service;
 
 import com.mycompany.DB.Database;
 import com.mycompany.models.Novelties;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +12,7 @@ import java.util.List;
  */
 public class NoveltiesService extends Database {
     
-    public Novelties getNovelties(int id) throws Exception {
+    public Novelties getNovelties(int id) throws SQLException {
         String sql = "SELECT * FROM novelties WHERE id = ?";
         applyConnection();
         statement = connection.prepareStatement(sql);
@@ -24,7 +25,7 @@ public class NoveltiesService extends Database {
         return novl;
     }
     
-    public List<Novelties> getNovelties() throws Exception {
+    public List<Novelties> getNovelties() throws SQLException {
         String sql = "SELECT * FROM novelties WHERE active = 1";
         applyConnection();
         statement = connection.prepareStatement(sql);
@@ -36,7 +37,7 @@ public class NoveltiesService extends Database {
         return listNovelties;
     }
     
-    public void createNovelties(String name) throws Exception {
+    public void createNovelties(String name) throws SQLException {
         String sql = "INSERT INTO novelties(name) VALUES (?)";
         applyConnection();
         statement = connection.prepareStatement(sql);
@@ -45,7 +46,7 @@ public class NoveltiesService extends Database {
         closeConnection();
     }
     
-    public void updateNovelties(int id, String name) throws Exception {
+    public void updateNovelties(int id, String name) throws SQLException {
         String sql = "UPDATE novelties SET name = ? WHERE id = ?";
         applyConnection();
         statement = connection.prepareStatement(sql);
@@ -55,7 +56,7 @@ public class NoveltiesService extends Database {
         closeConnection();
     }
     
-    public void removeNovelties(int id) throws Exception {
+    public void removeNovelties(int id) throws SQLException {
         String sql = "UPDATE novelties SET active = 0 WHERE id = ?";
         applyConnection();
         statement = connection.prepareStatement(sql);

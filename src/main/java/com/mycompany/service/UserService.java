@@ -3,6 +3,7 @@ package com.mycompany.service;
 import com.mycompany.DB.Database;
 import com.mycompany.models.PersonalData;
 import com.mycompany.models.User;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +13,7 @@ import java.util.List;
  */
 public class UserService extends Database {
     
-    public Object[] getUser(int id) throws Exception {
+    public Object[] getUser(int id) throws SQLException {
         String sql = "SELECT * FROM user JOIN personal_data AS pd ON user.id = pd.user_id WHERE id = ?";
         applyConnection();
         statement = connection.prepareStatement(sql);
@@ -27,7 +28,7 @@ public class UserService extends Database {
         return user;
     }
     
-    public User getUser(String username) throws Exception {
+    public User getUser(String username) throws SQLException {
         String sql = "SELECT * FROM user WHERE username = ? AND active = 1";
         applyConnection();
         statement = connection.prepareStatement(sql);
@@ -40,7 +41,7 @@ public class UserService extends Database {
         return user;
     }
     
-    public int getCountUsers() throws Exception {
+    public int getCountUsers() throws SQLException {
         String sql = "SELECT COUNT(*) AS count FROM user";
         applyConnection();
         statement = connection.prepareStatement(sql);
@@ -51,7 +52,7 @@ public class UserService extends Database {
         return count;
     }
     
-    public List<Object[]> searchUsers(List<String[]> sentencesAndValues) throws Exception {
+    public List<Object[]> searchUsers(List<String[]> sentencesAndValues) throws SQLException {
         String sql = "SELECT * FROM user JOIN personal_data AS pd ON user.id = pd.user_id";
         if(!sentencesAndValues.isEmpty()) {
             sql += " WHERE ";
@@ -72,7 +73,7 @@ public class UserService extends Database {
         return users;
     }
     
-    public int createUser(String username, String password, String role) throws Exception {
+    public int createUser(String username, String password, String role) throws SQLException {
         String sql = "INSERT INTO user(username, password, role) VALUES (?,?,?)";
         applyConnection();
         statement = connection.prepareStatement(sql);
@@ -86,7 +87,7 @@ public class UserService extends Database {
         return id;
     }
     
-    public void updateUser(User user) throws Exception {
+    public void updateUser(User user) throws SQLException {
         String sql = "UPDATE user SET username = ?, password = ?, role = ? WHERE id = ?";
         applyConnection();
         statement = connection.prepareStatement(sql);
@@ -98,7 +99,7 @@ public class UserService extends Database {
         closeConnection();
     }
     
-    public void updateUserPersonalData(PersonalData data) throws Exception {
+    public void updateUserPersonalData(PersonalData data) throws SQLException {
         String sql = "UPDATE personal_data SET name = ?, last_name = ?, ficha = ?, tlf = ? WHERE user_id = ?";
         applyConnection();
         statement = connection.prepareStatement(sql);
@@ -111,7 +112,7 @@ public class UserService extends Database {
         closeConnection();
     }
     
-    public void removeUser(int id) throws Exception {
+    public void removeUser(int id) throws SQLException {
         String sql = "UPDATE user SET active = 0 WHERE id = ?";
         applyConnection();
         statement = connection.prepareStatement(sql);

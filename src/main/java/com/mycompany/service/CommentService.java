@@ -2,6 +2,7 @@ package com.mycompany.service;
 
 import com.mycompany.DB.Database;
 import com.mycompany.models.Comment;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +12,7 @@ import java.util.List;
  */
 public class CommentService extends Database {
     
-    public Comment getComment(int id) throws Exception {
+    public Comment getComment(int id) throws SQLException {
         String sql = "SELECT * FROM comment WHERE id = ?";
         applyConnection();
         statement = connection.prepareStatement(sql);
@@ -25,7 +26,7 @@ public class CommentService extends Database {
         return com;
     }
     
-    public List<Comment> getComments(int reportId) throws Exception {
+    public List<Comment> getComments(int reportId) throws SQLException {
         String sql = "SELECT * FROM comment WHERE report_id = ?";
         applyConnection();
         statement = connection.prepareStatement(sql);
@@ -39,7 +40,7 @@ public class CommentService extends Database {
         return listComments;
     }
     
-    public void createComment(String content, int createBy, int reportId) throws Exception {
+    public void createComment(String content, int createBy, int reportId) throws SQLException {
         String sql = "INSERT INTO comment(content, create_by, report_id) VALUES (?,?,?)";
         applyConnection();
         statement = connection.prepareStatement(sql);
@@ -50,7 +51,7 @@ public class CommentService extends Database {
         closeConnection();
     }
     
-    public void updateComment(String content, int id) throws Exception {
+    public void updateComment(String content, int id) throws SQLException {
         String sql = "UPDATE comment SET content = ? WHERE id = ?";
         applyConnection();
         statement = connection.prepareStatement(sql);
@@ -60,7 +61,7 @@ public class CommentService extends Database {
         closeConnection();
     }
     
-    public void removeComment(int id) throws Exception {
+    public void removeComment(int id) throws SQLException {
         String sql = "UPDATE comment SET active = 0 WHERE id = ?";
         applyConnection();
         statement = connection.prepareStatement(sql);

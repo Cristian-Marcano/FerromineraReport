@@ -5,6 +5,7 @@ import com.mycompany.models.Novelties;
 import com.mycompany.models.Report;
 import com.mycompany.models.ReportEdit;
 import com.mycompany.models.User;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +15,7 @@ import java.util.List;
  */
 public class ReportService extends Database {
     
-    public Object[] getReport(int id) throws Exception {
+    public Object[] getReport(int id) throws SQLException {
         String sql = "SELECT * FROM report AS r JOIN novelties AS nv ON r.novelties_id = nv.id "
                 + "JOIN report_edit AS redit ON r.id = redit.report_id JOIN user ON r.create_by = user.id "
                 + "JOIN user AS u ON redit.user_edit_id = u.id "
@@ -38,7 +39,7 @@ public class ReportService extends Database {
         return report;
     }
     
-    public List<Object[]> getReports(int limit, int offset) throws Exception {
+    public List<Object[]> getReports(int limit, int offset) throws SQLException {
         String sql = "SELECT * FROM report AS r JOIN novelties AS nv ON r.novelties_id = nv.id "
                 + "JOIN report_edit AS redit ON r.id = redit.report_id JOIN user ON r.create_by = user.id "
                 + "JOIN user AS u ON redit.user_edit_id = u.id "
@@ -63,7 +64,7 @@ public class ReportService extends Database {
         return reports;
     }
     
-    public List<Object[]> searchReports(List<String[]> sentencesAndValues, int limit, int offset) throws Exception {
+    public List<Object[]> searchReports(List<String[]> sentencesAndValues, int limit, int offset) throws SQLException {
         String sql = "SELECT * FROM report AS r JOIN novelties AS nv ON r.novelties_id = nv.id "
                 + "JOIN report_edit AS redit ON r.id = redit.report_id JOIN user ON r.create_by = user.id "
                 + "JOIN user AS u ON redit.user_edit_id = u.id "
@@ -96,7 +97,7 @@ public class ReportService extends Database {
         return reports;
     }
     
-    public void updateReport(int id, int noveltiesId, String title, String content) throws Exception {
+    public void updateReport(int id, int noveltiesId, String title, String content) throws SQLException {
         String sql = "UPDATE report SET novelties_id = ?, title = ?, content = ? WHERE id = ?";
         applyConnection();
         statement = connection.prepareStatement(sql);
@@ -108,7 +109,7 @@ public class ReportService extends Database {
         closeConnection();
     }
     
-    public void checkReport(int id) throws Exception {
+    public void checkReport(int id) throws SQLException {
         String sql = "UPDATE report SET checked = 1 WHERE id = ?";
         applyConnection();
         statement = connection.prepareStatement(sql);
