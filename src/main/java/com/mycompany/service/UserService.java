@@ -72,15 +72,18 @@ public class UserService extends Database {
         return users;
     }
     
-    public void createUser(User user) throws Exception {
+    public int createUser(String username, String password, String role) throws Exception {
         String sql = "INSERT INTO user(username, password, role) VALUES (?,?,?)";
         applyConnection();
         statement = connection.prepareStatement(sql);
-        statement.setString(1, user.getUsername());
-        statement.setString(2, user.getPassword());
-        statement.setString(3, user.getRole());
+        statement.setString(1, username);
+        statement.setString(2, password);
+        statement.setString(3, role);
         statement.executeUpdate();
+        result = statement.getGeneratedKeys();
+        int id = result.getInt(1);
         closeConnection();
+        return id;
     }
     
     public void updateUser(User user) throws Exception {
