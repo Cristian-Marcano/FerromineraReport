@@ -40,6 +40,17 @@ public class UserService extends Database {
         return user;
     }
     
+    public int getCountUsers() throws Exception {
+        String sql = "SELECT COUNT(*) AS count FROM user";
+        applyConnection();
+        statement = connection.prepareStatement(sql);
+        result = statement.executeQuery();
+        int count = 0;
+        if(result.next())
+            count = result.getInt("count");
+        return count;
+    }
+    
     public List<Object[]> searchUsers(List<String[]> sentencesAndValues) throws Exception {
         String sql = "SELECT * FROM user JOIN personal_data AS pd ON user.id = pd.user_id";
         if(!sentencesAndValues.isEmpty()) {
