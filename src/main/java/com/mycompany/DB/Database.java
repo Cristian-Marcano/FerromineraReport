@@ -93,7 +93,7 @@ public class Database {
     }
     
     //* Verificar si se encuentra los controladores en el proyecto
-    public static boolean verifyController(){
+    public static boolean verifyController() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             return true;
