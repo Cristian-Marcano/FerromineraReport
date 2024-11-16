@@ -1,5 +1,13 @@
 package com.mycompany.view;
 
+import com.mycompany.ferromineraproject.FerromineraProject;
+import com.mycompany.models.User;
+import com.mycompany.service.UserService;
+import com.mycompany.utils.ValidateInput;
+import java.sql.SQLException;
+import java.util.List;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Cristian
@@ -51,6 +59,7 @@ public class LoginBar extends javax.swing.JPanel {
         inputUsername.setBackground(new java.awt.Color(255, 255, 255));
         inputUsername.setFont(new java.awt.Font("Bahnschrift", 0, 15)); // NOI18N
         inputUsername.setForeground(new java.awt.Color(50, 50, 50));
+        inputUsername.setName("Nombre de Usuario"); // NOI18N
 
         separatorPassword.setForeground(new java.awt.Color(255, 255, 255));
 
@@ -61,6 +70,7 @@ public class LoginBar extends javax.swing.JPanel {
         inputPassword.setBackground(new java.awt.Color(255, 255, 255));
         inputPassword.setFont(new java.awt.Font("Bahnschrift", 0, 15)); // NOI18N
         inputPassword.setForeground(new java.awt.Color(50, 50, 50));
+        inputPassword.setName("Clave"); // NOI18N
 
         btnLogin.setBackground(new java.awt.Color(65, 75, 178));
         btnLogin.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -132,14 +142,37 @@ public class LoginBar extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
     
-    //* Funcion que se ejecuta cuando se presiona el btnLogin 
     //* Valida si usuario esta usando los inputs y si el usuario se encuentra en la DB
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        // TODO add your handling code here:
-        /*
-        *  Get to inputUsername & inputPassword
-        *  insert into the Database
-        */
+        try {
+            ValidateInput.isEmptyOrBlank(List.of(inputUsername, inputPassword));
+            
+            UserService userService = new UserService();
+            User user = userService.getUser(inputUsername.getText());
+            
+            if(user == null) throw new Exception("Datos invalidos");
+            
+            if(user.getUsername().equals(inputUsername.getText()) && user.getPassword().equals(new String(inputPassword.getPassword()))){
+              
+                FerromineraProject.user = user;
+                
+                if(user.getRole().equals("super-admin")) FerromineraProject.board.setPanel(new MenuAdminBar());
+                else FerromineraProject.board.setPanel(new MenuBar());
+                
+                FerromineraProject.contentP.setPanel(new ScrollReportContent());
+                FerromineraProject.contentP.showPanel();
+                
+                FerromineraProject.board.showPanel();
+                
+            } else throw new Exception("Datos invalidos");
+            
+        } catch(SQLException e) {
+            System.err.println(e.getMessage());
+            JOptionPane.showMessageDialog(null,"Ocurrio un Error en la conexion con la Base de Datos","ERROR",JOptionPane.ERROR_MESSAGE);
+        } catch(Exception e) {
+            System.err.println(e.getMessage());
+            JOptionPane.showMessageDialog(null,"No se puede avanzar \n" + e.getMessage(),"Advertencia",JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_btnLoginActionPerformed
 
 
