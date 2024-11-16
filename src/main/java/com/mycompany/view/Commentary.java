@@ -1,11 +1,8 @@
 package com.mycompany.view;
 
+import com.mycompany.models.Comment;
 import com.mycompany.utils.ItemText;
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Shape;
-import java.awt.geom.RoundRectangle2D;
+import com.mycompany.models.User;
 
 /**
  *
@@ -14,13 +11,25 @@ import java.awt.geom.RoundRectangle2D;
 public class Commentary extends javax.swing.JPanel {
 
     public ItemText objItemText;
+    public Comment comment;
+    public User user;
     
     /**
      * Creates new form Commentary
+     * @param comment: objeto que almacena los valores que se usaran en esta interfaz
+     * @param user: objeto que almacena los datos del usuario que creo este comentario
      */
-    public Commentary() {
+    public Commentary(Comment comment, User user) {
         initComponents();
+        this.comment = comment;
+        this.user = user;
+        setValues();
         objItemText = new ItemText(this, scroll, text);
+    }
+    
+    private void setValues() {
+        userOwner.setText(user.getUsername() + "comentó");
+        text.setText(comment.getContent());
     }
 
     /**
