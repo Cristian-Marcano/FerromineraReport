@@ -1,6 +1,14 @@
 package com.mycompany.view;
 
+import com.mycompany.ferromineraproject.FerromineraProject;
+import com.mycompany.models.PersonalData;
+import com.mycompany.service.PersonalDataService;
+import com.mycompany.service.UserService;
 import java.awt.Color;
+import com.mycompany.utils.ValidateInput;
+import java.sql.SQLException;
+import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -27,25 +35,25 @@ public class InitBar extends javax.swing.JPanel {
 
         scroll = new javax.swing.JScrollPane();
         init = new javax.swing.JPanel();
-        inputPassword = new javax.swing.JPasswordField();
-        separatorPassword = new javax.swing.JSeparator();
-        labelPassword = new javax.swing.JLabel();
-        inputUsername = new javax.swing.JTextField();
-        separatorUsername = new javax.swing.JSeparator();
-        labelUsername = new javax.swing.JLabel();
-        inputTlf = new javax.swing.JTextField();
-        separatorTlf = new javax.swing.JSeparator();
-        labelTlf = new javax.swing.JLabel();
-        inputFicha = new javax.swing.JTextField();
-        separatorFicha = new javax.swing.JSeparator();
-        labelFicha = new javax.swing.JLabel();
-        inputLastName = new javax.swing.JTextField();
-        separetorLastName = new javax.swing.JSeparator();
-        labelLastName = new javax.swing.JLabel();
-        inputName = new javax.swing.JTextField();
-        separatorName = new javax.swing.JSeparator();
         tittle = new javax.swing.JLabel();
         labelName = new javax.swing.JLabel();
+        separatorName = new javax.swing.JSeparator();
+        inputName = new javax.swing.JTextField();
+        labelLastName = new javax.swing.JLabel();
+        separetorLastName = new javax.swing.JSeparator();
+        inputLastName = new javax.swing.JTextField();
+        labelFicha = new javax.swing.JLabel();
+        separatorFicha = new javax.swing.JSeparator();
+        inputFicha = new javax.swing.JTextField();
+        labelTlf = new javax.swing.JLabel();
+        separatorTlf = new javax.swing.JSeparator();
+        inputTlf = new javax.swing.JTextField();
+        labelUsername = new javax.swing.JLabel();
+        separatorUsername = new javax.swing.JSeparator();
+        inputUsername = new javax.swing.JTextField();
+        labelPassword = new javax.swing.JLabel();
+        separatorPassword = new javax.swing.JSeparator();
+        inputPassword = new javax.swing.JPasswordField();
         btnInit = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(247, 34, 34));
@@ -58,67 +66,6 @@ public class InitBar extends javax.swing.JPanel {
         init.setPreferredSize(new java.awt.Dimension(386, 770));
         init.setRequestFocusEnabled(false);
 
-        inputPassword.setBackground(new java.awt.Color(255, 255, 255));
-        inputPassword.setFont(new java.awt.Font("Bahnschrift", 0, 15)); // NOI18N
-        inputPassword.setForeground(new java.awt.Color(50, 50, 50));
-
-        separatorPassword.setForeground(new java.awt.Color(255, 255, 255));
-
-        labelPassword.setFont(new java.awt.Font("Bahnschrift", 1, 16)); // NOI18N
-        labelPassword.setForeground(new java.awt.Color(255, 255, 255));
-        labelPassword.setLabelFor(inputPassword);
-        labelPassword.setText("Clave:");
-
-        inputUsername.setBackground(new java.awt.Color(255, 255, 255));
-        inputUsername.setFont(new java.awt.Font("Bahnschrift", 0, 15)); // NOI18N
-        inputUsername.setForeground(new java.awt.Color(50, 50, 50));
-
-        separatorUsername.setForeground(new java.awt.Color(255, 255, 255));
-
-        labelUsername.setFont(new java.awt.Font("Bahnschrift", 1, 16)); // NOI18N
-        labelUsername.setForeground(new java.awt.Color(255, 255, 255));
-        labelUsername.setLabelFor(inputUsername);
-        labelUsername.setText("Nombre de Usuario:");
-
-        inputTlf.setBackground(new java.awt.Color(255, 255, 255));
-        inputTlf.setFont(new java.awt.Font("Bahnschrift", 0, 15)); // NOI18N
-        inputTlf.setForeground(new java.awt.Color(50, 50, 50));
-
-        separatorTlf.setForeground(new java.awt.Color(255, 255, 255));
-
-        labelTlf.setFont(new java.awt.Font("Bahnschrift", 1, 16)); // NOI18N
-        labelTlf.setForeground(new java.awt.Color(255, 255, 255));
-        labelTlf.setLabelFor(inputTlf);
-        labelTlf.setText("Telefono:");
-
-        inputFicha.setBackground(new java.awt.Color(255, 255, 255));
-        inputFicha.setFont(new java.awt.Font("Bahnschrift", 0, 15)); // NOI18N
-        inputFicha.setForeground(new java.awt.Color(50, 50, 50));
-
-        separatorFicha.setForeground(new java.awt.Color(255, 255, 255));
-
-        labelFicha.setFont(new java.awt.Font("Bahnschrift", 1, 16)); // NOI18N
-        labelFicha.setForeground(new java.awt.Color(255, 255, 255));
-        labelFicha.setLabelFor(inputFicha);
-        labelFicha.setText("Ficha:");
-
-        inputLastName.setBackground(new java.awt.Color(255, 255, 255));
-        inputLastName.setFont(new java.awt.Font("Bahnschrift", 0, 15)); // NOI18N
-        inputLastName.setForeground(new java.awt.Color(50, 50, 50));
-
-        separetorLastName.setForeground(new java.awt.Color(255, 255, 255));
-
-        labelLastName.setFont(new java.awt.Font("Bahnschrift", 1, 16)); // NOI18N
-        labelLastName.setForeground(new java.awt.Color(255, 255, 255));
-        labelLastName.setLabelFor(inputLastName);
-        labelLastName.setText("Apellido:");
-
-        inputName.setBackground(new java.awt.Color(255, 255, 255));
-        inputName.setFont(new java.awt.Font("Bahnschrift", 0, 15)); // NOI18N
-        inputName.setForeground(new java.awt.Color(50, 50, 50));
-
-        separatorName.setForeground(new java.awt.Color(255, 255, 255));
-
         tittle.setFont(new java.awt.Font("Bahnschrift", 1, 40)); // NOI18N
         tittle.setForeground(new java.awt.Color(255, 255, 255));
         tittle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -128,6 +75,73 @@ public class InitBar extends javax.swing.JPanel {
         labelName.setForeground(new java.awt.Color(255, 255, 255));
         labelName.setLabelFor(inputName);
         labelName.setText("Nombre:");
+
+        separatorName.setForeground(new java.awt.Color(255, 255, 255));
+
+        inputName.setBackground(new java.awt.Color(255, 255, 255));
+        inputName.setFont(new java.awt.Font("Bahnschrift", 0, 15)); // NOI18N
+        inputName.setForeground(new java.awt.Color(50, 50, 50));
+        inputName.setName("Nombre"); // NOI18N
+
+        labelLastName.setFont(new java.awt.Font("Bahnschrift", 1, 16)); // NOI18N
+        labelLastName.setForeground(new java.awt.Color(255, 255, 255));
+        labelLastName.setLabelFor(inputLastName);
+        labelLastName.setText("Apellido:");
+
+        separetorLastName.setForeground(new java.awt.Color(255, 255, 255));
+
+        inputLastName.setBackground(new java.awt.Color(255, 255, 255));
+        inputLastName.setFont(new java.awt.Font("Bahnschrift", 0, 15)); // NOI18N
+        inputLastName.setForeground(new java.awt.Color(50, 50, 50));
+        inputLastName.setName("Apellido"); // NOI18N
+
+        labelFicha.setFont(new java.awt.Font("Bahnschrift", 1, 16)); // NOI18N
+        labelFicha.setForeground(new java.awt.Color(255, 255, 255));
+        labelFicha.setLabelFor(inputFicha);
+        labelFicha.setText("Ficha:");
+
+        separatorFicha.setForeground(new java.awt.Color(255, 255, 255));
+
+        inputFicha.setBackground(new java.awt.Color(255, 255, 255));
+        inputFicha.setFont(new java.awt.Font("Bahnschrift", 0, 15)); // NOI18N
+        inputFicha.setForeground(new java.awt.Color(50, 50, 50));
+        inputFicha.setName("Ficha"); // NOI18N
+
+        labelTlf.setFont(new java.awt.Font("Bahnschrift", 1, 16)); // NOI18N
+        labelTlf.setForeground(new java.awt.Color(255, 255, 255));
+        labelTlf.setLabelFor(inputTlf);
+        labelTlf.setText("Telefono:");
+
+        separatorTlf.setForeground(new java.awt.Color(255, 255, 255));
+
+        inputTlf.setBackground(new java.awt.Color(255, 255, 255));
+        inputTlf.setFont(new java.awt.Font("Bahnschrift", 0, 15)); // NOI18N
+        inputTlf.setForeground(new java.awt.Color(50, 50, 50));
+        inputTlf.setName("Telefono"); // NOI18N
+
+        labelUsername.setFont(new java.awt.Font("Bahnschrift", 1, 16)); // NOI18N
+        labelUsername.setForeground(new java.awt.Color(255, 255, 255));
+        labelUsername.setLabelFor(inputUsername);
+        labelUsername.setText("Nombre de Usuario:");
+
+        separatorUsername.setForeground(new java.awt.Color(255, 255, 255));
+
+        inputUsername.setBackground(new java.awt.Color(255, 255, 255));
+        inputUsername.setFont(new java.awt.Font("Bahnschrift", 0, 15)); // NOI18N
+        inputUsername.setForeground(new java.awt.Color(50, 50, 50));
+        inputUsername.setName("Nombre de usuario"); // NOI18N
+
+        labelPassword.setFont(new java.awt.Font("Bahnschrift", 1, 16)); // NOI18N
+        labelPassword.setForeground(new java.awt.Color(255, 255, 255));
+        labelPassword.setLabelFor(inputPassword);
+        labelPassword.setText("Clave:");
+
+        separatorPassword.setForeground(new java.awt.Color(255, 255, 255));
+
+        inputPassword.setBackground(new java.awt.Color(255, 255, 255));
+        inputPassword.setFont(new java.awt.Font("Bahnschrift", 0, 15)); // NOI18N
+        inputPassword.setForeground(new java.awt.Color(50, 50, 50));
+        inputPassword.setName("Clave"); // NOI18N
 
         btnInit.setBackground(new java.awt.Color(65, 75, 178));
         btnInit.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -195,31 +209,31 @@ public class InitBar extends javax.swing.JPanel {
                 .addComponent(separatorName, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(inputName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(labelLastName)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(separetorLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(inputLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(labelFicha)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(separatorFicha, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(inputFicha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(labelTlf)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(separatorTlf, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(inputTlf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(labelUsername)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(separatorUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(inputUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(labelPassword)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(separatorPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -244,10 +258,36 @@ public class InitBar extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    //* Funcion que se acciona cuando el btnInit es presionado
     //* Valida los input se estan usando y integra los datos a la DB
     private void btnInitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInitActionPerformed
-        // TODO add your handling code here:
+        try {
+            ValidateInput.isEmptyOrBlank(List.of(inputName, inputLastName, inputFicha, inputTlf, inputUsername, inputPassword));
+            
+            ValidateInput.isMinimumLength(inputTlf, 11);
+            
+            ValidateInput.isMinimumLength(inputPassword, 8);
+            
+            String name = inputName.getText(), lastName = inputLastName.getName(), ficha = inputFicha.getText(), tlf = inputTlf.getText(),
+                    username = inputUsername.getText(), password = new String(inputPassword.getPassword());
+            
+            UserService userService = new UserService();
+            int userId = userService.createUser(username, password, "super-admin"); //* Inserta un usuario a la DB
+            
+            PersonalData data = new PersonalData(0, userId, name, lastName, ficha, tlf);
+            
+            PersonalDataService dataService = new PersonalDataService();
+            dataService.createPersonalData(data); //* Inserta datos personales del usario a la DB
+            //* Cambia de panel (hacia el Login)
+            FerromineraProject.board.setPanel(new LoginBar());
+            FerromineraProject.board.showPanel();
+            
+        } catch(SQLException e) {
+            System.err.println(e.getMessage());
+            JOptionPane.showMessageDialog(null,"Ocurrio un Error en la conexion con la Base de Datos","ERROR",JOptionPane.ERROR_MESSAGE);
+        } catch(Exception e) {
+            System.err.println(e.getMessage());
+            JOptionPane.showMessageDialog(null,"No se puede avanzar debido a que: \n" + e.getMessage(),"Advertencia",JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_btnInitActionPerformed
 
 
