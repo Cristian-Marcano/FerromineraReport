@@ -88,6 +88,11 @@ public class LoginBar extends javax.swing.JPanel {
         forgotPassword.setForeground(new java.awt.Color(12, 127, 220));
         forgotPassword.setText("¿Olvido la Contreseña? ");
         forgotPassword.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        forgotPassword.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                forgotPasswordMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -153,7 +158,7 @@ public class LoginBar extends javax.swing.JPanel {
             if(user == null) throw new Exception("Datos invalidos");
             
             if(user.getUsername().equals(inputUsername.getText()) && user.getPassword().equals(new String(inputPassword.getPassword()))){
-              
+                
                 FerromineraProject.user = user;
                 
                 if(user.getRole().equals("super-admin")) FerromineraProject.board.setPanel(new MenuAdminBar());
@@ -163,6 +168,8 @@ public class LoginBar extends javax.swing.JPanel {
                 FerromineraProject.contentP.showPanel();
                 
                 FerromineraProject.board.showPanel();
+                
+                ScrollReportContent.initReportContent(10, 0);
                 
             } else throw new Exception("Datos invalidos");
             
@@ -174,6 +181,11 @@ public class LoginBar extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null,"No se puede avanzar \n" + e.getMessage(),"Advertencia",JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnLoginActionPerformed
+    //* Se dirige a la interfaz de que se le olvido la contraseña
+    private void forgotPasswordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_forgotPasswordMouseClicked
+        FerromineraProject.board.setPanel(new ForgotBar());
+        FerromineraProject.board.showPanel();
+    }//GEN-LAST:event_forgotPasswordMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
