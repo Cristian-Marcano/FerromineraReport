@@ -2,6 +2,7 @@ package com.mycompany.service;
 
 import com.mycompany.DB.Database;
 import com.mycompany.models.Comment;
+import com.mycompany.models.User;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,16 +27,18 @@ public class CommentService extends Database {
         return com;
     }
     
-    public List<Comment> getComments(int reportId) throws SQLException {
-        String sql = "SELECT * FROM comment WHERE report_id = ?";
+    public List<Object[]> getComments(int reportId) throws SQLException {
+        String sql = "SELECT * FROM comment JOIN user ON comment.create_by=user.id WHERE report_id = ?";
         applyConnection();
         statement = connection.prepareStatement(sql);
         statement.setInt(1, reportId);
         result = statement.executeQuery();
-        List<Comment> listComments = new ArrayList<>();
-        if(result.next())
-            listComments.add(new Comment(result.getInt("id"), result.getInt("create_by"), result.getInt("report_id"), 
-                              result.getString("content"), result.getTimestamp("create_at")));
+        List<Object[]> listComments = new ArrayList<>();
+        while(result.next())
+            listComments.add(new Object[]{new Comment(result.getInt("comment.id"), result.getInt("comment.create_by"), result.getInt("comment.report_id"), 
+                                                      result.getString("comment.content"), result.getTimestamp("comment.create_at")),
+                                          new User(result.getInt("user.id"), result.getString("user.username"), result.getString("user.password"),
+                                                   result.getString("user.role"), result.getBoolean("user.active"))});
         closeConnection();
         return listComments;
     }
