@@ -1,16 +1,24 @@
 package com.mycompany.ferromineraproject;
 
+import com.mycompany.DB.Database;
+import com.mycompany.models.User;
+import com.mycompany.service.UserService;
 import com.mycompany.utils.ShowJPanel;
 import com.mycompany.view.ForgotBar;
 import com.mycompany.view.InitBar;
 import com.mycompany.view.LoginBar;
+import com.mycompany.view.Logo;
 import com.mycompany.view.MenuAdminBar;
 import com.mycompany.view.MenuBar;
+import com.mycompany.view.ReportFilter;
 import com.mycompany.view.ReportForm;
 import com.mycompany.view.ScrollReportContent;
 import com.mycompany.view.ScrollUserContent;
 import javax.swing.JPanel;
 import java.awt.Dimension;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -25,8 +33,10 @@ public class FerromineraProject extends javax.swing.JFrame {
      * 
      * board: objeto que ayuda la integracion de paneles al dashboard
      * contentP: objeto que ayuda la integracion de paneles al content
+     * user: objeto que almacena los datos del usario al iniciar sesion
      */
     public static ShowJPanel board, contentP;
+    public static User user;
     
     /**
      * Creates new form FerromineraProject
@@ -34,18 +44,21 @@ public class FerromineraProject extends javax.swing.JFrame {
     public FerromineraProject() {
         initComponents();
         
-        board = InitPanel(new MenuAdminBar(), dashboard, new Dimension(405,720));
-//        contentP = InitPanel(new ScrollReportContent(), content, new Dimension(875,720));
-//        contentP = InitPanel(new ScrollUserContent(), content, new Dimension(875,720));
-        contentP = InitPanel(new ReportForm(), content, new Dimension(875,720));
-
-//        ScrollReportContent.InitReportContent();
-//        ScrollUserContent.InitUserContent();
+        try {
+            if(new UserService().getCountUsers() == 0)
+                board = initPanel(new InitBar(), dashboard, new Dimension(405,720));
+            else board = initPanel(new LoginBar(), dashboard, new Dimension(405,720));
+            
+            contentP = initPanel(new Logo(), content, new Dimension(875,720));
+        } catch(SQLException e) {
+            JOptionPane.showMessageDialog(null,"Base de datos no encontrada","Error",JOptionPane.ERROR_MESSAGE);
+            System.exit(1);
+        }
     }
     
-    private ShowJPanel InitPanel(JPanel panel, JPanel container, Dimension size) {
+    private ShowJPanel initPanel(JPanel panel, JPanel container, Dimension size) {
         ShowJPanel show = new ShowJPanel(panel, container, size);
-        show.ShowPanel();
+        show.showPanel();
         return show;
     }
 
@@ -61,7 +74,6 @@ public class FerromineraProject extends javax.swing.JFrame {
         background = new javax.swing.JPanel();
         dashboard = new javax.swing.JPanel();
         content = new javax.swing.JPanel();
-        logo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1032, 680));
@@ -92,19 +104,15 @@ public class FerromineraProject extends javax.swing.JFrame {
         content.setMinimumSize(new java.awt.Dimension(600, 720));
         content.setPreferredSize(new java.awt.Dimension(875, 720));
 
-        logo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ferrominera_logo.png"))); // NOI18N
-        logo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
         javax.swing.GroupLayout contentLayout = new javax.swing.GroupLayout(content);
         content.setLayout(contentLayout);
         contentLayout.setHorizontalGroup(
             contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(logo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 869, Short.MAX_VALUE)
+            .addGap(0, 869, Short.MAX_VALUE)
         );
         contentLayout.setVerticalGroup(
             contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(logo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout backgroundLayout = new javax.swing.GroupLayout(background);
@@ -182,6 +190,11 @@ public class FerromineraProject extends javax.swing.JFrame {
         */
         //</editor-fold>
 
+        if(!Database.verifyController()) {
+            JOptionPane.showMessageDialog(null,"Conector de Base de Datos, No encontrado","Alerta",JOptionPane.ERROR_MESSAGE);
+            System.exit(1);
+        }
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -194,6 +207,5 @@ public class FerromineraProject extends javax.swing.JFrame {
     private javax.swing.JPanel background;
     private javax.swing.JPanel content;
     private javax.swing.JPanel dashboard;
-    private javax.swing.JLabel logo;
     // End of variables declaration//GEN-END:variables
 }
