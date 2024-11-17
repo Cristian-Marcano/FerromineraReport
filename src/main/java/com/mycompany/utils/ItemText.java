@@ -60,7 +60,7 @@ public class ItemText {
         
         if(first) {
             first = false;
-            itemPanel.setPreferredSize(new Dimension(itemPanel.getPreferredSize().width, itemPanel.getPreferredSize().height + heightText));
+            itemPanel.setPreferredSize(new Dimension(itemPanel.getPreferredSize().width, itemPanel.getPreferredSize().height + heightText + 5));
         } else itemPanel.setPreferredSize(new Dimension(itemPanel.getPreferredSize().width, height));
             
         
