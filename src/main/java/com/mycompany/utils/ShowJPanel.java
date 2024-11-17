@@ -127,6 +127,9 @@ public class ShowJPanel {
             
             
             panelContent.setPreferredSize(new Dimension(panelContent.getPreferredSize().width, heightSize));
+            
+            panelContent.revalidate();
+            panelContent.repaint();
         } else throw new Exception("the panel does not contain a JScrollPane");
     }
     
