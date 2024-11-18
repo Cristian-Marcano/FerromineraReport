@@ -1,5 +1,7 @@
 package com.mycompany.view;
 
+import com.mycompany.ferromineraproject.FerromineraProject;
+
 /**
  *
  * @author Cristian
@@ -47,6 +49,11 @@ public class MenuBar extends javax.swing.JPanel {
         btnHome.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnHome.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnHome.setIconTextGap(15);
+        btnHome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHomeActionPerformed(evt);
+            }
+        });
 
         btnSearch.setBackground(new java.awt.Color(236, 80, 80));
         btnSearch.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -58,6 +65,11 @@ public class MenuBar extends javax.swing.JPanel {
         btnSearch.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnSearch.setIconTextGap(15);
         btnSearch.setPreferredSize(new java.awt.Dimension(75, 34));
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
 
         btnPublish.setBackground(new java.awt.Color(236, 80, 80));
         btnPublish.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -68,6 +80,11 @@ public class MenuBar extends javax.swing.JPanel {
         btnPublish.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnPublish.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnPublish.setIconTextGap(15);
+        btnPublish.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPublishActionPerformed(evt);
+            }
+        });
 
         btnLogOut.setBackground(new java.awt.Color(236, 80, 80));
         btnLogOut.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -78,6 +95,11 @@ public class MenuBar extends javax.swing.JPanel {
         btnLogOut.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnLogOut.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnLogOut.setIconTextGap(15);
+        btnLogOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogOutActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -111,6 +133,37 @@ public class MenuBar extends javax.swing.JPanel {
                 .addGap(70, 70, 70))
         );
     }// </editor-fold>//GEN-END:initComponents
+    
+    //* Se dirige a la interfaz que muestra la lista de contenidos publicados (HOME)
+    private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
+        FerromineraProject.contentP.setPanel(new ScrollReportContent());
+        FerromineraProject.contentP.showPanel();
+        
+        ScrollReportContent.initReportContent(10, 0);
+    }//GEN-LAST:event_btnHomeActionPerformed
+    
+    //* Se dirige a la interfaz visual de filtros de busqueda
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        FerromineraProject.contentP.setPanel(new ReportFilter());
+        FerromineraProject.contentP.showPanel();
+    }//GEN-LAST:event_btnSearchActionPerformed
+    
+    //* Se dirige a la interfaz visual de crear reportes
+    private void btnPublishActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPublishActionPerformed
+        FerromineraProject.contentP.setPanel(new ReportForm());
+        FerromineraProject.contentP.showPanel();
+    }//GEN-LAST:event_btnPublishActionPerformed
+    
+    //* Cerrar Sesion y dirigirse al Login
+    private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
+        FerromineraProject.user = null;
+        
+        FerromineraProject.board.setPanel(new LoginBar());
+        FerromineraProject.contentP.setPanel(new Logo());
+        
+        FerromineraProject.board.showPanel();
+        FerromineraProject.contentP.showPanel();
+    }//GEN-LAST:event_btnLogOutActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
