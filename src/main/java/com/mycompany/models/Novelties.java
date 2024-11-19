@@ -36,4 +36,9 @@ public class Novelties {
     public boolean getActive() {
         return active;
     }
+    
+    @Override
+    public String toString() {
+        return name;
+    }
 }
