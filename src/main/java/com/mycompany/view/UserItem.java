@@ -2,18 +2,17 @@ package com.mycompany.view;
 
 import java.awt.Component;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 /**
  *
  * @author Cristian
  */
-public class User extends javax.swing.JPanel {
+public class UserItem extends javax.swing.JPanel {
 
     /**
      * Creates new form User
      */
-    public User() {
+    public UserItem() {
         initComponents();
     }
 
