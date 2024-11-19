@@ -25,10 +25,11 @@ public class Commentary extends javax.swing.JPanel {
         this.user = user;
         setValues();
         objItemText = new ItemText(this, scroll, text);
+        objItemText.textResize();
     }
     
     private void setValues() {
-        userOwner.setText(user.getUsername() + "comentó");
+        userOwner.setText(user.getUsername() + " comentó");
         text.setText(comment.getContent());
     }
 
@@ -61,7 +62,7 @@ public class Commentary extends javax.swing.JPanel {
         text.setForeground(new java.awt.Color(40, 40, 40));
         text.setLineWrap(true);
         text.setRows(1);
-        text.setText("Texto de ejemplo para comentario de publicacion");
+        text.setText("Texto de prueba para ver si aplica como es debido el algoritmo de la calse ItemText,\nintento nro 2:\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.");
         text.setWrapStyleWord(true);
         text.setBorder(null);
         text.addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -90,8 +91,8 @@ public class Commentary extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(userOwner)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(scroll, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+                .addGap(14, 14, 14))
         );
     }// </editor-fold>//GEN-END:initComponents
 
