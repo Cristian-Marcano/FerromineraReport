@@ -1,21 +1,58 @@
 package com.mycompany.view;
 
+import com.mycompany.models.Novelties;
 import com.mycompany.utils.ItemText;
+import com.mycompany.models.Report;
+import com.mycompany.models.User;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
  * @author Cristian
  */
-public class Report extends javax.swing.JPanel {
+public class ReportItem extends javax.swing.JPanel {
     
     public ItemText objItemText;
+    public Report report;
+    public Novelties novelty;
+    public User user, userEdit;
     
     /**
      * Creates new form report
+     * @param report: objeto que almacena el contenido en esta interfaz
+     * @param novelty: objeto que tiene el nombre de la novedad que esta relacionada el report
+     * @param user: objeto que almacena el usuario que publico este report
+     * @param userEdit: objeto que contiene al admin-supervisor que edito este report
      */
-    public Report() {
+    public ReportItem(Report report, Novelties novelty, User user) {
         initComponents();
+        this.report = report;
+        this.novelty = novelty;
+        this.user = user;
+        setValues();
         objItemText = new ItemText(this, scroll, text);
+    }
+    
+    public ReportItem(Report report, Novelties novelty, User user, User userEdit) {
+        initComponents();
+        this.report = report;
+        this.novelty = novelty;
+        this.user = user;
+        this.userEdit = userEdit;
+        setValues();
+        objItemText = new ItemText(this, scroll, text);
+    }
+    
+    private void setValues() {
+        publisher.setText(user.getUsername() + " publicó");
+        if(userEdit!=null) editor.setText(userEdit.getUsername() + " editó");
+        date.setText(report.getCreateAt().toLocalDateTime().format(DateTimeFormatter.ofPattern("d 'de' MMMM 'del' YYYY")));
+        title.setText(report.getTitle());
+        text.setText(report.getContent());
+        if(report.isChecked()) {
+            check.setSelected(true);
+            check.setEnabled(false);
+        }
     }
     
     /**
@@ -31,7 +68,7 @@ public class Report extends javax.swing.JPanel {
         editor = new javax.swing.JLabel();
         datetimePanel = new javax.swing.JPanel();
         date = new javax.swing.JLabel();
-        tittle = new javax.swing.JLabel();
+        title = new javax.swing.JLabel();
         scroll = new javax.swing.JScrollPane();
         text = new javax.swing.JTextArea();
         footer = new javax.swing.JPanel();
@@ -72,11 +109,11 @@ public class Report extends javax.swing.JPanel {
             .addComponent(date, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
         );
 
-        tittle.setFont(new java.awt.Font("Bahnschrift", 0, 18)); // NOI18N
-        tittle.setForeground(new java.awt.Color(30, 30, 30));
-        tittle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        tittle.setText("Titulo");
-        tittle.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(65, 75, 178)));
+        title.setFont(new java.awt.Font("Bahnschrift", 0, 18)); // NOI18N
+        title.setForeground(new java.awt.Color(30, 30, 30));
+        title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        title.setText("Titulo");
+        title.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(65, 75, 178)));
 
         scroll.setBorder(null);
 
@@ -161,7 +198,7 @@ public class Report extends javax.swing.JPanel {
                 .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(scroll)
-                    .addComponent(tittle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(title, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(51, 51, 51))
             .addComponent(footer, javax.swing.GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE)
         );
@@ -175,7 +212,7 @@ public class Report extends javax.swing.JPanel {
                     .addComponent(editor)
                     .addComponent(datetimePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
-                .addComponent(tittle)
+                .addComponent(title)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(scroll)
                 .addGap(18, 18, 18)
@@ -201,6 +238,6 @@ public class Report extends javax.swing.JPanel {
     private javax.swing.JScrollPane scroll;
     private javax.swing.JSeparator separatorFooter;
     private javax.swing.JTextArea text;
-    private javax.swing.JLabel tittle;
+    private javax.swing.JLabel title;
     // End of variables declaration//GEN-END:variables
 }
