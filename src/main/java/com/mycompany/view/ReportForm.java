@@ -1,18 +1,79 @@
 package com.mycompany.view;
 
+import com.mycompany.models.Novelties;
+import com.mycompany.service.NoveltiesService;
+import java.awt.Dimension;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.stream.Collectors;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+
 /**
  *
  * @author Cristian
  */
 public class ReportForm extends javax.swing.JPanel {
+    
+    public List<Novelties> novelties;
 
     /**
      * Creates new form ReportForm
      */
     public ReportForm() {
         initComponents();
-        for(int i = 5; i <= 25; i ++) 
-            selectNew.addItem("Novedad " + i);
+        try {
+            NoveltiesService novService = new NoveltiesService();
+            novelties = novService.getNovelties();
+            
+            for(Novelties nov: novelties)
+                selectNew.addItem(nov);
+            
+            initSelectNew();
+            
+        } catch(SQLException e) {
+            System.err.println(e.getMessage());
+            JOptionPane.showMessageDialog(null,"Ocurrio un Error en la conexión con la Base de Datos","ERROR",JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    private void initSelectNew() {
+        JTextField inputNew = (JTextField) selectNew.getEditor().getEditorComponent();
+        inputNew.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) { updateList(); }
+            @Override
+            public void removeUpdate(DocumentEvent e) { updateList(); }
+            @Override
+            public void changedUpdate(DocumentEvent e) { updateList(); }
+
+            private void updateList() {
+                SwingUtilities.invokeLater(() -> {
+                    String text = inputNew.getText();
+                    if (text.isEmpty()) {
+                        selectNew.setModel(new DefaultComboBoxModel<>(novelties.toArray(new Novelties[0])));
+                    } else {
+                        List<Novelties> filteredItems = novelties.stream()
+                                .filter(item -> item.getName().toLowerCase().contains(text.toLowerCase()))
+                                .collect(Collectors.toList());
+                        selectNew.setModel(new DefaultComboBoxModel<>(filteredItems.toArray(new Novelties[0])));
+                        selectNew.showPopup();
+                    }
+                });
+            }
+        });
+        
+        selectNew.addActionListener(e -> {
+            if (e.getActionCommand().equals("comboBoxEdited")) {
+                Novelties selected = (Novelties) selectNew.getSelectedItem();
+                selectNew.setModel(new DefaultComboBoxModel<>(novelties.toArray(new Novelties[0])));
+                selectNew.setSelectedItem(selected);
+            }
+        });
     }
 
     /**
@@ -35,10 +96,15 @@ public class ReportForm extends javax.swing.JPanel {
         selectHours = new javax.swing.JComboBox<>();
         labelNew = new javax.swing.JLabel();
         separatorNew = new javax.swing.JSeparator();
-        selectNew = new javax.swing.JComboBox<>();
+        selectNew = new javax.swing.JComboBox<Novelties>();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(869, 720));
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentResized(java.awt.event.ComponentEvent evt) {
+                formComponentResized(evt);
+            }
+        });
 
         panelFormContent.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -93,6 +159,7 @@ public class ReportForm extends javax.swing.JPanel {
         );
 
         panelFormType.setBackground(new java.awt.Color(230, 230, 230));
+        panelFormType.setMinimumSize(new java.awt.Dimension(271, 0));
         panelFormType.setPreferredSize(new java.awt.Dimension(271, 720));
 
         labelHours.setFont(new java.awt.Font("Bahnschrift", 0, 16)); // NOI18N
@@ -112,8 +179,8 @@ public class ReportForm extends javax.swing.JPanel {
         separatorNew.setForeground(new java.awt.Color(65, 75, 178));
 
         selectNew.setBackground(new java.awt.Color(255, 255, 255));
+        selectNew.setEditable(true);
         selectNew.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        selectNew.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cualquiera", "Novedad 1", "Novedad 2", "Novedad 3", "Novedad 4" }));
 
         javax.swing.GroupLayout panelFormTypeLayout = new javax.swing.GroupLayout(panelFormType);
         panelFormType.setLayout(panelFormTypeLayout);
@@ -170,6 +237,20 @@ public class ReportForm extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    //* Reescalamiento del panelFormType (barra lateral derecha), para cuando aumente de tamaño la ventana
+    private void formComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentResized
+        // TODO add your handling code here:
+        int width = (int) (this.getWidth() * 0.30);
+        
+        if(width >= panelFormType.getMinimumSize().width ) 
+            panelFormType.setPreferredSize(new Dimension(width, this.getHeight()));
+        else 
+            panelFormType.setPreferredSize(new Dimension(panelFormType.getMinimumSize().width, this.getHeight()));
+        
+        this.revalidate();
+        this.repaint();
+    }//GEN-LAST:event_formComponentResized
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnPublish;
@@ -181,7 +262,7 @@ public class ReportForm extends javax.swing.JPanel {
     private javax.swing.JPanel panelFormType;
     private javax.swing.JScrollPane scrollTextArea;
     private javax.swing.JComboBox<String> selectHours;
-    private javax.swing.JComboBox<String> selectNew;
+    private javax.swing.JComboBox<Novelties> selectNew;
     private javax.swing.JSeparator separatorHours;
     private javax.swing.JSeparator separatorNew;
     // End of variables declaration//GEN-END:variables
