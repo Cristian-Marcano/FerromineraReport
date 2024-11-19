@@ -1,8 +1,16 @@
 package com.mycompany.view;
 
 import com.mycompany.ferromineraproject.FerromineraProject;
+import com.mycompany.models.Comment;
+import com.mycompany.models.Novelties;
+import com.mycompany.service.CommentService;
+import com.mycompany.service.ReportService;
+import com.mycompany.models.Report;
+import com.mycompany.models.User;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -11,6 +19,8 @@ import javax.swing.JPanel;
  */
 public class ScrollReportContent extends javax.swing.JPanel {
     
+    public int offset = 0, limit = 10;
+    
     /**
      * Creates new form ScrollPublishContent
      */
@@ -18,18 +28,80 @@ public class ScrollReportContent extends javax.swing.JPanel {
         initComponents();
     }
     
-    public static void initReportContent() {
-        List<JPanel> reports = new ArrayList<>();
-        
-//        for(int i = 0; i <  20; i++) 
-//            reports.add(new Report());
-
-        for(int i = 0; i < 20; i++)
-            reports.add(new Commentary());
+    @Override
+    public void addNotify() {
+        super.addNotify();
         
         try {
-            FerromineraProject.contentP.showItemsPanel(reports);
-        } catch (Exception e) { System.err.println(e.getMessage()); }
+            FerromineraProject.contentP.resizeScrollPane();
+        } catch(Exception e) { System.err.println(e.getMessage()); }
+    }
+    
+    public static void initReportContent(int limit, int offset) {
+        List<JPanel> reportPanels = new ArrayList<>();
+        List<Object[]> reports;
+        
+        try {
+            ReportService reportService = new ReportService();
+            reports = reportService.getReports(limit, offset);
+            
+            for(int i=0; i<reports.size(); i++) {
+                if(reports.get(i)[4]==null)
+                    reportPanels.add(new ReportItem((Report) reports.get(i)[0],
+                                                    (Novelties) reports.get(i)[1],
+                                                    (User) reports.get(i)[3]));
+                else 
+                    reportPanels.add(new ReportItem((Report) reports.get(i)[0],
+                                                     (Novelties) reports.get(i)[1],
+                                                     (User) reports.get(i)[3],
+                                                     (User) reports.get(i)[4]));
+            }
+            
+            FerromineraProject.contentP.showItemsPanel(reportPanels);
+            
+        } catch(SQLException e) {
+            System.err.println(e.getMessage());
+            JOptionPane.showMessageDialog(null,"Ocurrio un Error en la conexión con la Base de Datos","ERROR",JOptionPane.ERROR_MESSAGE);
+        } catch(Exception e) {
+            System.err.println(e.getMessage());
+            JOptionPane.showMessageDialog(null,"No se puede avanzar \n" + e.getMessage(),"Advertencia",JOptionPane.WARNING_MESSAGE);
+        }
+    }
+    
+    public static void initReportCommentContent(int reportId) {
+        List<JPanel> commentsByReportPanels = new ArrayList<>();
+        List<Object[]> commentReportList;
+        
+        try {
+            CommentService commentService = new CommentService();
+            commentReportList = commentService.getComments(reportId);
+            
+            ReportService reportService = new ReportService();
+            commentReportList.addFirst(reportService.getReport(reportId));
+            
+            for(int i=0; i<commentReportList.size(); i++) {
+                if(i==0 && commentReportList.get(i)[4]==null)
+                    commentsByReportPanels.add(new ReportItem((Report) commentReportList.get(i)[0],
+                                                              (Novelties) commentReportList.get(i)[1],
+                                                              (User) commentReportList.get(i)[3]));
+                else if(i==0)
+                    commentsByReportPanels.add(new ReportItem((Report) commentReportList.get(i)[0],
+                                                              (Novelties) commentReportList.get(i)[1],
+                                                              (User) commentReportList.get(i)[3],
+                                                              (User) commentReportList.get(i)[4]));
+                else
+                    commentsByReportPanels.add(new Commentary((Comment) commentReportList.get(i)[0], (User) commentReportList.get(i)[1]));
+            }
+            
+            FerromineraProject.contentP.showItemsPanel(commentsByReportPanels);
+            
+        } catch(SQLException e) {
+            System.err.println(e.getMessage());
+            JOptionPane.showMessageDialog(null,"Ocurrio un Error en la conexión con la Base de Datos","ERROR",JOptionPane.ERROR_MESSAGE);
+        } catch(Exception e) {
+            System.err.println(e.getMessage());
+            JOptionPane.showMessageDialog(null,"No se puede avanzar \n" + e.getMessage(),"Advertencia",JOptionPane.WARNING_MESSAGE);
+        }
     }
 
     /**
