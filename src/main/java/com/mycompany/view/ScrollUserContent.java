@@ -44,7 +44,7 @@ public class ScrollUserContent extends javax.swing.JPanel {
         List<JPanel> reports = new ArrayList<>();
         
         for(int i = 0; i <  20; i++) 
-            reports.add(new User());
+            reports.add(new UserItem());
         
         try {
             FerromineraProject.contentP.showItemsPanel(reports);
