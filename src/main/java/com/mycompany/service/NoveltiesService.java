@@ -31,7 +31,7 @@ public class NoveltiesService extends Database {
         statement = connection.prepareStatement(sql);
         result = statement.executeQuery();
         List<Novelties> listNovelties = new ArrayList<>();
-        if(result.next())
+       while(result.next())
             listNovelties.add(new Novelties(result.getInt("id"), result.getString("name"), result.getBoolean("active")));
         closeConnection();
         return listNovelties;
