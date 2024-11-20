@@ -9,9 +9,10 @@ import java.util.stream.Collectors;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 /**
  *
@@ -26,54 +27,18 @@ public class ReportForm extends javax.swing.JPanel {
      */
     public ReportForm() {
         initComponents();
+        AutoCompleteDecorator.decorate(selectNew);
         try {
             NoveltiesService novService = new NoveltiesService();
             novelties = novService.getNovelties();
             
             for(Novelties nov: novelties)
-                selectNew.addItem(nov);
-            
-            initSelectNew();
+                selectNew.addItem(nov.getName());
             
         } catch(SQLException e) {
             System.err.println(e.getMessage());
             JOptionPane.showMessageDialog(null,"Ocurrio un Error en la conexión con la Base de Datos","ERROR",JOptionPane.ERROR_MESSAGE);
         }
-    }
-    
-    private void initSelectNew() {
-        JTextField inputNew = (JTextField) selectNew.getEditor().getEditorComponent();
-        inputNew.getDocument().addDocumentListener(new DocumentListener() {
-            @Override
-            public void insertUpdate(DocumentEvent e) { updateList(); }
-            @Override
-            public void removeUpdate(DocumentEvent e) { updateList(); }
-            @Override
-            public void changedUpdate(DocumentEvent e) { updateList(); }
-
-            private void updateList() {
-                SwingUtilities.invokeLater(() -> {
-                    String text = inputNew.getText();
-                    if (text.isEmpty()) {
-                        selectNew.setModel(new DefaultComboBoxModel<>(novelties.toArray(new Novelties[0])));
-                    } else {
-                        List<Novelties> filteredItems = novelties.stream()
-                                .filter(item -> item.getName().toLowerCase().contains(text.toLowerCase()))
-                                .collect(Collectors.toList());
-                        selectNew.setModel(new DefaultComboBoxModel<>(filteredItems.toArray(new Novelties[0])));
-                        selectNew.showPopup();
-                    }
-                });
-            }
-        });
-        
-        selectNew.addActionListener(e -> {
-            if (e.getActionCommand().equals("comboBoxEdited")) {
-                Novelties selected = (Novelties) selectNew.getSelectedItem();
-                selectNew.setModel(new DefaultComboBoxModel<>(novelties.toArray(new Novelties[0])));
-                selectNew.setSelectedItem(selected);
-            }
-        });
     }
 
     /**
@@ -96,7 +61,7 @@ public class ReportForm extends javax.swing.JPanel {
         selectHours = new javax.swing.JComboBox<>();
         labelNew = new javax.swing.JLabel();
         separatorNew = new javax.swing.JSeparator();
-        selectNew = new javax.swing.JComboBox<Novelties>();
+        selectNew = new javax.swing.JComboBox<String>();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(869, 720));
@@ -262,7 +227,7 @@ public class ReportForm extends javax.swing.JPanel {
     private javax.swing.JPanel panelFormType;
     private javax.swing.JScrollPane scrollTextArea;
     private javax.swing.JComboBox<String> selectHours;
-    private javax.swing.JComboBox<Novelties> selectNew;
+    private javax.swing.JComboBox<String> selectNew;
     private javax.swing.JSeparator separatorHours;
     private javax.swing.JSeparator separatorNew;
     // End of variables declaration//GEN-END:variables
