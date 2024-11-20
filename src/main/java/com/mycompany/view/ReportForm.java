@@ -1,17 +1,16 @@
 package com.mycompany.view;
 
+import com.mycompany.ferromineraproject.FerromineraProject;
 import com.mycompany.models.Novelties;
 import com.mycompany.service.NoveltiesService;
+import com.mycompany.service.ReportService;
+import com.mycompany.utils.TextPrompt;
+import com.mycompany.utils.ValidateInput;
 import java.awt.Dimension;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.stream.Collectors;
-import javax.swing.DefaultComboBoxModel;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
-
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 /**
@@ -21,6 +20,7 @@ import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 public class ReportForm extends javax.swing.JPanel {
     
     public List<Novelties> novelties;
+    public TextPrompt placeholder;
 
     /**
      * Creates new form ReportForm
@@ -28,6 +28,7 @@ public class ReportForm extends javax.swing.JPanel {
     public ReportForm() {
         initComponents();
         AutoCompleteDecorator.decorate(selectNew);
+        placeholder = new TextPrompt("Titulo", inputTitle, JLabel.CENTER);
         try {
             NoveltiesService novService = new NoveltiesService();
             novelties = novService.getNovelties();
@@ -77,7 +78,6 @@ public class ReportForm extends javax.swing.JPanel {
         inputTitle.setFont(new java.awt.Font("Bahnschrift", 0, 24)); // NOI18N
         inputTitle.setForeground(new java.awt.Color(50, 50, 50));
         inputTitle.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        inputTitle.setText("Titulo");
         inputTitle.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(236, 80, 80)));
 
         contentText.setBackground(new java.awt.Color(255, 255, 255));
@@ -95,6 +95,11 @@ public class ReportForm extends javax.swing.JPanel {
         btnPublish.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnPublish.setMaximumSize(new java.awt.Dimension(135, 39));
         btnPublish.setPreferredSize(new java.awt.Dimension(124, 45));
+        btnPublish.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPublishActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelFormContentLayout = new javax.swing.GroupLayout(panelFormContent);
         panelFormContent.setLayout(panelFormContentLayout);
@@ -215,8 +220,37 @@ public class ReportForm extends javax.swing.JPanel {
         this.revalidate();
         this.repaint();
     }//GEN-LAST:event_formComponentResized
+    
+    //* Confirmar si el usuario esta usando los inputs y insertar los datos en la DB
+    private void btnPublishActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPublishActionPerformed
+        try {
+            ValidateInput.isEmptyOrBlank(List.of(inputTitle,contentText));
+            
+            String title = inputTitle.getText(), content = contentText.getText(), 
+                    horario = (String) selectHours.getSelectedItem(), novedad = (String) selectNew.getSelectedItem();
+            
+            Novelties novelty = null;
+            for(Novelties nov: novelties)
+                if(nov.getName().equals(novedad)) {
+                    novelty = nov;
+                    break;
+                }
+            
+            if(novelty==null) throw new Exception("Error al seleccionar la novedad");
+            
+            ReportService report = new ReportService();
+            report.createReport(FerromineraProject.user.getId(), novelty.getId(), title, content);
+            
+        } catch(SQLException e) {
+            System.err.println(e.getMessage());
+            JOptionPane.showMessageDialog(null,"Ocurrio un Error en la conexion con la Base de Datos","ERROR",JOptionPane.ERROR_MESSAGE);
+        } catch(Exception e) {
+            System.err.println(e.getMessage());
+            JOptionPane.showMessageDialog(null,"No se puede avanzar \n" + e.getMessage(),"Advertencia",JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btnPublishActionPerformed
 
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnPublish;
     private javax.swing.JTextArea contentText;
