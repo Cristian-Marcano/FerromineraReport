@@ -46,7 +46,7 @@ public class ScrollReportContent extends javax.swing.JPanel {
             reports = reportService.getReports(limit, offset);
             
             for(int i=0; i<reports.size(); i++) {
-                if(reports.get(i)[4]==null)
+                if(((User)reports.get(i)[4]).getUsername()==null)
                     reportPanels.add(new ReportItem((Report) reports.get(i)[0],
                                                     (Novelties) reports.get(i)[1],
                                                     (User) reports.get(i)[3]));
