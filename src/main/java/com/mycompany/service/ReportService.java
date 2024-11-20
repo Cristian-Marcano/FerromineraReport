@@ -41,8 +41,8 @@ public class ReportService extends Database {
     
     public List<Object[]> getReports(int limit, int offset) throws SQLException {
         String sql = "SELECT * FROM report AS r JOIN novelties AS nv ON r.novelties_id = nv.id "
-                + "JOIN report_edit AS redit ON r.id = redit.report_id JOIN user ON r.create_by = user.id "
-                + "JOIN user AS u ON redit.user_edit_id = u.id "
+                + "JOIN user ON r.create_by = user.id LEFT JOIN report_edit AS redit ON r.id = redit.report_id "
+                + "LEFT JOIN user AS u ON redit.user_edit_id = u.id "
                 + "WHERE create_at <= NOW() ORDER BY create_at DESC LIMIT ? OFFSET ?";
         applyConnection();
         statement = connection.prepareStatement(sql);
@@ -66,8 +66,8 @@ public class ReportService extends Database {
     
     public List<Object[]> searchReports(List<String[]> sentencesAndValues, int limit, int offset) throws SQLException {
         String sql = "SELECT * FROM report AS r JOIN novelties AS nv ON r.novelties_id = nv.id "
-                + "JOIN report_edit AS redit ON r.id = redit.report_id JOIN user ON r.create_by = user.id "
-                + "JOIN user AS u ON redit.user_edit_id = u.id "
+                + "JOIN user ON r.create_by = user.id LEFT JOIN report_edit AS redit ON r.id = redit.report_id "
+                + "LEFT JOIN user AS u ON redit.user_edit_id = u.id "
                 + "WHERE ";
         if(sentencesAndValues.isEmpty()) sql += "create_at <= NOW() ";
         else {
@@ -95,6 +95,18 @@ public class ReportService extends Database {
                                                result.getString("u.role"), result.getBoolean("u.active"))});
         closeConnection();
         return reports;
+    }
+    
+    public void createReport(int createBy, int noveltiesId, String title, String content) throws SQLException {
+        String sql = "INSERT INTO report(title, content, novelties_id, create_by) VALUES (?,?,?,?)";
+        applyConnection();
+        statement = connection.prepareStatement(sql);
+        statement.setString(1, title);
+        statement.setString(2, content);
+        statement.setInt(3, noveltiesId);
+        statement.setInt(4, createBy);
+        statement.executeUpdate();
+        closeConnection();
     }
     
     public void updateReport(int id, int noveltiesId, String title, String content) throws SQLException {
