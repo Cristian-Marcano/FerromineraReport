@@ -33,12 +33,7 @@ public class Novelties {
         return name;
     }
     
-    public boolean getActive() {
+    public boolean isActive() {
         return active;
-    }
-    
-    @Override
-    public String toString() {
-        return name;
     }
 }
