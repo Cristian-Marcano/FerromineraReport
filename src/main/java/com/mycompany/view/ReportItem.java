@@ -45,7 +45,8 @@ public class ReportItem extends javax.swing.JPanel {
     
     private void setValues() {
         publisher.setText(user.getUsername() + " publicó");
-        if(userEdit!=null) editor.setText(userEdit.getUsername() + " editó");
+        if(userEdit==null) editor.setVisible(false);
+        else editor.setText(userEdit.getUsername() + " editó");
         date.setText(report.getCreateAt().toLocalDateTime().format(DateTimeFormatter.ofPattern("d 'de' MMMM 'del' YYYY")));
         title.setText(report.getTitle());
         text.setText(report.getContent());
