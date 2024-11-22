@@ -136,10 +136,12 @@ public class MenuBar extends javax.swing.JPanel {
     
     //* Se dirige a la interfaz que muestra la lista de contenidos publicados (HOME)
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
-        FerromineraProject.contentP.setPanel(new ScrollReportContent());
+        ScrollReportContent reportsContent = new ScrollReportContent();
+        
+        FerromineraProject.contentP.setPanel(reportsContent);
         FerromineraProject.contentP.showPanel();
         
-        ScrollReportContent.initReportContent(10, 0);
+        reportsContent.initReportContent();
     }//GEN-LAST:event_btnHomeActionPerformed
     
     //* Se dirige a la interfaz visual de filtros de busqueda
