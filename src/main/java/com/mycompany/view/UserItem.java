@@ -1,7 +1,13 @@
 package com.mycompany.view;
 
+import com.mycompany.ferromineraproject.FerromineraProject;
+import com.mycompany.models.PersonalData;
+import com.mycompany.models.User;
+import com.mycompany.service.UserService;
 import java.awt.Component;
+import java.sql.SQLException;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -9,11 +15,29 @@ import javax.swing.JFrame;
  */
 public class UserItem extends javax.swing.JPanel {
 
+    public User user;
+    public PersonalData data;
+    
     /**
      * Creates new form User
+     * @param user: objeto que almacena los datos principales del usuario, como su clave, username y role 
+     * @param data: objeto que almacena los datos personales del usuario
+     * 
      */
-    public UserItem() {
+    public UserItem(User user, PersonalData data) {
         initComponents();
+        this.user = user;
+        this.data = data;
+        setValues();
+    }
+    
+    private void setValues() {
+        labelUsername.setText("Nombre de Usuario: " + user.getUsername());
+        labelName.setText("Nombre: " + data.getName());
+        labelLastName.setText("Apellido: " + data.getLastName());
+        labelTlf.setText("Telefono: " + data.getTlf());
+        labelFicha.setText("Ficha: " + data.getFicha());
+        labelRole.setText("Role: " + user.getRole());
     }
 
     /**
@@ -28,9 +52,9 @@ public class UserItem extends javax.swing.JPanel {
         labelUsername = new javax.swing.JLabel();
         labelName = new javax.swing.JLabel();
         labelLastName = new javax.swing.JLabel();
-        labelCI = new javax.swing.JLabel();
         labelTlf = new javax.swing.JLabel();
         labelFicha = new javax.swing.JLabel();
+        labelRole = new javax.swing.JLabel();
         btnUserEdit = new javax.swing.JButton();
         btnUserDelete = new javax.swing.JButton();
 
@@ -50,10 +74,6 @@ public class UserItem extends javax.swing.JPanel {
         labelLastName.setForeground(new java.awt.Color(30, 30, 30));
         labelLastName.setText("Apellido: {lastName}");
 
-        labelCI.setFont(new java.awt.Font("Bahnschrift", 0, 16)); // NOI18N
-        labelCI.setForeground(new java.awt.Color(30, 30, 30));
-        labelCI.setText("Cedula: {CI}");
-
         labelTlf.setFont(new java.awt.Font("Bahnschrift", 0, 16)); // NOI18N
         labelTlf.setForeground(new java.awt.Color(30, 30, 30));
         labelTlf.setText("Telefono: {Tlf}");
@@ -61,6 +81,10 @@ public class UserItem extends javax.swing.JPanel {
         labelFicha.setFont(new java.awt.Font("Bahnschrift", 0, 16)); // NOI18N
         labelFicha.setForeground(new java.awt.Color(30, 30, 30));
         labelFicha.setText("Ficha: {ficha}");
+
+        labelRole.setFont(new java.awt.Font("Bahnschrift", 0, 16)); // NOI18N
+        labelRole.setForeground(new java.awt.Color(30, 30, 30));
+        labelRole.setText("Role: {role}");
 
         btnUserEdit.setBackground(new java.awt.Color(180, 180, 180));
         btnUserEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edit_logo.png"))); // NOI18N
@@ -76,6 +100,11 @@ public class UserItem extends javax.swing.JPanel {
         btnUserDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/trash_logo.png"))); // NOI18N
         btnUserDelete.setToolTipText("Eliminar Usuario");
         btnUserDelete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnUserDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUserDeleteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -86,14 +115,14 @@ public class UserItem extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelFicha)
                             .addComponent(labelTlf)
-                            .addComponent(labelCI)
                             .addComponent(labelName)
                             .addComponent(labelUsername)
                             .addComponent(labelLastName))
                         .addContainerGap(132, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(labelFicha)
+                        .addComponent(labelRole)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnUserDelete)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -112,13 +141,13 @@ public class UserItem extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(labelLastName)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(labelCI)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(labelTlf)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(labelFicha)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnUserEdit)
-                            .addComponent(labelFicha)))
+                            .addComponent(labelRole)))
                     .addComponent(btnUserDelete))
                 .addContainerGap(7, Short.MAX_VALUE))
         );
@@ -126,8 +155,7 @@ public class UserItem extends javax.swing.JPanel {
     
     //* Activa el formulario de edicion de usuarios 
     private void btnUserEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserEditActionPerformed
-        // TODO add your handling code here:
-        
+
         Component comp = this.getParent();
         while((!(comp instanceof JFrame)) && (!(comp instanceof ScrollUserContent)) && comp != null) {
             comp = comp.getParent(); 
@@ -135,18 +163,38 @@ public class UserItem extends javax.swing.JPanel {
         
         if(comp instanceof ScrollUserContent) {
             ScrollUserContent userContentPane = (ScrollUserContent) comp;
-            userContentPane.activeEditUserForm();
+            userContentPane.activeEditUserForm(user, data);
         }
     }//GEN-LAST:event_btnUserEditActionPerformed
+    
+    //* Elimina el usario de la DB y reinicia la interfaz
+    private void btnUserDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserDeleteActionPerformed
+        if(JOptionPane.showConfirmDialog(null,"¿Esta seguro de eliminar este usuario?", "Advertencia",
+                                         JOptionPane.OK_CANCEL_OPTION,JOptionPane.WARNING_MESSAGE)==0) return;
+        try {
+            UserService userService = new UserService();
+            userService.removeUser(user.getId());
+            
+            ScrollUserContent usersContent = new ScrollUserContent();
+                
+            FerromineraProject.contentP.setPanel(usersContent);
+            FerromineraProject.contentP.showPanel();
+                
+            usersContent.initUserContent();
+        } catch(SQLException e) {
+            System.err.println(e.getMessage());
+            JOptionPane.showMessageDialog(null,"Ocurrio un Error en la conexión con la Base de Datos","ERROR",JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnUserDeleteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnUserDelete;
     private javax.swing.JButton btnUserEdit;
-    private javax.swing.JLabel labelCI;
     private javax.swing.JLabel labelFicha;
     private javax.swing.JLabel labelLastName;
     private javax.swing.JLabel labelName;
+    private javax.swing.JLabel labelRole;
     private javax.swing.JLabel labelTlf;
     private javax.swing.JLabel labelUsername;
     // End of variables declaration//GEN-END:variables

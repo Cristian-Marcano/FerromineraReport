@@ -36,8 +36,8 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="labelFicha" min="-2" max="-2" attributes="0"/>
                           <Component id="labelTlf" min="-2" max="-2" attributes="0"/>
-                          <Component id="labelCI" min="-2" max="-2" attributes="0"/>
                           <Component id="labelName" min="-2" max="-2" attributes="0"/>
                           <Component id="labelUsername" min="-2" max="-2" attributes="0"/>
                           <Component id="labelLastName" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -45,7 +45,7 @@
                       <EmptySpace pref="132" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="labelFicha" min="-2" max="-2" attributes="0"/>
+                      <Component id="labelRole" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="btnUserDelete" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -68,13 +68,13 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="labelLastName" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="labelCI" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="labelTlf" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="labelFicha" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="btnUserEdit" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="labelFicha" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelRole" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Component id="btnUserDelete" min="-2" max="-2" attributes="0"/>
@@ -118,17 +118,6 @@
         <Property name="text" type="java.lang.String" value="Apellido: {lastName}"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="labelCI">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Bahnschrift" size="16" style="0"/>
-        </Property>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="1e" green="1e" red="1e" type="rgb"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Cedula: {CI}"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="labelTlf">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -149,6 +138,17 @@
           <Color blue="1e" green="1e" red="1e" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Ficha: {ficha}"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="labelRole">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Bahnschrift" size="16" style="0"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="1e" green="1e" red="1e" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Role: {role}"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnUserEdit">
@@ -181,6 +181,9 @@
           <Color id="Hand Cursor"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUserDeleteActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
