@@ -79,6 +79,7 @@ public class ReportForm extends javax.swing.JPanel {
         inputTitle.setForeground(new java.awt.Color(50, 50, 50));
         inputTitle.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         inputTitle.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(236, 80, 80)));
+        inputTitle.setName("Titulo"); // NOI18N
 
         contentText.setBackground(new java.awt.Color(255, 255, 255));
         contentText.setFont(new java.awt.Font("Segoe UI", 0, 19)); // NOI18N
@@ -86,6 +87,7 @@ public class ReportForm extends javax.swing.JPanel {
         contentText.setLineWrap(true);
         contentText.setWrapStyleWord(true);
         contentText.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(180, 180, 180)));
+        contentText.setName("Contenido"); // NOI18N
         scrollTextArea.setViewportView(contentText);
 
         btnPublish.setBackground(new java.awt.Color(65, 75, 178));
@@ -141,6 +143,7 @@ public class ReportForm extends javax.swing.JPanel {
         selectHours.setBackground(new java.awt.Color(255, 255, 255));
         selectHours.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         selectHours.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cualquiera", "Diurno", "Nocturno" }));
+        selectHours.setName("Horario"); // NOI18N
 
         labelNew.setFont(new java.awt.Font("Bahnschrift", 0, 16)); // NOI18N
         labelNew.setForeground(new java.awt.Color(65, 75, 178));
@@ -151,6 +154,7 @@ public class ReportForm extends javax.swing.JPanel {
         selectNew.setBackground(new java.awt.Color(255, 255, 255));
         selectNew.setEditable(true);
         selectNew.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        selectNew.setName("Novedad"); // NOI18N
 
         javax.swing.GroupLayout panelFormTypeLayout = new javax.swing.GroupLayout(panelFormType);
         panelFormType.setLayout(panelFormTypeLayout);
@@ -240,6 +244,13 @@ public class ReportForm extends javax.swing.JPanel {
             
             ReportService report = new ReportService();
             report.createReport(FerromineraProject.user.getId(), novelty.getId(), title, content);
+            
+            ScrollReportContent reportsContent = new ScrollReportContent();
+        
+            FerromineraProject.contentP.setPanel(reportsContent);
+            FerromineraProject.contentP.showPanel();
+        
+            reportsContent.initReportContent();
             
         } catch(SQLException e) {
             System.err.println(e.getMessage());

@@ -101,6 +101,7 @@
                 </MatteColorBorder>
               </Border>
             </Property>
+            <Property name="name" type="java.lang.String" value="Titulo" noResource="true"/>
           </Properties>
         </Component>
         <Container class="javax.swing.JScrollPane" name="scrollTextArea">
@@ -130,6 +131,7 @@
                     </MatteColorBorder>
                   </Border>
                 </Property>
+                <Property name="name" type="java.lang.String" value="Contenido" noResource="true"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -256,6 +258,7 @@
                 <StringItem index="2" value="Nocturno"/>
               </StringArray>
             </Property>
+            <Property name="name" type="java.lang.String" value="Horario" noResource="true"/>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -291,6 +294,7 @@
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="0"/>
             </Property>
+            <Property name="name" type="java.lang.String" value="Novedad" noResource="true"/>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JComboBox&lt;String&gt;()"/>
