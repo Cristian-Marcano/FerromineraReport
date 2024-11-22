@@ -1,16 +1,42 @@
 package com.mycompany.view;
 
+import com.mycompany.ferromineraproject.FerromineraProject;
+import com.mycompany.models.Novelties;
+import com.mycompany.service.NoveltiesService;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import javax.swing.JOptionPane;
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
+
 /**
  *
  * @author Cristian
  */
 public class ReportFilter extends javax.swing.JPanel {
+    
+    public List<Novelties> novelties;
 
     /**
      * Creates new form ReportFilter
      */
     public ReportFilter() {
         initComponents();
+        AutoCompleteDecorator.decorate(selectNew);
+        try {
+            
+            NoveltiesService novService = new NoveltiesService();
+            novelties = novService.getNovelties();
+            
+            for(Novelties nov: novelties)
+                selectNew.addItem(nov.getName());
+            
+        } catch(SQLException e) {
+            System.err.println(e.getMessage());
+            JOptionPane.showMessageDialog(null,"Ocurrio un Error en la conexión con la Base de Datos","ERROR",JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     /**
@@ -42,10 +68,11 @@ public class ReportFilter extends javax.swing.JPanel {
         labelHours = new javax.swing.JLabel();
         separatorHours = new javax.swing.JSeparator();
         selectHours = new javax.swing.JComboBox<>();
-        check = new javax.swing.JCheckBox();
         labelNew = new javax.swing.JLabel();
         separatorNew = new javax.swing.JSeparator();
         selectNew = new javax.swing.JComboBox<>();
+        check = new javax.swing.JCheckBox();
+        checkDate = new javax.swing.JCheckBox();
         labelDate2 = new javax.swing.JLabel();
         separatorDate2 = new javax.swing.JSeparator();
         panelDate2 = new javax.swing.JPanel();
@@ -54,11 +81,6 @@ public class ReportFilter extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(230, 230, 230));
         setPreferredSize(new java.awt.Dimension(869, 720));
-        addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentResized(java.awt.event.ComponentEvent evt) {
-                formComponentResized(evt);
-            }
-        });
 
         title.setFont(new java.awt.Font("Bahnschrift", 0, 24)); // NOI18N
         title.setForeground(new java.awt.Color(65, 75, 178));
@@ -79,13 +101,15 @@ public class ReportFilter extends javax.swing.JPanel {
 
         labelDate1.setFont(new java.awt.Font("Bahnschrift", 0, 16)); // NOI18N
         labelDate1.setForeground(new java.awt.Color(65, 75, 178));
-        labelDate1.setText("Fecha:");
+        labelDate1.setText("Fecha 1:");
 
         separatorDate1.setForeground(new java.awt.Color(65, 75, 178));
 
         panelDate1.setBackground(new java.awt.Color(230, 230, 230));
         panelDate1.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(65, 75, 178)));
         panelDate1.setPreferredSize(new java.awt.Dimension(350, 190));
+
+        calendar1.setMaxSelectableDate(new Date());
 
         javax.swing.GroupLayout panelDate1Layout = new javax.swing.GroupLayout(panelDate1);
         panelDate1.setLayout(panelDate1Layout);
@@ -179,12 +203,6 @@ public class ReportFilter extends javax.swing.JPanel {
         selectHours.setFont(new java.awt.Font("Bahnschrift", 0, 15)); // NOI18N
         selectHours.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cualquiera", "Diurno", "Nocturno" }));
 
-        check.setBackground(new java.awt.Color(230, 230, 230));
-        check.setFont(new java.awt.Font("Bahnschrift", 0, 16)); // NOI18N
-        check.setForeground(new java.awt.Color(65, 75, 178));
-        check.setText("Reporte Checado");
-        check.setToolTipText("");
-
         labelNew.setFont(new java.awt.Font("Bahnschrift", 0, 16)); // NOI18N
         labelNew.setForeground(new java.awt.Color(65, 75, 178));
         labelNew.setText("Novedad:");
@@ -193,7 +211,23 @@ public class ReportFilter extends javax.swing.JPanel {
 
         selectNew.setBackground(new java.awt.Color(255, 255, 255));
         selectNew.setFont(new java.awt.Font("Bahnschrift", 0, 15)); // NOI18N
-        selectNew.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cualquiera", "Novedad 1", "Novedad 2", "Novedad 3", "Novedad 4" }));
+        selectNew.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cualquiera" }));
+
+        check.setBackground(new java.awt.Color(230, 230, 230));
+        check.setFont(new java.awt.Font("Bahnschrift", 0, 16)); // NOI18N
+        check.setForeground(new java.awt.Color(65, 75, 178));
+        check.setText("Reporte Checado");
+        check.setToolTipText("");
+
+        checkDate.setBackground(new java.awt.Color(230, 230, 230));
+        checkDate.setFont(new java.awt.Font("Bahnschrift", 0, 16)); // NOI18N
+        checkDate.setForeground(new java.awt.Color(65, 75, 178));
+        checkDate.setText("Sin Fechas");
+        checkDate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkDateActionPerformed(evt);
+            }
+        });
 
         labelDate2.setFont(new java.awt.Font("Bahnschrift", 0, 16)); // NOI18N
         labelDate2.setForeground(new java.awt.Color(65, 75, 178));
@@ -206,6 +240,8 @@ public class ReportFilter extends javax.swing.JPanel {
         panelDate2.setForeground(new java.awt.Color(65, 75, 178));
         panelDate2.setPreferredSize(new java.awt.Dimension(350, 190));
         panelDate2.setRequestFocusEnabled(false);
+
+        calendar2.setMaxSelectableDate(new Date());
 
         javax.swing.GroupLayout panelDate2Layout = new javax.swing.GroupLayout(panelDate2);
         panelDate2.setLayout(panelDate2Layout);
@@ -247,27 +283,33 @@ public class ReportFilter extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(separatorTitle)
-                            .addComponent(inputTitle)
-                            .addComponent(separatorPublisherData)
-                            .addComponent(panelPublisherData, javax.swing.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(labelHours)
-                                    .addComponent(selectHours, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(separatorHours))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(selectNew, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(separatorNew)
-                                    .addComponent(labelNew)))
+                                    .addComponent(separatorTitle)
+                                    .addComponent(inputTitle)
+                                    .addComponent(separatorPublisherData)
+                                    .addComponent(panelPublisherData, javax.swing.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(labelHours)
+                                            .addComponent(selectHours, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(separatorHours))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(selectNew, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(separatorNew)
+                                            .addComponent(labelNew)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(labelTitle)
+                                            .addComponent(labelPublisherData))
+                                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addGap(18, 18, 18))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(labelTitle)
-                                    .addComponent(labelPublisherData))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(check))
-                        .addGap(18, 18, 18))
+                                .addComponent(check)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(checkDate)
+                                .addGap(70, 70, 70))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnSearch)
@@ -327,20 +369,67 @@ public class ReportFilter extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(selectNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, Short.MAX_VALUE)
-                        .addComponent(check)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(check)
+                            .addComponent(checkDate))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnSearch)))
                 .addContainerGap(93, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void formComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentResized
-        // TODO add your handling code here:
-    }//GEN-LAST:event_formComponentResized
-
+    //* Enlistar todas los campos y valores para aplicar una sentencia con la busqueda en al DB
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-        // TODO add your handling code here:
+        List<String[]> sentencesAndValues = new ArrayList<>();
+        
+        String title = inputTitle.getText(), username = inputPublisherUsername.getText(), ficha = inputPublisherFicha.getText();
+        
+        if(!checkDate.isSelected()) {
+            if(new SimpleDateFormat("yyyy-MM-dd").format(calendar1.getDate()).equals(new SimpleDateFormat("yyyy-MM-dd").format(calendar2.getDate()))) {
+                sentencesAndValues.add(new String[]{"DATE(r.create_at) = ? ", new SimpleDateFormat("yyyy-MM-dd").format(calendar1.getDate())});
+            } else if(calendar1.getDate().after(calendar2.getDate())) {
+                sentencesAndValues.add(new String[]{"DATE(r.create_at) <= ? ", new SimpleDateFormat("yyyy-MM-dd").format(calendar1.getDate())});
+                sentencesAndValues.add(new String[]{"DATE(r.create_at) >= ? ", new SimpleDateFormat("yyyy-MM-dd").format(calendar2.getDate())});
+            } else {
+                sentencesAndValues.add(new String[]{"DATE(r.create_at) <= ? ", new SimpleDateFormat("yyyy-MM-dd").format(calendar2.getDate())});
+                sentencesAndValues.add(new String[]{"DATE(r.create_at) >= ? ", new SimpleDateFormat("yyyy-MM-dd").format(calendar1.getDate())});
+            }
+        }
+        
+        if((!title.isEmpty()) && (!title.isBlank())) sentencesAndValues.add(new String[]{"r.title LIKE ? ", "%"+ title +"%"});
+        
+        if((!username.isEmpty()) && (!username.isBlank())) sentencesAndValues.add(new String[]{"user.username LIKE ? ", "%"+ username +"%"});
+        
+        if((!ficha.isEmpty()) && (!ficha.isBlank())) sentencesAndValues.add(new String[]{"pd.ficha = ? ", ficha});
+        
+        if(selectNew.getSelectedIndex()!=0)
+            for(Novelties nov: novelties)
+                if(nov.getName().equals(selectNew.getSelectedItem())) {
+                    sentencesAndValues.add(new String[]{"r.novelties_id = ? ", "" + nov.getId()});
+                }
+        
+        if(check.isSelected()) sentencesAndValues.add(new String[]{"r.checked = ? ", "1"});
+        
+        ScrollReportContent reportsContent = new ScrollReportContent(sentencesAndValues);
+        
+        FerromineraProject.contentP.setPanel(reportsContent);
+        FerromineraProject.contentP.showPanel();
+        
+        reportsContent.initReportContent();
     }//GEN-LAST:event_btnSearchActionPerformed
+
+    //* Desactivar los JCalendar
+    private void checkDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkDateActionPerformed
+        if(calendar1.isEnabled()) {
+            calendar1.setEnabled(false);
+            calendar2.setEnabled(false);
+        } else {
+            calendar1.setEnabled(true);
+            calendar2.setEnabled(true);
+            calendar1.setMaxSelectableDate(new Date());
+            calendar2.setMaxSelectableDate(new Date());
+        }
+    }//GEN-LAST:event_checkDateActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -348,6 +437,7 @@ public class ReportFilter extends javax.swing.JPanel {
     private com.toedter.calendar.JCalendar calendar1;
     private com.toedter.calendar.JCalendar calendar2;
     private javax.swing.JCheckBox check;
+    private javax.swing.JCheckBox checkDate;
     private javax.swing.JTextField inputPublisherFicha;
     private javax.swing.JTextField inputPublisherUsername;
     private javax.swing.JTextField inputTitle;
