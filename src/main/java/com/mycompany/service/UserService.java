@@ -53,6 +53,21 @@ public class UserService extends Database {
         return count;
     }
     
+    public List<Object[]> getUsers() throws SQLException {
+        String sql = "SELECT * FROM user JOIN personal_data AS pd ON user.id = pd.user_id WHERE active = 1 ORDER BY user.id DESC";
+        applyConnection();
+        statement = connection.prepareStatement(sql);
+        result = statement.executeQuery();
+        List<Object[]> users = new ArrayList<>();
+        while(result.next())
+            users.add(new Object[]{new User(result.getInt("user.id"), result.getString("user.username"), 
+                                            result.getString("user.password"), result.getString("user.role"), result.getBoolean("user.active")),
+                                   new PersonalData(result.getInt("pd.id"), result.getInt("pd.user_id"), result.getString("pd.name"),
+                                                    result.getString("pd.last_name"), result.getString("pd.ficha"), result.getString("pd.tlf"))});
+        closeConnection();
+        return users;
+    }
+    
     public List<Object[]> searchUsers(List<String[]> sentencesAndValues) throws SQLException {
         String sql = "SELECT * FROM user JOIN personal_data AS pd ON user.id = pd.user_id";
         if(!sentencesAndValues.isEmpty()) {
@@ -77,6 +92,7 @@ public class UserService extends Database {
     public int createUser(String username, String password, String role) throws SQLException {
         String sql = "INSERT INTO user(username, password, role) VALUES (?,?,?)";
         applyConnection();
+        if(connection.getAutoCommit()) connection.setAutoCommit(false);
         statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
         statement.setString(1, username);
         statement.setString(2, password);
@@ -85,33 +101,19 @@ public class UserService extends Database {
         result = statement.getGeneratedKeys();
         result.next();
         int id = result.getInt(1);
-        closeConnection();
         return id;
     }
     
     public void updateUser(User user) throws SQLException {
         String sql = "UPDATE user SET username = ?, password = ?, role = ? WHERE id = ?";
         applyConnection();
+        if(connection.getAutoCommit()) connection.setAutoCommit(false);
         statement = connection.prepareStatement(sql);
         statement.setString(1, user.getUsername());
         statement.setString(2, user.getPassword());
         statement.setString(3, user.getRole());
         statement.setInt(4, user.getId());
         statement.executeUpdate();
-        closeConnection();
-    }
-    
-    public void updateUserPersonalData(PersonalData data) throws SQLException {
-        String sql = "UPDATE personal_data SET name = ?, last_name = ?, ficha = ?, tlf = ? WHERE user_id = ?";
-        applyConnection();
-        statement = connection.prepareStatement(sql);
-        statement.setString(1, data.getName());
-        statement.setString(2, data.getLastName());
-        statement.setString(3, data.getFicha());
-        statement.setString(4, data.getTlf());
-        statement.setInt(5, data.getUserId());
-        statement.executeUpdate();
-        closeConnection();
     }
     
     public void removeUser(int id) throws SQLException {
