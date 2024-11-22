@@ -156,10 +156,12 @@ public class MenuAdminBar extends javax.swing.JPanel {
 
     //* Se dirige a la interfaz que muestra la lista de contenidos publicados (HOME)
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
-        FerromineraProject.contentP.setPanel(new ScrollReportContent());
+        ScrollReportContent reportsContent = new ScrollReportContent();
+        
+        FerromineraProject.contentP.setPanel(reportsContent);
         FerromineraProject.contentP.showPanel();
         
-        ScrollReportContent.initReportContent(10, 0);
+        reportsContent.initReportContent();
     }//GEN-LAST:event_btnHomeActionPerformed
 
     //* Se dirige a la interfaz visual de filtros de busqueda
@@ -176,8 +178,12 @@ public class MenuAdminBar extends javax.swing.JPanel {
 
     //* Se dirige a la interfaz visual que muestra cada uno de los usuarios
     private void btnUsersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsersActionPerformed
-        FerromineraProject.contentP.setPanel(new ScrollUserContent());
+        ScrollUserContent usersContent = new ScrollUserContent();
+        
+        FerromineraProject.contentP.setPanel(usersContent);
         FerromineraProject.contentP.showPanel();
+        
+        usersContent.initUserContent();
     }//GEN-LAST:event_btnUsersActionPerformed
 
     //* Cerrar Sesion y dirigirse al Login
