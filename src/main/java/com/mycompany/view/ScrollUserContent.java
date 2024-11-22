@@ -1,12 +1,16 @@
 package com.mycompany.view;
 
 import com.mycompany.ferromineraproject.FerromineraProject;
+import com.mycompany.models.PersonalData;
+import com.mycompany.models.User;
+import com.mycompany.service.UserService;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.event.AdjustmentEvent;
-import java.awt.event.AdjustmentListener;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -15,6 +19,7 @@ import javax.swing.JPanel;
  */
 public class ScrollUserContent extends javax.swing.JPanel {
     
+    public List<String[]> sentencesAndValues = new ArrayList<>();
     public UserForm searchUserForm, addUserForm, editUserForm; 
 
     /**
@@ -23,32 +28,45 @@ public class ScrollUserContent extends javax.swing.JPanel {
     public ScrollUserContent() {
         initComponents();
         
-        searchUserForm = new UserForm(true, "Buscar");
-        addUserForm = new UserForm(false, "Añadir");
-        editUserForm = new UserForm(false, "Editar");
+        searchUserForm = new UserForm(0, "Buscar");
+        addUserForm = new UserForm(1, "Añadir");
+        editUserForm = new UserForm(2, "Editar");
         
         btnUserAdd.setSize(30, 31);
         btnUserSearch.setSize(30, 31);
         
-        scroll.getVerticalScrollBar().addAdjustmentListener(new AdjustmentListener() {
-            @Override
-            public void adjustmentValueChanged(AdjustmentEvent e) {
-                // Actualizar la posición del botón sticky
-                changePosition();
-            }
+        scroll.getVerticalScrollBar().addAdjustmentListener((AdjustmentEvent e) -> {
+            // Actualizar la posición del botón sticky
+            changePosition();
         });
     }
     
+    public ScrollUserContent(List<String[]> sentencesAndValues) {
+        this();
+        this.sentencesAndValues = sentencesAndValues;
+    }
+    
     //* Añadir lista de paneles que contienen informacion de los usuarios
-    public static void initUserContent() {
-        List<JPanel> reports = new ArrayList<>();
-        
-        for(int i = 0; i <  20; i++) 
-            reports.add(new UserItem());
+    public void initUserContent() {
+        List<JPanel> userPanels = new ArrayList<>();
+        List<Object[]> users;
         
         try {
-            FerromineraProject.contentP.showItemsPanel(reports);
-        } catch (Exception e) { System.err.println(e.getMessage()); }
+            UserService userService = new UserService();
+            users = (sentencesAndValues.isEmpty()) ? userService.getUsers() : userService.searchUsers(sentencesAndValues);
+            
+            for(int i = 0; i<users.size(); i++)
+                userPanels.add(new UserItem((User) users.get(i)[0], (PersonalData) users.get(i)[1]));
+            
+            FerromineraProject.contentP.showItemsPanel(userPanels);
+            
+        } catch(SQLException e) {
+            System.err.println(e.getMessage());
+            JOptionPane.showMessageDialog(null,"Ocurrio un Error en la conexión con la Base de Datos","ERROR",JOptionPane.ERROR_MESSAGE);
+        } catch(Exception e) {
+            System.err.println(e.getMessage());
+            JOptionPane.showMessageDialog(null,"No se puede avanzar \n" + e.getMessage(),"Advertencia",JOptionPane.WARNING_MESSAGE);
+        }
     }
     
     //* Cambiar de posicion a los stickyBtn (add y search) y sus respectivos formularios
@@ -83,9 +101,10 @@ public class ScrollUserContent extends javax.swing.JPanel {
     }
     
     //* Funcion que se usa desde el item que se presiona el btnEdit
-    public void activeEditUserForm() {
+    public void activeEditUserForm(User user, PersonalData data) {
         btnVisible(false);
         editUserForm.active = true;
+        editUserForm.setUser(user, data);
         userContent.add(editUserForm, 0);
         changePosition();
     }
