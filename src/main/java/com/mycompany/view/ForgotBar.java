@@ -194,7 +194,7 @@ public class ForgotBar extends javax.swing.JPanel {
                 
                 FerromineraProject.user = user;
                 
-                if(user.getRole().equals("super-admin")) FerromineraProject.board.setPanel(new MenuAdminBar());
+                if(user.getRole().equals("Super-admin")) FerromineraProject.board.setPanel(new MenuAdminBar());
                 else FerromineraProject.board.setPanel(new MenuBar());
                 
                 ScrollReportContent reportsContent = new ScrollReportContent();

@@ -36,7 +36,7 @@ public class UserForm extends javax.swing.JPanel {
             labelPassword.setVisible(false);
             separatorPassword.setVisible(false);
             inputPassword.setVisible(false);
-            selectRole.insertItemAt("cualquiera", mode);
+            selectRole.insertItemAt("Cualquiera", mode);
             selectRole.setSelectedIndex(mode);
         }
         
@@ -190,7 +190,7 @@ public class UserForm extends javax.swing.JPanel {
 
         selectRole.setBackground(new java.awt.Color(255, 255, 255));
         selectRole.setFont(new java.awt.Font("Bahnschrift", 0, 16)); // NOI18N
-        selectRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "super-admin", "supervisor", "analista" }));
+        selectRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Super-admin", "Supervisor", "Analista" }));
 
         labelPassword.setFont(new java.awt.Font("Bahnschrift", 0, 16)); // NOI18N
         labelPassword.setForeground(new java.awt.Color(65, 75, 178));
