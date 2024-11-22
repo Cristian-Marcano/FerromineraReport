@@ -17,8 +17,8 @@ public class ReportService extends Database {
     
     public Object[] getReport(int id) throws SQLException {
         String sql = "SELECT * FROM report AS r JOIN novelties AS nv ON r.novelties_id = nv.id "
-                + "JOIN report_edit AS redit ON r.id = redit.report_id JOIN user ON r.create_by = user.id "
-                + "JOIN user AS u ON redit.user_edit_id = u.id "
+                + "JOIN user ON r.create_by = user.id LEFT JOIN report_edit AS redit ON r.id = redit.report_id "
+                + "LEFT JOIN user AS u ON redit.user_edit_id = u.id "
                 + "WHERE r.id = ?";
         applyConnection();
         statement = connection.prepareStatement(sql);
