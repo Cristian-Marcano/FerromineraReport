@@ -218,11 +218,13 @@ public class ReportFilter extends javax.swing.JPanel {
         check.setForeground(new java.awt.Color(65, 75, 178));
         check.setText("Reporte Checado");
         check.setToolTipText("");
+        check.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         checkDate.setBackground(new java.awt.Color(230, 230, 230));
         checkDate.setFont(new java.awt.Font("Bahnschrift", 0, 16)); // NOI18N
         checkDate.setForeground(new java.awt.Color(65, 75, 178));
         checkDate.setText("Sin Fechas");
+        checkDate.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         checkDate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 checkDateActionPerformed(evt);
