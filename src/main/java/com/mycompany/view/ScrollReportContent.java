@@ -19,6 +19,7 @@ import javax.swing.JPanel;
  */
 public class ScrollReportContent extends javax.swing.JPanel {
     
+    public List<String[]> sentencesAndValues = new ArrayList<>();
     public int offset = 0, limit = 10;
     
     /**
@@ -26,6 +27,11 @@ public class ScrollReportContent extends javax.swing.JPanel {
      */
     public ScrollReportContent() {
         initComponents();
+    }
+    
+    public ScrollReportContent(List<String[]> sentencesAndValues) {
+        initComponents();
+        this.sentencesAndValues = sentencesAndValues;
     }
     
     @Override
@@ -37,13 +43,13 @@ public class ScrollReportContent extends javax.swing.JPanel {
         } catch(Exception e) { System.err.println(e.getMessage()); }
     }
     
-    public static void initReportContent(int limit, int offset) {
+    public void initReportContent() {
         List<JPanel> reportPanels = new ArrayList<>();
         List<Object[]> reports;
         
         try {
             ReportService reportService = new ReportService();
-            reports = reportService.getReports(limit, offset);
+            reports = (sentencesAndValues.isEmpty()) ? reportService.getReports(limit, offset) : reportService.searchReports(sentencesAndValues, limit, offset);
             
             for(int i=0; i<reports.size(); i++) {
                 if(((User)reports.get(i)[4]).getUsername()==null)
@@ -68,7 +74,7 @@ public class ScrollReportContent extends javax.swing.JPanel {
         }
     }
     
-    public static void initReportCommentContent(int reportId) {
+    public void initReportCommentContent(int reportId) {
         List<JPanel> commentsByReportPanels = new ArrayList<>();
         List<Object[]> commentReportList;
         
