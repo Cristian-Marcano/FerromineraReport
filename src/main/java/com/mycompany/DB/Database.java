@@ -92,6 +92,12 @@ public class Database {
         connection = DriverManager.getConnection(url,username,password);
     }
     
+    //* Retroceder justo antes de cambiar el autoCommit
+    public void applyRollBack() throws SQLException {
+        connection.rollback();
+        closeConnection();
+    }
+    
     //* Verificar si se encuentra los controladores en el proyecto
     public static boolean verifyController() {
         try {
@@ -109,5 +115,4 @@ public class Database {
         if(statement!=null && (!statement.isClosed())) statement.close();
         if(result!=null && (!result.isClosed())) result.close();
     }
-    
 }
