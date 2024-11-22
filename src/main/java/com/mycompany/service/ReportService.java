@@ -66,7 +66,8 @@ public class ReportService extends Database {
     
     public List<Object[]> searchReports(List<String[]> sentencesAndValues, int limit, int offset) throws SQLException {
         String sql = "SELECT * FROM report AS r JOIN novelties AS nv ON r.novelties_id = nv.id "
-                + "JOIN user ON r.create_by = user.id LEFT JOIN report_edit AS redit ON r.id = redit.report_id "
+                + "JOIN user ON r.create_by = user.id JOIN personal_data AS pd ON user.id = pd.user_id "
+                + "LEFT JOIN report_edit AS redit ON r.id = redit.report_id "
                 + "LEFT JOIN user AS u ON redit.user_edit_id = u.id "
                 + "WHERE ";
         if(sentencesAndValues.isEmpty()) sql += "create_at <= NOW() ";
