@@ -7,6 +7,9 @@ import com.mycompany.service.CommentService;
 import com.mycompany.service.ReportService;
 import com.mycompany.models.Report;
 import com.mycompany.models.User;
+import java.awt.Dimension;
+import java.awt.Point;
+import java.awt.event.AdjustmentEvent;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,8 +22,9 @@ import javax.swing.JPanel;
  */
 public class ScrollReportContent extends javax.swing.JPanel {
     
+    public int offset = 0, limit = 10, reportId;
     public List<String[]> sentencesAndValues = new ArrayList<>();
-    public int offset = 0, limit = 10;
+    public CommentaryForm commentaryForm = null;
     
     /**
      * Creates new form ScrollPublishContent
@@ -29,8 +33,19 @@ public class ScrollReportContent extends javax.swing.JPanel {
         initComponents();
     }
     
+    public ScrollReportContent(int reportId) {
+        this();
+        this.reportId = reportId;
+        commentaryForm = new CommentaryForm(reportId);
+        
+        scroll.getVerticalScrollBar().addAdjustmentListener((AdjustmentEvent e) -> {
+            // Actualizar la posición del CommentaryForm
+            changePosition();
+        });
+    }
+    
     public ScrollReportContent(List<String[]> sentencesAndValues) {
-        initComponents();
+        this();
         this.sentencesAndValues = sentencesAndValues;
     }
     
@@ -52,7 +67,7 @@ public class ScrollReportContent extends javax.swing.JPanel {
             reports = (sentencesAndValues.isEmpty()) ? reportService.getReports(limit, offset) : reportService.searchReports(sentencesAndValues, limit, offset);
             
             for(int i=0; i<reports.size(); i++) {
-                if(((User)reports.get(i)[4]).getUsername()==null)
+                if(((User) reports.get(i)[4]).getUsername()==null)
                     reportPanels.add(new ReportItem((Report) reports.get(i)[0],
                                                     (Novelties) reports.get(i)[1],
                                                     (User) reports.get(i)[3]));
@@ -74,7 +89,7 @@ public class ScrollReportContent extends javax.swing.JPanel {
         }
     }
     
-    public void initReportCommentContent(int reportId) {
+    public void initReportCommentContent() {
         List<JPanel> commentsByReportPanels = new ArrayList<>();
         List<Object[]> commentReportList;
         
@@ -86,7 +101,7 @@ public class ScrollReportContent extends javax.swing.JPanel {
             commentReportList.addFirst(reportService.getReport(reportId));
             
             for(int i=0; i<commentReportList.size(); i++) {
-                if(i==0 && commentReportList.get(i)[4]==null)
+                if(i==0 && ((User) commentReportList.get(i)[4]).getUsername()==null)
                     commentsByReportPanels.add(new ReportItem((Report) commentReportList.get(i)[0],
                                                               (Novelties) commentReportList.get(i)[1],
                                                               (User) commentReportList.get(i)[3]));
@@ -101,6 +116,9 @@ public class ScrollReportContent extends javax.swing.JPanel {
             
             FerromineraProject.contentP.showItemsPanel(commentsByReportPanels);
             
+            reportContent.add(commentaryForm, 0);
+            changePosition();
+            
         } catch(SQLException e) {
             System.err.println(e.getMessage());
             JOptionPane.showMessageDialog(null,"Ocurrio un Error en la conexión con la Base de Datos","ERROR",JOptionPane.ERROR_MESSAGE);
@@ -108,6 +126,19 @@ public class ScrollReportContent extends javax.swing.JPanel {
             System.err.println(e.getMessage());
             JOptionPane.showMessageDialog(null,"No se puede avanzar \n" + e.getMessage(),"Advertencia",JOptionPane.WARNING_MESSAGE);
         }
+    }
+    
+    //* Cambiar de posicion al CommentaryForm
+    private void changePosition() {
+        Dimension viewport = scroll.getViewport().getSize();
+            
+        Point p = new Point(0, viewport.height - 115 + scroll.getVerticalScrollBar().getValue());
+        
+        commentaryForm.setSize(viewport.width, 75);
+        commentaryForm.setLocation(p);
+        
+        commentaryForm.revalidate();
+        commentaryForm.repaint();
     }
 
     /**
@@ -163,6 +194,7 @@ public class ScrollReportContent extends javax.swing.JPanel {
         // TODO add your handling code here:
         try {
             FerromineraProject.contentP.resizeScrollPane();
+            if(commentaryForm!=null) changePosition();
         } catch(Exception e) { System.err.println(e.getMessage()); }
     }//GEN-LAST:event_formComponentResized
 
