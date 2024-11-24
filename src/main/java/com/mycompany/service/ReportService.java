@@ -26,8 +26,9 @@ public class ReportService extends Database {
         result = statement.executeQuery();
         Object[] report = null;
         if(result.next()) 
-            report = new Object[]{ new Report(result.getInt("r.id"), result.getInt("r.create_by"), result.getInt("r.novelties_id"), result.getString("r.title"), 
-                                              result.getString("r.content"), result.getBoolean("r.checked"), result.getTimestamp("r.create_at")),
+            report = new Object[]{ new Report(result.getInt("r.id"), result.getInt("r.create_by"), result.getInt("r.novelties_id"), 
+                                              result.getString("r.content"), result.getString("r.schedule"), result.getBoolean("r.checked"),
+                                              result.getBoolean("r.active"), result.getTimestamp("r.create_at")),
                                    new Novelties(result.getInt("nv.id"), result.getString("nv.name"), result.getBoolean("nv.active")), 
                                    new ReportEdit(result.getInt("redit.id"), result.getInt("redit.report_id"), result.getInt("redit.user_edit_id"),
                                                   result.getTimestamp("redit.edit_at")),
@@ -51,8 +52,9 @@ public class ReportService extends Database {
         result = statement.executeQuery();
         List<Object[]> reports = new ArrayList<>();
         while(result.next())
-            reports.add(new Object[]{ new Report(result.getInt("r.id"), result.getInt("r.create_by"), result.getInt("r.novelties_id"), result.getString("r.title"), 
-                                                 result.getString("r.content"), result.getBoolean("r.checked"), result.getTimestamp("r.create_at")),
+            reports.add(new Object[]{ new Report(result.getInt("r.id"), result.getInt("r.create_by"), result.getInt("r.novelties_id"), 
+                                                 result.getString("r.content"), result.getString("r.schedule"), result.getBoolean("r.checked"),
+                                                 result.getBoolean("r.active"), result.getTimestamp("r.create_at")),
                                       new Novelties(result.getInt("nv.id"), result.getString("nv.name"), result.getBoolean("nv.active")), 
                                       new ReportEdit(result.getInt("redit.id"), result.getInt("redit.report_id"), result.getInt("redit.user_edit_id"),
                                                      result.getTimestamp("redit.edit_at")),
@@ -85,8 +87,9 @@ public class ReportService extends Database {
         result = statement.executeQuery();
         List<Object[]> reports = new ArrayList<>();
         while(result.next())
-            reports.add(new Object[]{ new Report(result.getInt("r.id"), result.getInt("r.create_by"), result.getInt("r.novelties_id"), result.getString("r.title"), 
-                                                 result.getString("r.content"), result.getBoolean("r.checked"), result.getTimestamp("r.create_at")),
+            reports.add(new Object[]{ new Report(result.getInt("r.id"), result.getInt("r.create_by"), result.getInt("r.novelties_id"), 
+                                                 result.getString("r.content"), result.getString("r.schedule"), result.getBoolean("r.checked"),
+                                                 result.getBoolean("r.active"), result.getTimestamp("r.create_at")),
                                       new Novelties(result.getInt("nv.id"), result.getString("nv.name"), result.getBoolean("nv.active")), 
                                       new ReportEdit(result.getInt("redit.id"), result.getInt("redit.report_id"), result.getInt("redit.user_edit_id"),
                                                      result.getTimestamp("redit.edit_at")),
@@ -98,26 +101,35 @@ public class ReportService extends Database {
         return reports;
     }
     
-    public void createReport(int createBy, int noveltiesId, String title, String content) throws SQLException {
-        String sql = "INSERT INTO report(title, content, novelties_id, create_by) VALUES (?,?,?,?)";
+    public void createReport(int createBy, int noveltiesId, String content, String schedule) throws SQLException {
+        String sql = "INSERT INTO report(content, schedule, novelties_id, create_by) VALUES (?,?,?,?)";
         applyConnection();
         statement = connection.prepareStatement(sql);
-        statement.setString(1, title);
-        statement.setString(2, content);
+        statement.setString(1, content);
+        statement.setString(2, schedule);
         statement.setInt(3, noveltiesId);
         statement.setInt(4, createBy);
         statement.executeUpdate();
         closeConnection();
     }
     
-    public void updateReport(int id, int noveltiesId, String title, String content) throws SQLException {
-        String sql = "UPDATE report SET novelties_id = ?, title = ?, content = ? WHERE id = ?";
+    public void updateReport(int id, int noveltiesId, String content, String schedule) throws SQLException {
+        String sql = "UPDATE report SET novelties_id = ?, content = ?, schedule = ? WHERE id = ?";
         applyConnection();
         statement = connection.prepareStatement(sql);
         statement.setInt(1, noveltiesId);
-        statement.setString(2, title);
-        statement.setString(3, content);
+        statement.setString(2, content);
+        statement.setString(3, schedule);
         statement.setInt(4, id);
+        statement.executeUpdate();
+        closeConnection();
+    }
+    
+    public void removeReport(int id) throws SQLException {
+        String sql = "UPDATE report SET active = 0 WHERE id = ?";
+        applyConnection();
+        statement = connection.prepareStatement(sql);
+        statement.setInt(1, id);
         statement.executeUpdate();
         closeConnection();
     }
