@@ -44,7 +44,7 @@ public class ReportService extends Database {
         String sql = "SELECT * FROM report AS r JOIN novelties AS nv ON r.novelties_id = nv.id "
                 + "JOIN user ON r.create_by = user.id LEFT JOIN report_edit AS redit ON r.id = redit.report_id "
                 + "LEFT JOIN user AS u ON redit.user_edit_id = u.id "
-                + "WHERE create_at <= NOW() ORDER BY create_at DESC LIMIT ? OFFSET ?";
+                + "WHERE r.active = 1 AND create_at <= NOW() ORDER BY create_at DESC LIMIT ? OFFSET ?";
         applyConnection();
         statement = connection.prepareStatement(sql);
         statement.setInt(1, limit);
@@ -71,7 +71,7 @@ public class ReportService extends Database {
                 + "JOIN user ON r.create_by = user.id JOIN personal_data AS pd ON user.id = pd.user_id "
                 + "LEFT JOIN report_edit AS redit ON r.id = redit.report_id "
                 + "LEFT JOIN user AS u ON redit.user_edit_id = u.id "
-                + "WHERE ";
+                + "WHERE r.active = 1 AND ";
         if(sentencesAndValues.isEmpty()) sql += "create_at <= NOW() ";
         else {
             for(String[] sentence: sentencesAndValues) 
