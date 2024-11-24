@@ -23,13 +23,23 @@ public class ReportEditService extends Database {
         return reportEdit;
     }
     
-    public void updateReportEdit(ReportEdit report) throws SQLException {
-        String sql = "UPDATE report_edit SET user_edit_id = ?, edit_at = NOW() WHERE id = ?";
-        applyConnection();
+    public void createReportEdit(int userId, int reportId) throws SQLException {
+        String sql = "INSERT INTO report_edit(user_edit_id, report_id) VALUES (?,?)";
         statement = connection.prepareStatement(sql);
-        statement.setInt(1, report.getReportId());
-        statement.setInt(2, report.getId());
+        statement.setInt(1, userId);
+        statement.setInt(2, reportId);
         statement.executeUpdate();
+        connection.commit();
+        closeConnection();
+    }
+    
+    public void updateReportEdit(int id, int userId) throws SQLException {
+        String sql = "UPDATE report_edit SET user_edit_id = ?, edit_at = NOW() WHERE id = ?";
+        statement = connection.prepareStatement(sql);
+        statement.setInt(1, userId);
+        statement.setInt(2, id);
+        statement.executeUpdate();
+        connection.commit();
         closeConnection();
     }
 }
