@@ -2,14 +2,15 @@ package com.mycompany.view;
 
 import com.mycompany.ferromineraproject.FerromineraProject;
 import com.mycompany.models.Novelties;
+import com.mycompany.models.Report;
+import com.mycompany.models.ReportEdit;
 import com.mycompany.service.NoveltiesService;
+import com.mycompany.service.ReportEditService;
 import com.mycompany.service.ReportService;
-import com.mycompany.utils.TextPrompt;
 import com.mycompany.utils.ValidateInput;
 import java.awt.Dimension;
 import java.sql.SQLException;
 import java.util.List;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
@@ -20,7 +21,7 @@ import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 public class ReportForm extends javax.swing.JPanel {
     
     public List<Novelties> novelties;
-    public TextPrompt placeholder;
+    public Report report = null;
 
     /**
      * Creates new form ReportForm
@@ -28,13 +29,38 @@ public class ReportForm extends javax.swing.JPanel {
     public ReportForm() {
         initComponents();
         AutoCompleteDecorator.decorate(selectNew);
-        placeholder = new TextPrompt("Titulo", inputTitle, JLabel.CENTER);
+        initReportForm();
+    }
+    
+    public ReportForm(Report report) {
+        initComponents();
+        this.report = report;
+        AutoCompleteDecorator.decorate(selectNew);
+        initReportForm();
+        setValues();
+    }
+    
+    private void setValues() {
+        contentText.setText(report.getContent());
+        for(Novelties nov: novelties)
+            if(nov.getId()==report.getNoveltiesId())
+                selectNew.setSelectedItem(nov.getName());
+        selectSchedule.setSelectedItem(report.getSchedule());
+        title.setText("Editar reporte");
+        btnPublish.setText("Editar");
+    }
+    
+    private void initReportForm() {
         try {
+            int id = -1;
+            
+            if(report!=null) id = report.getNoveltiesId();
+            
             NoveltiesService novService = new NoveltiesService();
             novelties = novService.getNovelties();
             
             for(Novelties nov: novelties)
-                selectNew.addItem(nov.getName());
+                if(nov.isActive() || nov.getId()==id) selectNew.addItem(nov.getName());
             
         } catch(SQLException e) {
             System.err.println(e.getMessage());
@@ -52,14 +78,14 @@ public class ReportForm extends javax.swing.JPanel {
     private void initComponents() {
 
         panelFormContent = new javax.swing.JPanel();
-        inputTitle = new javax.swing.JTextField();
+        title = new javax.swing.JLabel();
         scrollTextArea = new javax.swing.JScrollPane();
         contentText = new javax.swing.JTextArea();
         btnPublish = new javax.swing.JButton();
         panelFormType = new javax.swing.JPanel();
-        labelHours = new javax.swing.JLabel();
-        separatorHours = new javax.swing.JSeparator();
-        selectHours = new javax.swing.JComboBox<>();
+        labelSchedule = new javax.swing.JLabel();
+        separatorSchedule = new javax.swing.JSeparator();
+        selectSchedule = new javax.swing.JComboBox<>();
         labelNew = new javax.swing.JLabel();
         separatorNew = new javax.swing.JSeparator();
         selectNew = new javax.swing.JComboBox<String>();
@@ -74,12 +100,11 @@ public class ReportForm extends javax.swing.JPanel {
 
         panelFormContent.setBackground(new java.awt.Color(255, 255, 255));
 
-        inputTitle.setBackground(new java.awt.Color(255, 255, 255));
-        inputTitle.setFont(new java.awt.Font("Bahnschrift", 0, 24)); // NOI18N
-        inputTitle.setForeground(new java.awt.Color(50, 50, 50));
-        inputTitle.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        inputTitle.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(236, 80, 80)));
-        inputTitle.setName("Titulo"); // NOI18N
+        title.setFont(new java.awt.Font("Bahnschrift", 0, 24)); // NOI18N
+        title.setForeground(new java.awt.Color(236, 80, 80));
+        title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        title.setText("Crear reporte");
+        title.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(236, 80, 80)));
 
         contentText.setBackground(new java.awt.Color(255, 255, 255));
         contentText.setFont(new java.awt.Font("Segoe UI", 0, 19)); // NOI18N
@@ -107,43 +132,43 @@ public class ReportForm extends javax.swing.JPanel {
         panelFormContent.setLayout(panelFormContentLayout);
         panelFormContentLayout.setHorizontalGroup(
             panelFormContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFormContentLayout.createSequentialGroup()
-                .addGap(76, 76, 76)
-                .addGroup(panelFormContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(scrollTextArea)
-                    .addComponent(inputTitle))
-                .addGap(76, 76, 76))
             .addGroup(panelFormContentLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnPublish, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFormContentLayout.createSequentialGroup()
+                .addGap(76, 76, 76)
+                .addGroup(panelFormContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(title, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(scrollTextArea))
+                .addGap(76, 76, 76))
         );
         panelFormContentLayout.setVerticalGroup(
             panelFormContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelFormContentLayout.createSequentialGroup()
-                .addContainerGap(108, Short.MAX_VALUE)
-                .addComponent(inputTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
+                .addContainerGap(110, Short.MAX_VALUE)
+                .addComponent(title)
+                .addGap(53, 53, 53)
                 .addComponent(scrollTextArea, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(86, 86, 86)
                 .addComponent(btnPublish, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(109, Short.MAX_VALUE))
+                .addContainerGap(94, Short.MAX_VALUE))
         );
 
         panelFormType.setBackground(new java.awt.Color(230, 230, 230));
         panelFormType.setMinimumSize(new java.awt.Dimension(271, 0));
         panelFormType.setPreferredSize(new java.awt.Dimension(271, 720));
 
-        labelHours.setFont(new java.awt.Font("Bahnschrift", 0, 16)); // NOI18N
-        labelHours.setForeground(new java.awt.Color(65, 75, 178));
-        labelHours.setText("Horario:");
+        labelSchedule.setFont(new java.awt.Font("Bahnschrift", 0, 16)); // NOI18N
+        labelSchedule.setForeground(new java.awt.Color(65, 75, 178));
+        labelSchedule.setText("Horario:");
 
-        separatorHours.setForeground(new java.awt.Color(65, 75, 178));
+        separatorSchedule.setForeground(new java.awt.Color(65, 75, 178));
 
-        selectHours.setBackground(new java.awt.Color(255, 255, 255));
-        selectHours.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        selectHours.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cualquiera", "Diurno", "Nocturno" }));
-        selectHours.setName("Horario"); // NOI18N
+        selectSchedule.setBackground(new java.awt.Color(255, 255, 255));
+        selectSchedule.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        selectSchedule.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cualquiera", "Diurno", "Nocturno" }));
+        selectSchedule.setName("Horario"); // NOI18N
 
         labelNew.setFont(new java.awt.Font("Bahnschrift", 0, 16)); // NOI18N
         labelNew.setForeground(new java.awt.Color(65, 75, 178));
@@ -170,22 +195,22 @@ public class ReportForm extends javax.swing.JPanel {
                         .addGroup(panelFormTypeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(selectNew, javax.swing.GroupLayout.Alignment.LEADING, 0, 211, Short.MAX_VALUE)
                             .addComponent(separatorNew, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(selectHours, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(selectSchedule, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelFormTypeLayout.createSequentialGroup()
-                                .addComponent(labelHours)
+                                .addComponent(labelSchedule)
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(separatorHours, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addComponent(separatorSchedule, javax.swing.GroupLayout.Alignment.LEADING))
                         .addGap(30, 30, 30))))
         );
         panelFormTypeLayout.setVerticalGroup(
             panelFormTypeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelFormTypeLayout.createSequentialGroup()
                 .addContainerGap(30, Short.MAX_VALUE)
-                .addComponent(labelHours)
+                .addComponent(labelSchedule)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(separatorHours, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(separatorSchedule, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(selectHours, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(selectSchedule, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(66, 66, 66)
                 .addComponent(labelNew)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -227,11 +252,13 @@ public class ReportForm extends javax.swing.JPanel {
     
     //* Confirmar si el usuario esta usando los inputs y insertar los datos en la DB
     private void btnPublishActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPublishActionPerformed
+        ReportService reportService = new ReportService();
+        ReportEditService reportEditService = new ReportEditService();
+        
         try {
-            ValidateInput.isEmptyOrBlank(List.of(inputTitle,contentText));
+            ValidateInput.isEmptyOrBlank(List.of(contentText));
             
-            String title = inputTitle.getText(), content = contentText.getText(), 
-                    horario = (String) selectHours.getSelectedItem(), novedad = (String) selectNew.getSelectedItem();
+            String content = contentText.getText(), schedule = (String) selectSchedule.getSelectedItem(), novedad = (String) selectNew.getSelectedItem();
             
             Novelties novelty = null;
             for(Novelties nov: novelties)
@@ -242,17 +269,30 @@ public class ReportForm extends javax.swing.JPanel {
             
             if(novelty==null) throw new Exception("Error al seleccionar la novedad");
             
-            ReportService report = new ReportService();
-            report.createReport(FerromineraProject.user.getId(), novelty.getId(), title, content);
+            if(report==null) reportService.createReport(FerromineraProject.user.getId(), novelty.getId(), content, schedule);
+            else {
+                ReportEdit reportEdit = reportEditService.getReportEdit(report.getId());
+                
+                reportService.updateReport(report.getId(), novelty.getId(), content, schedule);
+                
+                if(reportEdit==null)
+                    reportEditService.createReportEdit(FerromineraProject.user.getId(), report.getId());
+                else
+                    reportEditService.updateReportEdit(reportEdit.getId(), FerromineraProject.user.getId());
+            }
             
-            ScrollReportContent reportsContent = new ScrollReportContent();
+            ScrollReportContent reportsContent = (report==null) ? new ScrollReportContent(): new ScrollReportContent(report.getId());
         
             FerromineraProject.contentP.setPanel(reportsContent);
             FerromineraProject.contentP.showPanel();
         
-            reportsContent.initReportContent();
+            if(report==null) reportsContent.initReportContent();
+            else reportsContent.initReportCommentContent();
             
         } catch(SQLException e) {
+            try {
+                reportEditService.applyRollBack();
+            } catch (SQLException ex) { System.err.println(e.getMessage()); }
             System.err.println(e.getMessage());
             JOptionPane.showMessageDialog(null,"Ocurrio un Error en la conexion con la Base de Datos","ERROR",JOptionPane.ERROR_MESSAGE);
         } catch(Exception e) {
@@ -265,15 +305,15 @@ public class ReportForm extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnPublish;
     private javax.swing.JTextArea contentText;
-    private javax.swing.JTextField inputTitle;
-    private javax.swing.JLabel labelHours;
     private javax.swing.JLabel labelNew;
+    private javax.swing.JLabel labelSchedule;
     private javax.swing.JPanel panelFormContent;
     private javax.swing.JPanel panelFormType;
     private javax.swing.JScrollPane scrollTextArea;
-    private javax.swing.JComboBox<String> selectHours;
     private javax.swing.JComboBox<String> selectNew;
-    private javax.swing.JSeparator separatorHours;
+    private javax.swing.JComboBox<String> selectSchedule;
     private javax.swing.JSeparator separatorNew;
+    private javax.swing.JSeparator separatorSchedule;
+    private javax.swing.JLabel title;
     // End of variables declaration//GEN-END:variables
 }

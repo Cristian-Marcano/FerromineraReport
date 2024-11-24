@@ -52,48 +52,46 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="scrollTextArea" max="32767" attributes="0"/>
-                      <Component id="inputTitle" max="32767" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
-              </Group>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="btnPublish" pref="0" max="32767" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="title" max="32767" attributes="0"/>
+                      <Component id="scrollTextArea" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace pref="108" max="32767" attributes="0"/>
-                  <Component id="inputTitle" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                  <EmptySpace pref="110" max="32767" attributes="0"/>
+                  <Component id="title" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
                   <Component id="scrollTextArea" min="-2" pref="300" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
                   <Component id="btnPublish" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="109" max="32767" attributes="0"/>
+                  <EmptySpace pref="94" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JTextField" name="inputTitle">
+        <Component class="javax.swing.JLabel" name="title">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Bahnschrift" size="24" style="0"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="32" green="32" red="32" type="rgb"/>
+              <Color blue="50" green="50" red="ec" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
+            <Property name="text" type="java.lang.String" value="Crear reporte"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
                 <MatteColorBorder bottom="2" left="0" right="0" top="0">
@@ -101,7 +99,6 @@
                 </MatteColorBorder>
               </Border>
             </Property>
-            <Property name="name" type="java.lang.String" value="Titulo" noResource="true"/>
           </Properties>
         </Component>
         <Container class="javax.swing.JScrollPane" name="scrollTextArea">
@@ -191,12 +188,12 @@
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Component id="selectNew" alignment="0" pref="211" max="32767" attributes="0"/>
                               <Component id="separatorNew" alignment="0" max="32767" attributes="0"/>
-                              <Component id="selectHours" max="32767" attributes="0"/>
+                              <Component id="selectSchedule" max="32767" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="labelHours" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelSchedule" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
-                              <Component id="separatorHours" alignment="0" max="32767" attributes="0"/>
+                              <Component id="separatorSchedule" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                       </Group>
@@ -208,11 +205,11 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace pref="30" max="32767" attributes="0"/>
-                  <Component id="labelHours" min="-2" max="-2" attributes="0"/>
+                  <Component id="labelSchedule" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="separatorHours" min="-2" pref="10" max="-2" attributes="0"/>
+                  <Component id="separatorSchedule" min="-2" pref="10" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="selectHours" min="-2" max="-2" attributes="0"/>
+                  <Component id="selectSchedule" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
                   <Component id="labelNew" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -225,7 +222,7 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="labelHours">
+        <Component class="javax.swing.JLabel" name="labelSchedule">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Bahnschrift" size="16" style="0"/>
@@ -236,14 +233,14 @@
             <Property name="text" type="java.lang.String" value="Horario:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JSeparator" name="separatorHours">
+        <Component class="javax.swing.JSeparator" name="separatorSchedule">
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="b2" green="4b" red="41" type="rgb"/>
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="selectHours">
+        <Component class="javax.swing.JComboBox" name="selectSchedule">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
