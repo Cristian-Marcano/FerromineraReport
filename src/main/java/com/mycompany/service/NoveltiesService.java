@@ -26,7 +26,7 @@ public class NoveltiesService extends Database {
     }
     
     public List<Novelties> getNovelties() throws SQLException {
-        String sql = "SELECT * FROM novelties WHERE active = 1";
+        String sql = "SELECT * FROM novelties";
         applyConnection();
         statement = connection.prepareStatement(sql);
         result = statement.executeQuery();
