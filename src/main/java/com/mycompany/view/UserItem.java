@@ -170,7 +170,7 @@ public class UserItem extends javax.swing.JPanel {
     //* Elimina el usario de la DB y reinicia la interfaz
     private void btnUserDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserDeleteActionPerformed
         if(JOptionPane.showConfirmDialog(null,"¿Esta seguro de eliminar este usuario?", "Advertencia",
-                                         JOptionPane.OK_CANCEL_OPTION,JOptionPane.WARNING_MESSAGE)==0) return;
+                                         JOptionPane.OK_CANCEL_OPTION,JOptionPane.WARNING_MESSAGE)==1) return;
         try {
             UserService userService = new UserService();
             userService.removeUser(user.getId());
