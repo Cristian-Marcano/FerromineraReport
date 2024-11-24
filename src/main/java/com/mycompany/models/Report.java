@@ -8,31 +8,36 @@ import java.sql.Timestamp;
  */
 public class Report {
     private int id, createBy, noveltiesId;
-    private String title, content;
-    private boolean checked;
+    private String content, schedule;
+    private boolean checked, active;
     private Timestamp createAt;
 
-    public Report(int id, int createBy, int noveltiesId, String title, String content, boolean checked, Timestamp createAt) {
+    public Report(int id, int createBy, int noveltiesId, String content, String schedule, boolean checked, boolean active, Timestamp createAt) {
         this.id = id;
         this.createBy = createBy;
         this.noveltiesId = noveltiesId;
-        this.title = title;
         this.content = content;
+        this.schedule = schedule;
         this.checked = checked;
+        this.active = active;
         this.createAt = createAt;
     }
     
     //*Setters
-    public void noveltiesId(int noveltiesId) {
+    public void setNoveltiesId(int noveltiesId) {
         this.noveltiesId = noveltiesId;
-    }
-    
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public void setSchedule(String schedule) {
+        this.schedule = schedule;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
     public void setChecked(boolean checked) {
@@ -56,12 +61,16 @@ public class Report {
         return noveltiesId;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
     public String getContent() {
         return content;
+    }
+
+    public String getSchedule() {
+        return schedule;
+    }
+
+    public boolean isActive() {
+        return active;
     }
 
     public boolean isChecked() {
