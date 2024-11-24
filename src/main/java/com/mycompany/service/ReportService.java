@@ -116,13 +116,13 @@ public class ReportService extends Database {
     public void updateReport(int id, int noveltiesId, String content, String schedule) throws SQLException {
         String sql = "UPDATE report SET novelties_id = ?, content = ?, schedule = ? WHERE id = ?";
         applyConnection();
+        if(connection.getAutoCommit()) connection.setAutoCommit(false);
         statement = connection.prepareStatement(sql);
         statement.setInt(1, noveltiesId);
         statement.setString(2, content);
         statement.setString(3, schedule);
         statement.setInt(4, id);
         statement.executeUpdate();
-        closeConnection();
     }
     
     public void removeReport(int id) throws SQLException {
