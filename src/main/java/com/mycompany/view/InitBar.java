@@ -271,7 +271,7 @@ public class InitBar extends javax.swing.JPanel {
                     username = inputUsername.getText(), password = new String(inputPassword.getPassword());
             
             UserService userService = new UserService();
-            int userId = userService.createUser(username, password, "super-admin"); //* Inserta un usuario a la DB
+            int userId = userService.createUser(username, password, "Super-admin"); //* Inserta un usuario a la DB
             
             PersonalData data = new PersonalData(0, userId, name, lastName, ficha, tlf);
             
