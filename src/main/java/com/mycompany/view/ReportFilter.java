@@ -49,9 +49,6 @@ public class ReportFilter extends javax.swing.JPanel {
     private void initComponents() {
 
         title = new javax.swing.JLabel();
-        labelTitle = new javax.swing.JLabel();
-        separatorTitle = new javax.swing.JSeparator();
-        inputTitle = new javax.swing.JTextField();
         labelDate1 = new javax.swing.JLabel();
         separatorDate1 = new javax.swing.JSeparator();
         panelDate1 = new javax.swing.JPanel();
@@ -65,9 +62,9 @@ public class ReportFilter extends javax.swing.JPanel {
         labelPublisherFicha = new javax.swing.JLabel();
         separatorPublisherFicha = new javax.swing.JSeparator();
         inputPublisherFicha = new javax.swing.JTextField();
-        labelHours = new javax.swing.JLabel();
-        separatorHours = new javax.swing.JSeparator();
-        selectHours = new javax.swing.JComboBox<>();
+        labelSchedule = new javax.swing.JLabel();
+        separatorSchedule = new javax.swing.JSeparator();
+        selectSchedule = new javax.swing.JComboBox<>();
         labelNew = new javax.swing.JLabel();
         separatorNew = new javax.swing.JSeparator();
         selectNew = new javax.swing.JComboBox<>();
@@ -88,16 +85,6 @@ public class ReportFilter extends javax.swing.JPanel {
         title.setText("Filtros");
         title.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(65, 75, 178)));
         title.setMaximumSize(new java.awt.Dimension(375, 32));
-
-        labelTitle.setFont(new java.awt.Font("Bahnschrift", 0, 16)); // NOI18N
-        labelTitle.setForeground(new java.awt.Color(65, 75, 178));
-        labelTitle.setText("Titulo:");
-
-        separatorTitle.setForeground(new java.awt.Color(65, 75, 178));
-
-        inputTitle.setBackground(new java.awt.Color(255, 255, 255));
-        inputTitle.setFont(new java.awt.Font("Bahnschrift", 0, 15)); // NOI18N
-        inputTitle.setForeground(new java.awt.Color(40, 40, 40));
 
         labelDate1.setFont(new java.awt.Font("Bahnschrift", 0, 16)); // NOI18N
         labelDate1.setForeground(new java.awt.Color(65, 75, 178));
@@ -193,15 +180,15 @@ public class ReportFilter extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        labelHours.setFont(new java.awt.Font("Bahnschrift", 0, 16)); // NOI18N
-        labelHours.setForeground(new java.awt.Color(65, 75, 178));
-        labelHours.setText("Horario:");
+        labelSchedule.setFont(new java.awt.Font("Bahnschrift", 0, 16)); // NOI18N
+        labelSchedule.setForeground(new java.awt.Color(65, 75, 178));
+        labelSchedule.setText("Horario:");
 
-        separatorHours.setForeground(new java.awt.Color(65, 75, 178));
+        separatorSchedule.setForeground(new java.awt.Color(65, 75, 178));
 
-        selectHours.setBackground(new java.awt.Color(255, 255, 255));
-        selectHours.setFont(new java.awt.Font("Bahnschrift", 0, 15)); // NOI18N
-        selectHours.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cualquiera", "Diurno", "Nocturno" }));
+        selectSchedule.setBackground(new java.awt.Color(255, 255, 255));
+        selectSchedule.setFont(new java.awt.Font("Bahnschrift", 0, 15)); // NOI18N
+        selectSchedule.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cualquiera", "Diurno", "Nocturno" }));
 
         labelNew.setFont(new java.awt.Font("Bahnschrift", 0, 16)); // NOI18N
         labelNew.setForeground(new java.awt.Color(65, 75, 178));
@@ -281,41 +268,33 @@ public class ReportFilter extends javax.swing.JPanel {
                 .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(247, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
+                        .addComponent(labelPublisherData)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(separatorPublisherData)
+                    .addComponent(panelPublisherData, javax.swing.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(separatorTitle)
-                                    .addComponent(inputTitle)
-                                    .addComponent(separatorPublisherData)
-                                    .addComponent(panelPublisherData, javax.swing.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(labelHours)
-                                            .addComponent(selectHours, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(separatorHours))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(selectNew, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(separatorNew)
-                                            .addComponent(labelNew)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(labelTitle)
-                                            .addComponent(labelPublisherData))
-                                        .addGap(0, 0, Short.MAX_VALUE)))
-                                .addGap(18, 18, 18))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(check)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(checkDate)
-                                .addGap(70, 70, 70))))
+                            .addComponent(labelSchedule)
+                            .addComponent(selectSchedule, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(separatorSchedule))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(selectNew, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(separatorNew)
+                            .addComponent(labelNew)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 157, Short.MAX_VALUE)
                         .addComponent(btnSearch)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 170, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(check)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(checkDate)
+                        .addGap(56, 56, 56)))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(labelDate1)
                     .addComponent(panelDate1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -328,55 +307,50 @@ public class ReportFilter extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(58, 58, 58)
+                .addContainerGap(58, Short.MAX_VALUE)
                 .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(labelDate1)
-                    .addComponent(labelTitle))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(separatorDate1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(separatorTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(labelDate1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(separatorDate1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(panelDate1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 43, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(labelDate2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(separatorDate2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(panelDate2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(inputTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, Short.MAX_VALUE)
                         .addComponent(labelPublisherData)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(separatorPublisherData, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(panelPublisherData, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(labelHours)
+                                .addComponent(labelSchedule)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(separatorHours, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(separatorSchedule, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(selectHours, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(selectSchedule, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(labelNew)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(separatorNew, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(selectNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(check)
                             .addComponent(checkDate))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnSearch)))
-                .addContainerGap(93, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(btnSearch)
+                        .addGap(43, 43, 43)))
+                .addContainerGap(124, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -384,7 +358,8 @@ public class ReportFilter extends javax.swing.JPanel {
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         List<String[]> sentencesAndValues = new ArrayList<>();
         
-        String title = inputTitle.getText(), username = inputPublisherUsername.getText(), ficha = inputPublisherFicha.getText();
+        String username = inputPublisherUsername.getText(),
+                ficha = inputPublisherFicha.getText(), schedule = (String) selectSchedule.getSelectedItem();
         
         if(!checkDate.isSelected()) {
             if(new SimpleDateFormat("yyyy-MM-dd").format(calendar1.getDate()).equals(new SimpleDateFormat("yyyy-MM-dd").format(calendar2.getDate()))) {
@@ -398,11 +373,11 @@ public class ReportFilter extends javax.swing.JPanel {
             }
         }
         
-        if((!title.isEmpty()) && (!title.isBlank())) sentencesAndValues.add(new String[]{"r.title LIKE ? ", "%"+ title +"%"});
-        
         if((!username.isEmpty()) && (!username.isBlank())) sentencesAndValues.add(new String[]{"user.username LIKE ? ", "%"+ username +"%"});
         
         if((!ficha.isEmpty()) && (!ficha.isBlank())) sentencesAndValues.add(new String[]{"pd.ficha = ? ", ficha});
+        
+        if(selectSchedule.getSelectedIndex()!=0) sentencesAndValues.add(new String[]{"r.schedule = ? ", schedule});
         
         if(selectNew.getSelectedIndex()!=0)
             for(Novelties nov: novelties)
@@ -442,28 +417,25 @@ public class ReportFilter extends javax.swing.JPanel {
     private javax.swing.JCheckBox checkDate;
     private javax.swing.JTextField inputPublisherFicha;
     private javax.swing.JTextField inputPublisherUsername;
-    private javax.swing.JTextField inputTitle;
     private javax.swing.JLabel labelDate1;
     private javax.swing.JLabel labelDate2;
-    private javax.swing.JLabel labelHours;
     private javax.swing.JLabel labelNew;
     private javax.swing.JLabel labelPublisherData;
     private javax.swing.JLabel labelPublisherFicha;
     private javax.swing.JLabel labelPublisherUsername;
-    private javax.swing.JLabel labelTitle;
+    private javax.swing.JLabel labelSchedule;
     private javax.swing.JPanel panelDate1;
     private javax.swing.JPanel panelDate2;
     private javax.swing.JPanel panelPublisherData;
-    private javax.swing.JComboBox<String> selectHours;
     private javax.swing.JComboBox<String> selectNew;
+    private javax.swing.JComboBox<String> selectSchedule;
     private javax.swing.JSeparator separatorDate1;
     private javax.swing.JSeparator separatorDate2;
-    private javax.swing.JSeparator separatorHours;
     private javax.swing.JSeparator separatorNew;
     private javax.swing.JSeparator separatorPublisherData;
     private javax.swing.JSeparator separatorPublisherFicha;
     private javax.swing.JSeparator separatorPublisherUsername;
-    private javax.swing.JSeparator separatorTitle;
+    private javax.swing.JSeparator separatorSchedule;
     private javax.swing.JLabel title;
     // End of variables declaration//GEN-END:variables
 }
