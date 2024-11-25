@@ -1,6 +1,7 @@
 package com.mycompany.view;
 
 import com.mycompany.ferromineraproject.FerromineraProject;
+import java.awt.Color;
 
 /**
  *
@@ -8,6 +9,8 @@ import com.mycompany.ferromineraproject.FerromineraProject;
  */
 public class MenuBar extends javax.swing.JPanel {
 
+    public Color normal = new Color(236,80,80), hover = new Color(223,50,50);
+    
     /**
      * Creates new form MenuBar
      */
@@ -49,6 +52,14 @@ public class MenuBar extends javax.swing.JPanel {
         btnHome.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnHome.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnHome.setIconTextGap(15);
+        btnHome.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnHomeMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnHomeMouseExited(evt);
+            }
+        });
         btnHome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnHomeActionPerformed(evt);
@@ -65,6 +76,14 @@ public class MenuBar extends javax.swing.JPanel {
         btnSearch.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnSearch.setIconTextGap(15);
         btnSearch.setPreferredSize(new java.awt.Dimension(75, 34));
+        btnSearch.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnSearchMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnSearchMouseExited(evt);
+            }
+        });
         btnSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSearchActionPerformed(evt);
@@ -80,6 +99,14 @@ public class MenuBar extends javax.swing.JPanel {
         btnPublish.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnPublish.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnPublish.setIconTextGap(15);
+        btnPublish.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnPublishMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnPublishMouseExited(evt);
+            }
+        });
         btnPublish.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPublishActionPerformed(evt);
@@ -95,6 +122,14 @@ public class MenuBar extends javax.swing.JPanel {
         btnLogOut.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnLogOut.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnLogOut.setIconTextGap(15);
+        btnLogOut.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnLogOutMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnLogOutMouseExited(evt);
+            }
+        });
         btnLogOut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLogOutActionPerformed(evt);
@@ -110,9 +145,9 @@ public class MenuBar extends javax.swing.JPanel {
                 .addComponent(title, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(52, 52, 52))
             .addComponent(btnHome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnLogOut, javax.swing.GroupLayout.DEFAULT_SIZE, 405, Short.MAX_VALUE)
             .addComponent(btnPublish, javax.swing.GroupLayout.DEFAULT_SIZE, 405, Short.MAX_VALUE)
             .addComponent(btnSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btnLogOut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -120,15 +155,12 @@ public class MenuBar extends javax.swing.JPanel {
                 .addGap(45, 45, 45)
                 .addComponent(title)
                 .addGap(50, 50, 50)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(102, 102, 102)
-                        .addComponent(btnPublish, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
-                        .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 298, Short.MAX_VALUE)
+                .addComponent(btnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(btnPublish, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 290, Short.MAX_VALUE)
                 .addComponent(btnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(70, 70, 70))
         );
@@ -166,6 +198,54 @@ public class MenuBar extends javax.swing.JPanel {
         FerromineraProject.board.showPanel();
         FerromineraProject.contentP.showPanel();
     }//GEN-LAST:event_btnLogOutActionPerformed
+
+    private void btnHomeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHomeMouseEntered
+        btnHome.setBackground(hover);
+        btnHome.revalidate();
+        btnHome.repaint();
+    }//GEN-LAST:event_btnHomeMouseEntered
+
+    private void btnHomeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHomeMouseExited
+        btnHome.setBackground(normal);
+        btnHome.revalidate();
+        btnHome.repaint();
+    }//GEN-LAST:event_btnHomeMouseExited
+
+    private void btnSearchMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSearchMouseEntered
+        btnSearch.setBackground(hover);
+        btnSearch.revalidate();
+        btnSearch.repaint();
+    }//GEN-LAST:event_btnSearchMouseEntered
+
+    private void btnSearchMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSearchMouseExited
+        btnSearch.setBackground(normal);
+        btnSearch.revalidate();
+        btnSearch.repaint();
+    }//GEN-LAST:event_btnSearchMouseExited
+
+    private void btnPublishMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPublishMouseEntered
+        btnPublish.setBackground(hover);
+        btnPublish.revalidate();
+        btnPublish.repaint();
+    }//GEN-LAST:event_btnPublishMouseEntered
+
+    private void btnPublishMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPublishMouseExited
+        btnPublish.setBackground(normal);
+        btnPublish.revalidate();
+        btnPublish.repaint();
+    }//GEN-LAST:event_btnPublishMouseExited
+
+    private void btnLogOutMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogOutMouseEntered
+        btnLogOut.setBackground(hover);
+        btnLogOut.revalidate();
+        btnLogOut.repaint();
+    }//GEN-LAST:event_btnLogOutMouseEntered
+
+    private void btnLogOutMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogOutMouseExited
+        btnLogOut.setBackground(normal);
+        btnLogOut.revalidate();
+        btnLogOut.repaint();
+    }//GEN-LAST:event_btnLogOutMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
