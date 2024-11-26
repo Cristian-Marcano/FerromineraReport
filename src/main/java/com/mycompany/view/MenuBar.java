@@ -31,6 +31,7 @@ public class MenuBar extends javax.swing.JPanel {
         btnHome = new javax.swing.JButton();
         btnSearch = new javax.swing.JButton();
         btnPublish = new javax.swing.JButton();
+        btnConfig = new javax.swing.JButton();
         btnLogOut = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(247, 34, 34));
@@ -113,6 +114,29 @@ public class MenuBar extends javax.swing.JPanel {
             }
         });
 
+        btnConfig.setBackground(new java.awt.Color(236, 80, 80));
+        btnConfig.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        btnConfig.setForeground(new java.awt.Color(255, 255, 255));
+        btnConfig.setIcon(new javax.swing.ImageIcon(getClass().getResource("/user_config.png"))); // NOI18N
+        btnConfig.setText("Configuración");
+        btnConfig.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 1));
+        btnConfig.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnConfig.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnConfig.setIconTextGap(15);
+        btnConfig.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnConfigMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnConfigMouseExited(evt);
+            }
+        });
+        btnConfig.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfigActionPerformed(evt);
+            }
+        });
+
         btnLogOut.setBackground(new java.awt.Color(236, 80, 80));
         btnLogOut.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         btnLogOut.setForeground(new java.awt.Color(255, 255, 255));
@@ -148,6 +172,7 @@ public class MenuBar extends javax.swing.JPanel {
             .addComponent(btnLogOut, javax.swing.GroupLayout.DEFAULT_SIZE, 405, Short.MAX_VALUE)
             .addComponent(btnPublish, javax.swing.GroupLayout.DEFAULT_SIZE, 405, Short.MAX_VALUE)
             .addComponent(btnSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnConfig, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -160,7 +185,9 @@ public class MenuBar extends javax.swing.JPanel {
                 .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(btnPublish, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 290, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 235, Short.MAX_VALUE)
+                .addComponent(btnConfig, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
                 .addComponent(btnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(70, 70, 70))
         );
@@ -247,8 +274,26 @@ public class MenuBar extends javax.swing.JPanel {
         btnLogOut.repaint();
     }//GEN-LAST:event_btnLogOutMouseExited
 
+    private void btnConfigMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConfigMouseEntered
+        btnConfig.setBackground(hover);
+        btnConfig.revalidate();
+        btnConfig.repaint();
+    }//GEN-LAST:event_btnConfigMouseEntered
+
+    private void btnConfigMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConfigMouseExited
+        btnConfig.setBackground(normal);
+        btnConfig.revalidate();
+        btnConfig.repaint();
+    }//GEN-LAST:event_btnConfigMouseExited
+
+    private void btnConfigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfigActionPerformed
+        FerromineraProject.contentP.setPanel(new ConfigUser());
+        FerromineraProject.contentP.showPanel();
+    }//GEN-LAST:event_btnConfigActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnConfig;
     private javax.swing.JButton btnHome;
     private javax.swing.JButton btnLogOut;
     private javax.swing.JButton btnPublish;
