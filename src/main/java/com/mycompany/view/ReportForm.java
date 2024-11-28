@@ -167,7 +167,7 @@ public class ReportForm extends javax.swing.JPanel {
 
         selectSchedule.setBackground(new java.awt.Color(255, 255, 255));
         selectSchedule.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        selectSchedule.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cualquiera", "Diurno", "Nocturno" }));
+        selectSchedule.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "7am - 3pm", "3pm - 11pm", "11pm - 7am" }));
         selectSchedule.setName("Horario"); // NOI18N
 
         labelNew.setFont(new java.awt.Font("Bahnschrift", 0, 16)); // NOI18N
@@ -286,8 +286,7 @@ public class ReportForm extends javax.swing.JPanel {
             FerromineraProject.contentP.setPanel(reportsContent);
             FerromineraProject.contentP.showPanel();
         
-            if(report==null) reportsContent.initReportContent();
-            else reportsContent.initReportCommentContent();
+            if(report!=null) reportsContent.initReportCommentContent();
             
         } catch(SQLException e) {
             try {
