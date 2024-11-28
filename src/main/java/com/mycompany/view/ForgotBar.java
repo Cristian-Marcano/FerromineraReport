@@ -203,8 +203,6 @@ public class ForgotBar extends javax.swing.JPanel {
                 
                 FerromineraProject.contentP.showPanel();
                 FerromineraProject.board.showPanel();
-        
-                reportsContent.initReportContent();
                 
             } else throw new Exception("Datos invalidos");
             

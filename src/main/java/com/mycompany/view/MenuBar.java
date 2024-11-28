@@ -199,8 +199,6 @@ public class MenuBar extends javax.swing.JPanel {
         
         FerromineraProject.contentP.setPanel(reportsContent);
         FerromineraProject.contentP.showPanel();
-        
-        reportsContent.initReportContent();
     }//GEN-LAST:event_btnHomeActionPerformed
     
     //* Se dirige a la interfaz visual de filtros de busqueda
