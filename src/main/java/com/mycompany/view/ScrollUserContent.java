@@ -35,6 +35,7 @@ public class ScrollUserContent extends javax.swing.JPanel {
         btnUserAdd.setSize(30, 31);
         btnUserSearch.setSize(30, 31);
         
+        scroll.getVerticalScrollBar().setUnitIncrement(25);
         scroll.getVerticalScrollBar().addAdjustmentListener((AdjustmentEvent e) -> {
             // Actualizar la posición del botón sticky
             changePosition();
