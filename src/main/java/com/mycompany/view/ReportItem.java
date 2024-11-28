@@ -82,6 +82,8 @@ public class ReportItem extends javax.swing.JPanel {
         panelBtns = new javax.swing.JPanel();
         btnRemove = new javax.swing.JButton();
         btnEdit = new javax.swing.JButton();
+        panelBtnPDF = new javax.swing.JPanel();
+        btnPDF = new javax.swing.JButton();
         datetimePanel = new javax.swing.JPanel();
         date = new javax.swing.JLabel();
         panelSchedule = new javax.swing.JPanel();
@@ -145,6 +147,31 @@ public class ReportItem extends javax.swing.JPanel {
             panelBtnsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(btnRemove, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
             .addComponent(btnEdit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        panelBtnPDF.setBackground(new java.awt.Color(180, 180, 180));
+        panelBtnPDF.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 4, 0, 0, new java.awt.Color(180, 180, 180)));
+        panelBtnPDF.setPreferredSize(new java.awt.Dimension(50, 35));
+
+        btnPDF.setBackground(new java.awt.Color(205, 205, 205));
+        btnPDF.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pdf_logo.png"))); // NOI18N
+        btnPDF.setToolTipText("Descargar PDF");
+        btnPDF.setBorder(null);
+        btnPDF.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        javax.swing.GroupLayout panelBtnPDFLayout = new javax.swing.GroupLayout(panelBtnPDF);
+        panelBtnPDF.setLayout(panelBtnPDFLayout);
+        panelBtnPDFLayout.setHorizontalGroup(
+            panelBtnPDFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 46, Short.MAX_VALUE)
+            .addGroup(panelBtnPDFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(btnPDF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE))
+        );
+        panelBtnPDFLayout.setVerticalGroup(
+            panelBtnPDFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 35, Short.MAX_VALUE)
+            .addGroup(panelBtnPDFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(btnPDF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE))
         );
 
         datetimePanel.setBackground(new java.awt.Color(236, 80, 80));
@@ -275,13 +302,16 @@ public class ReportItem extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(publisher)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(panelBtns, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(editor)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(datetimePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(datetimePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(publisher)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(panelBtns, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(panelBtnPDF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0))))
             .addComponent(footer, javax.swing.GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(45, 45, 45)
@@ -299,11 +329,14 @@ public class ReportItem extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(publisher))
+                        .addComponent(panelBtns, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(publisher))
-                    .addComponent(panelBtns, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, 0)
+                        .addComponent(panelBtnPDF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(editor)
                     .addComponent(datetimePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -372,7 +405,7 @@ public class ReportItem extends javax.swing.JPanel {
 
     private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
         if(JOptionPane.showConfirmDialog(null,"¿Esta seguro de eliminar este reporte?", "Advertencia",
-                                         JOptionPane.OK_CANCEL_OPTION,JOptionPane.WARNING_MESSAGE)==1) return;
+                                         JOptionPane.OK_CANCEL_OPTION,JOptionPane.WARNING_MESSAGE)!=0) return;
         
         try {
             ReportService reportService = new ReportService();
@@ -405,6 +438,7 @@ public class ReportItem extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEdit;
+    private javax.swing.JButton btnPDF;
     private javax.swing.JButton btnRemove;
     private javax.swing.JCheckBox check;
     private javax.swing.JLabel comments;
@@ -413,6 +447,7 @@ public class ReportItem extends javax.swing.JPanel {
     private javax.swing.JLabel editor;
     private javax.swing.JPanel footer;
     private javax.swing.JLabel novelty;
+    private javax.swing.JPanel panelBtnPDF;
     private javax.swing.JPanel panelBtns;
     private javax.swing.JPanel panelSchedule;
     private javax.swing.JLabel publisher;
