@@ -188,7 +188,7 @@ public class ReportFilter extends javax.swing.JPanel {
 
         selectSchedule.setBackground(new java.awt.Color(255, 255, 255));
         selectSchedule.setFont(new java.awt.Font("Bahnschrift", 0, 15)); // NOI18N
-        selectSchedule.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cualquiera", "Diurno", "Nocturno" }));
+        selectSchedule.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cualquiera", "7am - 3pm", "3pm - 11pm", "11pm 7am" }));
 
         labelNew.setFont(new java.awt.Font("Bahnschrift", 0, 16)); // NOI18N
         labelNew.setForeground(new java.awt.Color(65, 75, 178));
@@ -348,8 +348,7 @@ public class ReportFilter extends javax.swing.JPanel {
                             .addComponent(check)
                             .addComponent(checkDate))
                         .addGap(18, 18, 18)
-                        .addComponent(btnSearch)
-                        .addGap(43, 43, 43)))
+                        .addComponent(btnSearch)))
                 .addContainerGap(124, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -391,8 +390,6 @@ public class ReportFilter extends javax.swing.JPanel {
         
         FerromineraProject.contentP.setPanel(reportsContent);
         FerromineraProject.contentP.showPanel();
-        
-        reportsContent.initReportContent();
     }//GEN-LAST:event_btnSearchActionPerformed
 
     //* Desactivar los JCalendar
