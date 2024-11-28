@@ -66,13 +66,16 @@ public class ShowJPanel {
         refreshContainer();
     }
     
-    //* mostrar un listado de items al panel en columna (adiere los items al panel si y solo si el panel tiene Scroll)
+    //* Mostrar un listado de items al panel en columna (adiere los items al panel si y solo si el panel tiene Scroll)
     public void showItemsPanel(List<JPanel> panelList) throws Exception {
         if(panel.getComponent(0) instanceof JScrollPane) {
             
             JScrollPane scroll = (JScrollPane) panel.getComponent(0);
             
             JPanel panelContent = (JPanel) scroll.getViewport().getView();
+            
+            for(JPanel item : panelList)
+                panelContent.add(item);
             
             GroupLayout panelContentLayout = new GroupLayout(panelContent);
             
@@ -85,12 +88,13 @@ public class ShowJPanel {
             
             hSequentialGroupLayout.addGap(10, 90, 90);
             
-            for(JPanel item: panelList) {
+            for(Component comp: panelContent.getComponents()) {
+                if(comp instanceof JPanel) {
+                    hParallelGroupLayout.addComponent(comp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, comp.getMaximumSize().width);
                 
-                hParallelGroupLayout.addComponent(item, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, item.getMaximumSize().width);
-                
-                vGroupLayout.addGap(42, 42, 42)
-                    .addComponent(item, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE);
+                    vGroupLayout.addGap(42, 42, 42)
+                        .addComponent(comp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE);
+                }
             }
             
             hSequentialGroupLayout.addGroup(hParallelGroupLayout).addGap(10, 90, 90);
@@ -106,8 +110,7 @@ public class ShowJPanel {
                 .addGroup(vGroupLayout)
             );
             
-            panelContent.revalidate();
-            panelContent.repaint();
+            refreshContainer();
             
         } else throw new Exception("the panel does not contain a JScrollPane"); //! Si el panel no contiene un JScrollPane retorna una Excepcion
     }
