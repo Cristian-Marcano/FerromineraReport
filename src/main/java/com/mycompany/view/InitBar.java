@@ -260,6 +260,9 @@ public class InitBar extends javax.swing.JPanel {
 
     //* Valida los input se estan usando y integra los datos a la DB
     private void btnInitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInitActionPerformed
+        UserService userService = new UserService();
+        PersonalDataService dataService = new PersonalDataService();
+        
         try {
             ValidateInput.isEmptyOrBlank(List.of(inputName, inputLastName, inputFicha, inputTlf, inputUsername, inputPassword));
             
@@ -270,18 +273,19 @@ public class InitBar extends javax.swing.JPanel {
             String name = inputName.getText(), lastName = inputLastName.getName(), ficha = inputFicha.getText(), tlf = inputTlf.getText(),
                     username = inputUsername.getText(), password = new String(inputPassword.getPassword());
             
-            UserService userService = new UserService();
             int userId = userService.createUser(username, password, "Super-admin"); //* Inserta un usuario a la DB
             
             PersonalData data = new PersonalData(0, userId, name, lastName, ficha, tlf);
             
-            PersonalDataService dataService = new PersonalDataService();
             dataService.createPersonalData(data); //* Inserta datos personales del usario a la DB
             //* Cambia de panel (hacia el Login)
             FerromineraProject.board.setPanel(new LoginBar());
             FerromineraProject.board.showPanel();
             
         } catch(SQLException e) {
+            try {
+                dataService.applyRollBack();
+            } catch (SQLException ex) { }
             System.err.println(e.getMessage());
             JOptionPane.showMessageDialog(null,"Ocurrio un Error en la conexion con la Base de Datos","ERROR",JOptionPane.ERROR_MESSAGE);
         } catch(Exception e) {
