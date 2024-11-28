@@ -1,6 +1,7 @@
 package com.mycompany.service;
 
 import com.mycompany.DB.Database;
+import com.mycompany.ferromineraproject.FerromineraProject;
 import com.mycompany.models.PersonalData;
 import com.mycompany.models.User;
 import java.sql.SQLException;
@@ -54,9 +55,10 @@ public class UserService extends Database {
     }
     
     public List<Object[]> getUsers() throws SQLException {
-        String sql = "SELECT * FROM user JOIN personal_data AS pd ON user.id = pd.user_id WHERE active = 1 ORDER BY user.id DESC";
+        String sql = "SELECT * FROM user JOIN personal_data AS pd ON user.id = pd.user_id WHERE active = 1 AND user.id <> ? ORDER BY user.id DESC";
         applyConnection();
         statement = connection.prepareStatement(sql);
+        statement.setInt(1, FerromineraProject.user.getId());
         result = statement.executeQuery();
         List<Object[]> users = new ArrayList<>();
         while(result.next())
@@ -77,7 +79,9 @@ public class UserService extends Database {
         }
         applyConnection();
         statement = connection.prepareStatement(sql);
-        for(int i=0; i<sentencesAndValues.size(); i++) statement.setString(i+1, sentencesAndValues.get(i)[1]);
+        int i;
+        for(i=0; i<sentencesAndValues.size(); i++) statement.setString(i+1, sentencesAndValues.get(i)[1]);
+        statement.setInt(i+2, FerromineraProject.user.getId());
         result = statement.executeQuery();
         List<Object[]> users = new ArrayList<>();
         while(result.next()) 
