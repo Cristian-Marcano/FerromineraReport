@@ -56,9 +56,8 @@ public class UserForm extends javax.swing.JPanel {
         inputLastName.setText(data.getLastName());
         inputFicha.setText(data.getFicha());
         inputTlf.setText(data.getTlf());
-        if(user.getRole().equals("super-admin")) selectRole.setSelectedIndex(0);
-        else if(user.getRole().equals("supervisor")) selectRole.setSelectedIndex(1);
-        else selectRole.setSelectedIndex(2);
+        if(user.getRole().equals("Supervisor")) selectRole.setSelectedIndex(0);
+        else selectRole.setSelectedIndex(1);
         inputPassword.setText(user.getPassword());
     }
 
@@ -190,7 +189,7 @@ public class UserForm extends javax.swing.JPanel {
 
         selectRole.setBackground(new java.awt.Color(255, 255, 255));
         selectRole.setFont(new java.awt.Font("Bahnschrift", 0, 16)); // NOI18N
-        selectRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Super-admin", "Supervisor", "Analista" }));
+        selectRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Supervisor", "Analista" }));
 
         labelPassword.setFont(new java.awt.Font("Bahnschrift", 0, 16)); // NOI18N
         labelPassword.setForeground(new java.awt.Color(65, 75, 178));
