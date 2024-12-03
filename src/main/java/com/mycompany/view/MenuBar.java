@@ -31,6 +31,7 @@ public class MenuBar extends javax.swing.JPanel {
         btnHome = new javax.swing.JButton();
         btnSearch = new javax.swing.JButton();
         btnPublish = new javax.swing.JButton();
+        btnPDF = new javax.swing.JButton();
         btnConfig = new javax.swing.JButton();
         btnLogOut = new javax.swing.JButton();
 
@@ -114,6 +115,29 @@ public class MenuBar extends javax.swing.JPanel {
             }
         });
 
+        btnPDF.setBackground(new java.awt.Color(236, 80, 80));
+        btnPDF.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        btnPDF.setForeground(new java.awt.Color(255, 255, 255));
+        btnPDF.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pdf-white_logo.png"))); // NOI18N
+        btnPDF.setText("Generar Informe");
+        btnPDF.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 1));
+        btnPDF.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnPDF.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnPDF.setIconTextGap(15);
+        btnPDF.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnPDFMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnPDFMouseExited(evt);
+            }
+        });
+        btnPDF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPDFActionPerformed(evt);
+            }
+        });
+
         btnConfig.setBackground(new java.awt.Color(236, 80, 80));
         btnConfig.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         btnConfig.setForeground(new java.awt.Color(255, 255, 255));
@@ -173,6 +197,7 @@ public class MenuBar extends javax.swing.JPanel {
             .addComponent(btnPublish, javax.swing.GroupLayout.DEFAULT_SIZE, 405, Short.MAX_VALUE)
             .addComponent(btnSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnConfig, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnPDF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -185,7 +210,9 @@ public class MenuBar extends javax.swing.JPanel {
                 .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(btnPublish, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 235, Short.MAX_VALUE)
+                .addGap(0, 0, 0)
+                .addComponent(btnPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 180, Short.MAX_VALUE)
                 .addComponent(btnConfig, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(btnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -289,11 +316,29 @@ public class MenuBar extends javax.swing.JPanel {
         FerromineraProject.contentP.showPanel();
     }//GEN-LAST:event_btnConfigActionPerformed
 
+    private void btnPDFMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPDFMouseEntered
+        btnPDF.setBackground(hover);
+        btnPDF.revalidate();
+        btnPDF.repaint();
+    }//GEN-LAST:event_btnPDFMouseEntered
+
+    private void btnPDFMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPDFMouseExited
+        btnPDF.setBackground(normal);
+        btnPDF.revalidate();
+        btnPDF.repaint();
+    }//GEN-LAST:event_btnPDFMouseExited
+
+    private void btnPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPDFActionPerformed
+        FerromineraProject.contentP.setPanel(new PDFGeneratorFilter());
+        FerromineraProject.contentP.showPanel();
+    }//GEN-LAST:event_btnPDFActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfig;
     private javax.swing.JButton btnHome;
     private javax.swing.JButton btnLogOut;
+    private javax.swing.JButton btnPDF;
     private javax.swing.JButton btnPublish;
     private javax.swing.JButton btnSearch;
     private javax.swing.JLabel title;
