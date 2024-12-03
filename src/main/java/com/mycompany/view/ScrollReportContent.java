@@ -25,25 +25,43 @@ public class ScrollReportContent extends javax.swing.JPanel {
     public int offset = 0, limit = 10, reportId;
     public List<String[]> sentencesAndValues = new ArrayList<>();
     public CommentaryForm commentaryForm = null;
+    private boolean isLoading = false;
     
     /**
      * Creates new form ScrollPublishContent
      */
     public ScrollReportContent() {
         initComponents();
+        scroll.getVerticalScrollBar().setUnitIncrement(25);
+        
+        scroll.getVerticalScrollBar().addAdjustmentListener((AdjustmentEvent e) -> {
+            if(!e.getValueIsAdjusting() && !isLoading) {
+                int extent = scroll.getVerticalScrollBar().getModel().getExtent();
+                int maximum = scroll.getVerticalScrollBar().getModel().getMaximum();
+                int value = scroll.getVerticalScrollBar().getValue();
+
+                // Si estamos cerca del final del scroll, cargar más reportes
+                if(value + extent >= maximum - 50) { // Umbral de 50 píxeles
+                    addNotify();
+                }
+            }
+        }); 
     }
     
+    //* Constructor para obtener los comentarios de un reporte
     public ScrollReportContent(int reportId) {
-        this();
+        initComponents();
         this.reportId = reportId;
         commentaryForm = new CommentaryForm(reportId);
         
+        scroll.getVerticalScrollBar().setUnitIncrement(25);
         scroll.getVerticalScrollBar().addAdjustmentListener((AdjustmentEvent e) -> {
             // Actualizar la posición del CommentaryForm
             changePosition();
         });
     }
     
+    //* Constructor para realizar busquedas
     public ScrollReportContent(List<String[]> sentencesAndValues) {
         this();
         this.sentencesAndValues = sentencesAndValues;
@@ -53,12 +71,18 @@ public class ScrollReportContent extends javax.swing.JPanel {
     public void addNotify() {
         super.addNotify();
         
+        if(commentaryForm == null) initReportContent();
+        
         try {
             FerromineraProject.contentP.resizeScrollPane();
         } catch(Exception e) { System.err.println(e.getMessage()); }
     }
     
+    //* Obtener los reportes y insertarlos en pantalla
     public void initReportContent() {
+        if(isLoading) return;
+        isLoading = true;
+        
         List<JPanel> reportPanels = new ArrayList<>();
         List<Object[]> reports;
         
@@ -80,15 +104,17 @@ public class ScrollReportContent extends javax.swing.JPanel {
             
             FerromineraProject.contentP.showItemsPanel(reportPanels);
             
+            offset += reports.size();
         } catch(SQLException e) {
             System.err.println(e.getMessage());
             JOptionPane.showMessageDialog(null,"Ocurrio un Error en la conexión con la Base de Datos","ERROR",JOptionPane.ERROR_MESSAGE);
         } catch(Exception e) {
             System.err.println(e.getMessage());
             JOptionPane.showMessageDialog(null,"No se puede avanzar \n" + e.getMessage(),"Advertencia",JOptionPane.WARNING_MESSAGE);
-        }
+        } finally { isLoading = false; }
     }
     
+    //* Obtener reporte y comentarios de este mostrandolos en pantalla conjunto el CommentaryForm
     public void initReportCommentContent() {
         List<JPanel> commentsByReportPanels = new ArrayList<>();
         List<Object[]> commentReportList;
