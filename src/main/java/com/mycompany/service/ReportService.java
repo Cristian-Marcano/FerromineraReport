@@ -6,7 +6,10 @@ import com.mycompany.models.Report;
 import com.mycompany.models.ReportEdit;
 import com.mycompany.models.User;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -44,7 +47,7 @@ public class ReportService extends Database {
         String sql = "SELECT * FROM report AS r JOIN novelties AS nv ON r.novelties_id = nv.id "
                 + "JOIN user ON r.create_by = user.id LEFT JOIN report_edit AS redit ON r.id = redit.report_id "
                 + "LEFT JOIN user AS u ON redit.user_edit_id = u.id "
-                + "WHERE r.active = 1 AND create_at <= NOW() ORDER BY create_at DESC LIMIT ? OFFSET ?";
+                + "WHERE r.active = 1 AND create_at <= CURDATE() ORDER BY create_at DESC LIMIT ? OFFSET ?";
         applyConnection();
         statement = connection.prepareStatement(sql);
         statement.setInt(1, limit);
@@ -72,7 +75,7 @@ public class ReportService extends Database {
                 + "LEFT JOIN report_edit AS redit ON r.id = redit.report_id "
                 + "LEFT JOIN user AS u ON redit.user_edit_id = u.id "
                 + "WHERE r.active = 1 AND ";
-        if(sentencesAndValues.isEmpty()) sql += "create_at <= NOW() ";
+        if(sentencesAndValues.isEmpty()) sql += "create_at <= CURDATE() ";
         else {
             for(String[] sentence: sentencesAndValues) 
                 sql += (sql.endsWith("? ")) ? "AND " + sentence[0] : sentence[0];
@@ -99,6 +102,78 @@ public class ReportService extends Database {
                                                result.getString("u.role"), result.getBoolean("u.active"))});
         closeConnection();
         return reports;
+    }
+    
+    public List<Object[]> getReportsInMonth(Date date) throws SQLException {
+        String sql = "SELECT * FROM report AS r JOIN novelties AS nv ON r.novelties_id = nv.id "
+                + "WHERE MONTH(r.create_at) = MONTH(?) AND YEAR(r.create_at) = YEAR(?) AND r.active = 1";
+        applyConnection();
+        statement = connection.prepareStatement(sql);
+        statement.setTimestamp(1, new Timestamp(date.getTime()));
+        statement.setTimestamp(2, new Timestamp(date.getTime()));
+        result = statement.executeQuery();
+        List<Object[]> reports = new ArrayList<>();
+        while(result.next())
+            reports.add(new Object[]{ new Report(result.getInt("r.id"), result.getInt("r.create_by"), result.getInt("r.novelties_id"), 
+                                                 result.getString("r.content"), result.getString("r.schedule"), result.getBoolean("r.checked"),
+                                                 result.getBoolean("r.active"), result.getTimestamp("r.create_at")),
+                                      new Novelties(result.getInt("nv.id"), result.getString("nv.name"), result.getBoolean("nv.active"))});
+        closeConnection();
+        return reports;
+    }
+    
+    public List<Object[]> getReportsInWeek(Date date) throws SQLException {
+        String sql = "SELECT * FROM report AS r JOIN novelties AS nv ON r.novelties_id = nv.id "
+                    + "WHERE r.create_at >= DATE_SUB(?, INTERVAL WEEKDAY(?) DAY) AND "
+                    + "r.create_at < DATE_ADD(DATE_SUB(?, INTERVAL WEEKDAY(?) DAY), INTERVAL 7 DAY) AND r.active = 1";
+        applyConnection();
+        statement = connection.prepareStatement(sql);
+        statement.setString(1, new SimpleDateFormat("yyyy-MM-dd").format(date));
+        statement.setString(2, new SimpleDateFormat("yyyy-MM-dd").format(date));
+        statement.setString(3, new SimpleDateFormat("yyyy-MM-dd").format(date));
+        statement.setString(4, new SimpleDateFormat("yyyy-MM-dd").format(date));
+        result = statement.executeQuery();
+        List<Object[]> reports = new ArrayList<>();
+        while(result.next())
+            reports.add(new Object[]{ new Report(result.getInt("r.id"), result.getInt("r.create_by"), result.getInt("r.novelties_id"), 
+                                                 result.getString("r.content"), result.getString("r.schedule"), result.getBoolean("r.checked"),
+                                                 result.getBoolean("r.active"), result.getTimestamp("r.create_at")),
+                                      new Novelties(result.getInt("nv.id"), result.getString("nv.name"), result.getBoolean("nv.active"))});
+        closeConnection();
+        return reports;
+    }
+    
+    public List<String[]> getCountReportsInMount(Date date) throws SQLException {
+        String sql = "SELECT nv.name, COUNT(*) AS count FROM report AS r JOIN novelties AS nv ON r.novelties_id = nv.id "
+                    + "WHERE MONTH(r.create_at) = MONTH(?) AND YEAR(r.create_at) = YEAR(?) AND r.active = 1 GROUP BY nv.name";
+        applyConnection();
+        statement = connection.prepareStatement(sql);
+        statement.setTimestamp(1, new Timestamp(date.getTime()));
+        statement.setTimestamp(2, new Timestamp(date.getTime()));
+        result = statement.executeQuery();
+        List<String[]> countNovelties = new ArrayList<>();
+        while(result.next())
+            countNovelties.add(new String[]{result.getString("nv.name"), Integer.toString(result.getInt("count"))});
+        closeConnection();
+        return countNovelties;
+    }
+    
+    public List<String[]> getCountReportsInWeek(Date date) throws SQLException {
+        String sql = "SELECT nv.name AS name, COUNT(*) AS count FROM report AS r JOIN novelties nv ON r.novelties_id = nv.id "
+                    + "WHERE r.create_at >= DATE_SUB(?, INTERVAL WEEKDAY(?) DAY) AND "
+                    + "r.create_at < DATE_ADD(DATE_SUB(?, INTERVAL WEEKDAY(?) DAY), INTERVAL 7 DAY) AND r.active = 1 GROUP BY nv.name";
+        applyConnection();
+        statement = connection.prepareStatement(sql);
+        statement.setString(1, new SimpleDateFormat("yyyy-MM-dd").format(date));
+        statement.setString(2, new SimpleDateFormat("yyyy-MM-dd").format(date));
+        statement.setString(3, new SimpleDateFormat("yyyy-MM-dd").format(date));
+        statement.setString(4, new SimpleDateFormat("yyyy-MM-dd").format(date));
+        result = statement.executeQuery();
+        List<String[]> countNovelties = new ArrayList<>();
+        while(result.next())
+            countNovelties.add(new String[]{result.getString("nv.name"), Integer.toString(result.getInt("count"))});
+        closeConnection();
+        return countNovelties;
     }
     
     public void createReport(int createBy, int noveltiesId, String content, String schedule) throws SQLException {
