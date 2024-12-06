@@ -10,9 +10,12 @@ import java.util.List;
 /**
  *
  * @author Cristian
+ * Clase que realiza operaciones a la tabla comment en la DB
+ * de MySQL 
  */
 public class CommentService extends Database {
     
+    //* Obtener comentario especifico por su id
     public Comment getComment(int id) throws SQLException {
         String sql = "SELECT * FROM comment WHERE id = ?";
         applyConnection();
@@ -27,6 +30,7 @@ public class CommentService extends Database {
         return com;
     }
     
+    //* Obtener comentarios del reporte especifico por su id
     public List<Object[]> getComments(int reportId) throws SQLException {
         String sql = "SELECT * FROM comment JOIN user ON comment.create_by=user.id WHERE report_id = ?";
         applyConnection();
@@ -43,6 +47,7 @@ public class CommentService extends Database {
         return listComments;
     }
     
+    //* Crear un comentario con su contenido, el id del usuario que lo creo y el reporte que va dirigido el comentario
     public void createComment(String content, int createBy, int reportId) throws SQLException {
         String sql = "INSERT INTO comment(content, create_by, report_id) VALUES (?,?,?)";
         applyConnection();
@@ -54,6 +59,7 @@ public class CommentService extends Database {
         closeConnection();
     }
     
+    //* Editar el contenido del comentario por su id
     public void updateComment(String content, int id) throws SQLException {
         String sql = "UPDATE comment SET content = ? WHERE id = ?";
         applyConnection();
@@ -64,6 +70,8 @@ public class CommentService extends Database {
         closeConnection();
     }
     
+    //* Desactivar comentario (no esta integrado en la base datos, por lo tanto esta funcion no se usa
+    //* si se desea usar solo debe de aplicar: ALTER TABLE comment ADD active BIT NOT NULL DEFAULT 1;)
     public void removeComment(int id) throws SQLException {
         String sql = "UPDATE comment SET active = 0 WHERE id = ?";
         applyConnection();

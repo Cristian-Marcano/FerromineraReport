@@ -7,9 +7,12 @@ import java.sql.SQLException;
 /**
  *
  * @author Cristian
+ * Clase que realiza operaciones a la tabla report_edit en la DB
+ * de MySQL 
  */
 public class ReportEditService extends Database {
     
+    //* Obtener el report_edit por el id del reporte
     public ReportEdit getReportEdit(int reportId) throws SQLException {
         String sql = "SELECT * FROM report_edit WHERE report_id = ?";
         applyConnection();
@@ -23,6 +26,7 @@ public class ReportEditService extends Database {
         return reportEdit;
     }
     
+    //* Crear un report_id
     public void createReportEdit(int userId, int reportId) throws SQLException {
         String sql = "INSERT INTO report_edit(user_edit_id, report_id) VALUES (?,?)";
         statement = connection.prepareStatement(sql);
@@ -33,6 +37,7 @@ public class ReportEditService extends Database {
         closeConnection();
     }
     
+    //* Editar un report_edit
     public void updateReportEdit(int id, int userId) throws SQLException {
         String sql = "UPDATE report_edit SET user_edit_id = ?, edit_at = NOW() WHERE id = ?";
         statement = connection.prepareStatement(sql);

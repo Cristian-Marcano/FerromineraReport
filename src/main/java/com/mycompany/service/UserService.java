@@ -12,9 +12,12 @@ import java.util.List;
 /**
  *
  * @author Cristian
+ * Clase que realiza operaciones a la tabla user en la DB
+ * de MySQL 
  */
 public class UserService extends Database {
     
+    //* Obtener usuario por su id
     public Object[] getUser(int id) throws SQLException {
         String sql = "SELECT * FROM user JOIN personal_data AS pd ON user.id = pd.user_id WHERE id = ?";
         applyConnection();
@@ -30,6 +33,7 @@ public class UserService extends Database {
         return user;
     }
     
+    //* Buscar usuario por su username
     public User getUser(String username) throws SQLException {
         String sql = "SELECT * FROM user WHERE username = ? AND active = 1";
         applyConnection();
@@ -43,6 +47,7 @@ public class UserService extends Database {
         return user;
     }
     
+    //* Obtener la cantidad de usuarios que hay en la base de datos
     public int getCountUsers() throws SQLException {
         String sql = "SELECT COUNT(*) AS count FROM user";
         applyConnection();
@@ -54,6 +59,7 @@ public class UserService extends Database {
         return count;
     }
     
+    //* Obtener todos los usuarios en orden de creación 
     public List<Object[]> getUsers() throws SQLException {
         String sql = "SELECT * FROM user JOIN personal_data AS pd ON user.id = pd.user_id WHERE active = 1 AND user.id <> ? ORDER BY user.id DESC";
         applyConnection();
@@ -70,6 +76,7 @@ public class UserService extends Database {
         return users;
     }
     
+    //* Buscar usuarios por sus distintos datos, como username, role, nombre o apellido etc
     public List<Object[]> searchUsers(List<String[]> sentencesAndValues) throws SQLException {
         String sql = "SELECT * FROM user JOIN personal_data AS pd ON user.id = pd.user_id";
         if(!sentencesAndValues.isEmpty()) {
@@ -93,6 +100,7 @@ public class UserService extends Database {
         return users;
     }
     
+    //* Crear usuario 
     public int createUser(String username, String password, String role) throws SQLException {
         String sql = "INSERT INTO user(username, password, role) VALUES (?,?,?)";
         applyConnection();
@@ -108,6 +116,7 @@ public class UserService extends Database {
         return id;
     }
     
+    //* Editar usuario
     public void updateUser(User user) throws SQLException {
         String sql = "UPDATE user SET username = ?, password = ?, role = ? WHERE id = ?";
         applyConnection();
@@ -120,6 +129,7 @@ public class UserService extends Database {
         statement.executeUpdate();
     }
     
+    //* Desactivar usuario (no sera visible en el listado y tampoco podra entrar en la app)
     public void removeUser(int id) throws SQLException {
         String sql = "UPDATE user SET active = 0 WHERE id = ?";
         applyConnection();

@@ -15,9 +15,12 @@ import java.util.List;
 /**
  *
  * @author Cristian
+ * Clase que realiza operaciones a la tabla report en la DB
+ * de MySQL 
  */
 public class ReportService extends Database {
     
+    //* Obtener reporte por su id
     public Object[] getReport(int id) throws SQLException {
         String sql = "SELECT * FROM report AS r JOIN novelties AS nv ON r.novelties_id = nv.id "
                 + "JOIN user ON r.create_by = user.id LEFT JOIN report_edit AS redit ON r.id = redit.report_id "
@@ -43,6 +46,7 @@ public class ReportService extends Database {
         return report;
     }
     
+    //* Obtener la mayoria de los reportes en tandas que indique el limit, hasta llegar a mostrar todos los reportes
     public List<Object[]> getReports(int limit, int offset) throws SQLException {
         String sql = "SELECT * FROM report AS r JOIN novelties AS nv ON r.novelties_id = nv.id "
                 + "JOIN user ON r.create_by = user.id LEFT JOIN report_edit AS redit ON r.id = redit.report_id "
@@ -69,6 +73,8 @@ public class ReportService extends Database {
         return reports;
     }
     
+    //* Buscar los reportes por tandas que indique el limit, hasta llegar a mostrar todos los reportes
+    //* con las similitudes insertadas en el filtro (WHERE)
     public List<Object[]> searchReports(List<String[]> sentencesAndValues, int limit, int offset) throws SQLException {
         String sql = "SELECT * FROM report AS r JOIN novelties AS nv ON r.novelties_id = nv.id "
                 + "JOIN user ON r.create_by = user.id JOIN personal_data AS pd ON user.id = pd.user_id "
@@ -104,6 +110,7 @@ public class ReportService extends Database {
         return reports;
     }
     
+    //* Obtener todos los reportes publicados en el mes de date
     public List<Object[]> getReportsInMonth(Date date) throws SQLException {
         String sql = "SELECT * FROM report AS r JOIN novelties AS nv ON r.novelties_id = nv.id "
                 + "WHERE MONTH(r.create_at) = MONTH(?) AND YEAR(r.create_at) = YEAR(?) AND r.active = 1";
@@ -122,6 +129,7 @@ public class ReportService extends Database {
         return reports;
     }
     
+    //* Obtener todos los reportes publicados en la semana de date
     public List<Object[]> getReportsInWeek(Date date) throws SQLException {
         String sql = "SELECT * FROM report AS r JOIN novelties AS nv ON r.novelties_id = nv.id "
                     + "WHERE r.create_at >= DATE_SUB(?, INTERVAL WEEKDAY(?) DAY) AND "
@@ -143,6 +151,7 @@ public class ReportService extends Database {
         return reports;
     }
     
+    //* Cantidad de reportes publicados divididos por sus categorias de novedades en el mes de date
     public List<String[]> getCountReportsInMount(Date date) throws SQLException {
         String sql = "SELECT nv.name, COUNT(*) AS count FROM report AS r JOIN novelties AS nv ON r.novelties_id = nv.id "
                     + "WHERE MONTH(r.create_at) = MONTH(?) AND YEAR(r.create_at) = YEAR(?) AND r.active = 1 GROUP BY nv.name";
@@ -158,6 +167,7 @@ public class ReportService extends Database {
         return countNovelties;
     }
     
+    //* Cantidad de reportes publicados divididos por sus categorias de novedades en la semana de date
     public List<String[]> getCountReportsInWeek(Date date) throws SQLException {
         String sql = "SELECT nv.name AS name, COUNT(*) AS count FROM report AS r JOIN novelties nv ON r.novelties_id = nv.id "
                     + "WHERE r.create_at >= DATE_SUB(?, INTERVAL WEEKDAY(?) DAY) AND "
@@ -176,6 +186,7 @@ public class ReportService extends Database {
         return countNovelties;
     }
     
+    //* Crear reporte 
     public void createReport(int createBy, int noveltiesId, String content, String schedule) throws SQLException {
         String sql = "INSERT INTO report(content, schedule, novelties_id, create_by) VALUES (?,?,?,?)";
         applyConnection();
@@ -188,6 +199,7 @@ public class ReportService extends Database {
         closeConnection();
     }
     
+    //* Editar reporte
     public void updateReport(int id, int noveltiesId, String content, String schedule) throws SQLException {
         String sql = "UPDATE report SET novelties_id = ?, content = ?, schedule = ? WHERE id = ?";
         applyConnection();
@@ -200,6 +212,7 @@ public class ReportService extends Database {
         statement.executeUpdate();
     }
     
+    //* Desactivar reporte (no se mostrar el reporte desactivado en la app)
     public void removeReport(int id) throws SQLException {
         String sql = "UPDATE report SET active = 0 WHERE id = ?";
         applyConnection();
@@ -209,6 +222,7 @@ public class ReportService extends Database {
         closeConnection();
     }
     
+    //* Checar reporte
     public void checkReport(int id) throws SQLException {
         String sql = "UPDATE report SET checked = 1 WHERE id = ?";
         applyConnection();

@@ -9,9 +9,12 @@ import java.util.List;
 /**
  *
  * @author Cristian
+ * Clase que realiza operaciones a la tabla novelties en la DB
+ * de MySQL 
  */
 public class NoveltiesService extends Database {
     
+    //* Obtener novedad por su id
     public Novelties getNovelties(int id) throws SQLException {
         String sql = "SELECT * FROM novelties WHERE id = ?";
         applyConnection();
@@ -25,6 +28,7 @@ public class NoveltiesService extends Database {
         return novl;
     }
     
+    //* Obtener todas las novedades
     public List<Novelties> getNovelties() throws SQLException {
         String sql = "SELECT * FROM novelties";
         applyConnection();
@@ -37,6 +41,7 @@ public class NoveltiesService extends Database {
         return listNovelties;
     }
     
+    //* Crear novedad (funcionalidad no añadida en la app)
     public void createNovelties(String name) throws SQLException {
         String sql = "INSERT INTO novelties(name) VALUES (?)";
         applyConnection();
@@ -46,6 +51,7 @@ public class NoveltiesService extends Database {
         closeConnection();
     }
     
+    //* Editar novedades (funcionalidad no añadida en la app)
     public void updateNovelties(int id, String name) throws SQLException {
         String sql = "UPDATE novelties SET name = ? WHERE id = ?";
         applyConnection();
@@ -56,6 +62,8 @@ public class NoveltiesService extends Database {
         closeConnection();
     }
     
+    //* Desactivar novedades, se veran en reportes ya publicados pero no apareceran para reportes nuevos 
+    //* (funcionalidad no añadida en la app)
     public void removeNovelties(int id) throws SQLException {
         String sql = "UPDATE novelties SET active = 0 WHERE id = ?";
         applyConnection();
