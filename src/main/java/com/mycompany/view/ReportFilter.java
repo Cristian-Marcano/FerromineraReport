@@ -17,6 +17,10 @@ import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
  */
 public class ReportFilter extends javax.swing.JPanel {
     
+    /**
+     * novelties: listado de objetos que contiene los nombres de cada una de las novedades
+     */
+    
     public List<Novelties> novelties;
 
     /**

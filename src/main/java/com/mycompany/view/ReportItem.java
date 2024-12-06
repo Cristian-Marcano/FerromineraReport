@@ -21,6 +21,15 @@ import javax.swing.Timer;
  */
 public class ReportItem extends javax.swing.JPanel {
     
+    /**
+     * objItemText: objeto que ayuda a reescalar el panel y JTextArea sin usar el JScroll
+     * report: objeto que contiene los datos del reporte
+     * nov: objeto que almacena el nombre de la novedad que esta realcionada con el reporte
+     * user: objeto que contiene el username de quien lo publico
+     * userEdit: objeto que almacena el username de quien edito el reporte
+     * timer: temporizador que se instancia cuando el check es presionado
+     */
+    
     public ItemText objItemText;
     public Report report;
     public Novelties nov;

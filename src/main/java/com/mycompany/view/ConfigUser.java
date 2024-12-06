@@ -16,6 +16,10 @@ import javax.swing.JOptionPane;
  */
 public class ConfigUser extends javax.swing.JPanel {
 
+    /**
+     * data: objeto de los datos personales del usuario logeado
+     */
+    
     public PersonalData data;
     
     /**

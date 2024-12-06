@@ -10,6 +10,12 @@ import com.mycompany.models.User;
  */
 public class Commentary extends javax.swing.JPanel {
 
+    /**
+     * objItemText: objeto que ayuda a reescalar el panel y JTextArea sin usar el JScroll
+     * comment: objeto que contiene los datos del comentario que sera mostrado en la interfaz visual
+     * user: objeto que contiene el username del user que publico el comentario
+     */
+    
     public ItemText objItemText;
     public Comment comment;
     public User user;

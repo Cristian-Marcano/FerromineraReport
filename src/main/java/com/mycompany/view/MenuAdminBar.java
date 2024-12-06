@@ -9,6 +9,11 @@ import java.awt.Color;
  */
 public class MenuAdminBar extends javax.swing.JPanel {
 
+    /**
+     * normal: color normal de los btns antes de hacer hover (mouseEntered)
+     * hover: color del hover de los btns
+     */
+    
     public Color normal = new Color(236,80,80), hover = new Color(223,50,50);
     
     /**

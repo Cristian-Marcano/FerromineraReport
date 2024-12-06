@@ -17,6 +17,13 @@ import javax.swing.JOptionPane;
  */
 public class UserForm extends javax.swing.JPanel {
     
+    /**
+     * mode: variable que determina la funcionalidad de la interfaz visual
+     * user: objeto que contendra los datos del usuario que sera editado
+     * data: objeto que almacena los datos del usuario que sera editado
+     * active: true si es visible en pantalla y false si no lo es
+     */
+    
     private int mode; //* 0: buscar. 1: crear. 2: editar
     public User user;
     public PersonalData data;

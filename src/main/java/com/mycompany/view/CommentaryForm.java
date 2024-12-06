@@ -14,6 +14,11 @@ import javax.swing.JOptionPane;
  */
 public class CommentaryForm extends javax.swing.JPanel {
     
+    /**
+     * reportId: identificador del report que se tiene que comentar
+     * placeholder: texto de fondo visual del JTextArea
+     */
+    
     public int reportId;
     public TextPrompt placeholder;
 

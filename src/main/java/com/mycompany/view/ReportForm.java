@@ -20,6 +20,11 @@ import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
  */
 public class ReportForm extends javax.swing.JPanel {
     
+    /**
+     * novelties: listado de objetos que contiene los nombres de cada una de las novedades
+     * report: objeto es instanciado solo cuando el formulario va ser usado para editar el reporte
+     */
+    
     public List<Novelties> novelties;
     public Report report = null;
 

@@ -15,6 +15,11 @@ import javax.swing.JOptionPane;
  */
 public class UserItem extends javax.swing.JPanel {
 
+    /**
+     * user: objeto que contiene los datos del usuario que sera mostrado en la interfaz
+     * user: objeto que contiene los datos personales del usuario que sera mostrado en la interfaz
+     */
+    
     public User user;
     public PersonalData data;
     

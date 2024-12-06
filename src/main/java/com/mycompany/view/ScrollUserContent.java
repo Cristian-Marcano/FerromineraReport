@@ -19,6 +19,13 @@ import javax.swing.JPanel;
  */
 public class ScrollUserContent extends javax.swing.JPanel {
     
+    /**
+     * sentencesAndValues: sentencias sql para realizar una busqueda de los usuarios
+     * searchUserForm: interfaz visual que solo sera para buscar
+     * addUserForm: interfaz visual que solo sera para añadir usuarios
+     * editUserForm: interfaz visual que solo se utilizara para editar usuarios
+     */
+    
     public List<String[]> sentencesAndValues = new ArrayList<>();
     public UserForm searchUserForm, addUserForm, editUserForm; 
 

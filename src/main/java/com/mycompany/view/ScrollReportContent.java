@@ -22,6 +22,14 @@ import javax.swing.JPanel;
  */
 public class ScrollReportContent extends javax.swing.JPanel {
     
+    /**
+     * offset: cantidad de reportes mostrados en el panel
+     * limit: cantidad maxima de insertar reportes en tanda
+     * sentencesAndValues: sentencias sql para realizar busqueda en los reportes
+     * commentaryForm: interfazVisual extra que se instancia/muestra solo si se va ver los comentarios de un reporte
+     * isLoading: variable que ayuda a cargar los reportes por tandas
+     */
+    
     public int offset = 0, limit = 10, reportId;
     public List<String[]> sentencesAndValues = new ArrayList<>();
     public CommentaryForm commentaryForm = null;
