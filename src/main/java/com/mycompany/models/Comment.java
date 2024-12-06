@@ -19,7 +19,7 @@ public class Comment {
         this.createAt = createAt;
     }
     
-    //*Setters
+    //* Setters
     public void setContent(String content) {
         this.content = content;
     }
