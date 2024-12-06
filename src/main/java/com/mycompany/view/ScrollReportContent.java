@@ -7,6 +7,7 @@ import com.mycompany.service.CommentService;
 import com.mycompany.service.ReportService;
 import com.mycompany.models.Report;
 import com.mycompany.models.User;
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.event.AdjustmentEvent;
@@ -156,7 +157,7 @@ public class ScrollReportContent extends javax.swing.JPanel {
     
     //* Cambiar de posicion al CommentaryForm
     private void changePosition() {
-        Dimension viewport = scroll.getViewport().getSize();
+        Dimension viewport = scroll.getViewport().getExtentSize();
             
         Point p = new Point(0, viewport.height - 115 + scroll.getVerticalScrollBar().getValue());
         
