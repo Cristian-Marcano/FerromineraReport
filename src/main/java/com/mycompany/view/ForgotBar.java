@@ -6,6 +6,7 @@ import com.mycompany.models.User;
 import com.mycompany.service.PersonalDataService;
 import com.mycompany.service.UserService;
 import com.mycompany.utils.ValidateInput;
+import java.awt.Color;
 import java.sql.SQLException;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -45,6 +46,7 @@ public class ForgotBar extends javax.swing.JPanel {
         separatorUsername = new javax.swing.JSeparator();
         inputUsername = new javax.swing.JTextField();
         btnForgot = new javax.swing.JButton();
+        btnExit = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(247, 34, 34));
 
@@ -108,6 +110,24 @@ public class ForgotBar extends javax.swing.JPanel {
             }
         });
 
+        btnExit.setBackground(new java.awt.Color(247, 34, 34));
+        btnExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/arrow-left_logo.png"))); // NOI18N
+        btnExit.setBorder(null);
+        btnExit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnExit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnExitMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnExitMouseExited(evt);
+            }
+        });
+        btnExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExitActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -134,17 +154,23 @@ public class ForgotBar extends javax.swing.JPanel {
                     .addComponent(separatorUsername)
                     .addComponent(inputUsername)
                     .addComponent(separatorFicha)
-                    .addComponent(inputFicha))
+                    .addComponent(inputFicha)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(97, 97, 97)
+                        .addComponent(btnForgot, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(97, 97, 97)))
                 .addGap(30, 30, 30))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(127, 127, 127)
-                .addComponent(btnForgot, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(127, 127, 127))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnExit)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
+                .addContainerGap()
+                .addComponent(btnExit)
+                .addGap(30, 30, 30)
                 .addComponent(labelName)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(separatorName, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -168,9 +194,9 @@ public class ForgotBar extends javax.swing.JPanel {
                 .addComponent(separatorUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(inputUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 133, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
                 .addComponent(btnForgot, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(198, Short.MAX_VALUE))
+                .addGap(151, 151, 151))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -215,8 +241,26 @@ public class ForgotBar extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnForgotActionPerformed
 
+    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
+        FerromineraProject.board.setPanel(new LoginBar());
+        FerromineraProject.board.showPanel();
+    }//GEN-LAST:event_btnExitActionPerformed
+
+    private void btnExitMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExitMouseEntered
+        btnExit.setBackground(new Color(236,80,80));
+        btnExit.revalidate();
+        btnExit.repaint();
+    }//GEN-LAST:event_btnExitMouseEntered
+
+    private void btnExitMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExitMouseExited
+        btnExit.setBackground(new Color(247,34,34));
+        btnExit.revalidate();
+        btnExit.repaint();
+    }//GEN-LAST:event_btnExitMouseExited
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnExit;
     private javax.swing.JButton btnForgot;
     private javax.swing.JTextField inputFicha;
     private javax.swing.JTextField inputLastName;
