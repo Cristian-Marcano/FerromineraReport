@@ -270,7 +270,7 @@ public class InitBar extends javax.swing.JPanel {
             
             ValidateInput.isMinimumLength(inputPassword, 8);
             
-            String name = inputName.getText(), lastName = inputLastName.getName(), ficha = inputFicha.getText(), tlf = inputTlf.getText(),
+            String name = inputName.getText(), lastName = inputLastName.getText(), ficha = inputFicha.getText(), tlf = inputTlf.getText(),
                     username = inputUsername.getText(), password = new String(inputPassword.getPassword());
             
             int userId = userService.createUser(username, password, "Super-admin"); //* Inserta un usuario a la DB
