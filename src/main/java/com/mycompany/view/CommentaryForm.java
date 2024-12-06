@@ -84,6 +84,7 @@ public class CommentaryForm extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    //* Validar e insertar el comentario a la DB
     private void btnPublishActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPublishActionPerformed
         try {
             ValidateInput.isEmptyOrBlank(List.of(textComment));

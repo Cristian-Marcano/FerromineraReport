@@ -277,7 +277,7 @@ public class MenuAdminBar extends javax.swing.JPanel {
         usersContent.initUserContent();
     }//GEN-LAST:event_btnUsersActionPerformed
 
-    //* Cerrar Sesion y dirigirse al Login
+    //* Se dirige a la interfaz visual que muestra los datos del usuario logeado
     private void btnConfigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfigActionPerformed
         FerromineraProject.contentP.setPanel(new ConfigUser());
         FerromineraProject.contentP.showPanel();
@@ -355,6 +355,7 @@ public class MenuAdminBar extends javax.swing.JPanel {
         btnLogOut.repaint();
     }//GEN-LAST:event_btnLogOutMouseExited
 
+    //* Cerrar Sesion y dirigirse al Login
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
         FerromineraProject.user = null;
         
@@ -376,7 +377,8 @@ public class MenuAdminBar extends javax.swing.JPanel {
         btnPDF.revalidate();
         btnPDF.repaint();
     }//GEN-LAST:event_btnPDFMouseExited
-
+    
+    //* Se dirige a la interfaz para generar PDF
     private void btnPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPDFActionPerformed
         FerromineraProject.contentP.setPanel(new PDFGeneratorFilter());
         FerromineraProject.contentP.showPanel();

@@ -310,7 +310,8 @@ public class MenuBar extends javax.swing.JPanel {
         btnConfig.revalidate();
         btnConfig.repaint();
     }//GEN-LAST:event_btnConfigMouseExited
-
+    
+    //* Se dirige a la interfaz visual que muestra los datos del usuario logeado
     private void btnConfigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfigActionPerformed
         FerromineraProject.contentP.setPanel(new ConfigUser());
         FerromineraProject.contentP.showPanel();
@@ -328,6 +329,7 @@ public class MenuBar extends javax.swing.JPanel {
         btnPDF.repaint();
     }//GEN-LAST:event_btnPDFMouseExited
 
+    //* Se dirige a la interfaz para generar PDF
     private void btnPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPDFActionPerformed
         FerromineraProject.contentP.setPanel(new PDFGeneratorFilter());
         FerromineraProject.contentP.showPanel();

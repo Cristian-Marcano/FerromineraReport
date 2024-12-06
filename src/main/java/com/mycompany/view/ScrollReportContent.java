@@ -7,7 +7,6 @@ import com.mycompany.service.CommentService;
 import com.mycompany.service.ReportService;
 import com.mycompany.models.Report;
 import com.mycompany.models.User;
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.event.AdjustmentEvent;
@@ -49,7 +48,10 @@ public class ScrollReportContent extends javax.swing.JPanel {
         }); 
     }
     
-    //* Constructor para obtener los comentarios de un reporte
+    /**
+     * Constructor para obtener los comentarios de un reporte
+     * @param reportId: identificador del reporte que sera usado para mostrar los comentarios de ese reporte
+     */
     public ScrollReportContent(int reportId) {
         initComponents();
         this.reportId = reportId;
@@ -62,7 +64,11 @@ public class ScrollReportContent extends javax.swing.JPanel {
         });
     }
     
-    //* Constructor para realizar busquedas
+    /**
+     * Constructor para realizar busquedas
+     * @param sentencesAndValues: listado de sentencias de los campos de la DB con sus respectivos valores
+     *  para asi realizar una buena busqueda
+     */
     public ScrollReportContent(List<String[]> sentencesAndValues) {
         this();
         this.sentencesAndValues = sentencesAndValues;
@@ -216,7 +222,8 @@ public class ScrollReportContent extends javax.swing.JPanel {
             .addComponent(scroll)
         );
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    //* Reescalar los panels de ReportItem y Commentary
     private void formComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentResized
         // TODO add your handling code here:
         try {

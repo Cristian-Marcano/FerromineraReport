@@ -28,6 +28,7 @@ public class Commentary extends javax.swing.JPanel {
         objItemText.textResize();
     }
     
+    //* Insertar los datos en la interfaz
     private void setValues() {
         userOwner.setText(user.getUsername() + " comentó");
         text.setText(comment.getContent());

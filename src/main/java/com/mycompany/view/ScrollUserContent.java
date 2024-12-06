@@ -196,32 +196,32 @@ public class ScrollUserContent extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
     
+    //* Reescalar los UserItem y cambiar de posicion los Form en caso de que esten en la interfaz
     private void formComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentResized
-        // TODO add your handling code here:
         try {
             FerromineraProject.contentP.resizeScrollPane();
             changePosition();
         } catch(Exception e) { System.err.println(e.getMessage()); }
     }//GEN-LAST:event_formComponentResized
 
+    //* Integra el formulario de AddUser en la interfaz
     private void btnUserAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserAddActionPerformed
-        // TODO add your handling code here:
         btnVisible(false);
         addUserForm.active = true;
         userContent.add(addUserForm, 0);
         changePosition();
     }//GEN-LAST:event_btnUserAddActionPerformed
 
+    //* Integra el formulario de searchUser en la interfaz
     private void btnUserSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserSearchActionPerformed
-        // TODO add your handling code here:
         btnVisible(false);
         searchUserForm.active = true;
         userContent.add(searchUserForm, 0);
         changePosition();
     }//GEN-LAST:event_btnUserSearchActionPerformed
     
+    //* mostrar los btns tras que los form se hayan removido
     private void userContentComponentRemoved(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_userContentComponentRemoved
-        // TODO add your handling code here:
         btnVisible(true);
     }//GEN-LAST:event_userContentComponentRemoved
 

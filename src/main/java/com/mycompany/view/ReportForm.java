@@ -32,6 +32,9 @@ public class ReportForm extends javax.swing.JPanel {
         initReportForm();
     }
     
+    /**
+     * @param report: objeto que contiene los datos del reporte que hay que editar
+     */
     public ReportForm(Report report) {
         initComponents();
         this.report = report;
@@ -40,6 +43,7 @@ public class ReportForm extends javax.swing.JPanel {
         setValues();
     }
     
+    //* Insertar los datos del reporte seleccionado para editar
     private void setValues() {
         contentText.setText(report.getContent());
         for(Novelties nov: novelties)
@@ -50,6 +54,8 @@ public class ReportForm extends javax.swing.JPanel {
         btnPublish.setText("Editar");
     }
     
+    //* Obtener cada uno de los reportes activos para mostrar en este formulario y
+    //* en el caso de que sea editar y el reporte contenga una novedad no activa, mostrar esa novedad tambien
     private void initReportForm() {
         try {
             int id = -1;

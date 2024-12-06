@@ -44,12 +44,14 @@ public class UserForm extends javax.swing.JPanel {
         btnAction.setToolTipText(btnActionStr);
     }
     
+    //* Instanciar Usuario que fue elegido para editar
     public void setUser(User user, PersonalData data) {
         this.user = user;
         this.data = data;
         setValues();
     }
     
+    //* Insertar los datos del usuario seleccionado en la interfaz visual
     private void setValues() {
         inputUsername.setText(user.getUsername());
         inputName.setText(data.getName());
@@ -345,6 +347,7 @@ public class UserForm extends javax.swing.JPanel {
         FerromineraProject.contentP.removeThisComponent(this);
     }//GEN-LAST:event_btnCloseActionPerformed
 
+    //* Crear, Buscar o Editar un usuario todo depende del valor mode que fue instanciado
     private void btnActionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActionActionPerformed
         UserService userService = new UserService();
         PersonalDataService pdService = new PersonalDataService();
@@ -353,7 +356,7 @@ public class UserForm extends javax.swing.JPanel {
             String username = inputUsername.getText(), password = inputPassword.getText(), name = inputName.getText(), lastName = inputLastName.getText(),
                     ficha = inputFicha.getText(), tlf = inputTlf.getText(), role = (String) selectRole.getSelectedItem();
             
-            if(mode==0) {
+            if(mode==0) { //* Solo inserta en la busqueda los datos inputs que no estan vacios
                 List<String[]> sentencesAndValues = new ArrayList<>();
                 
                 if((!username.isEmpty()) && (!username.isBlank())) sentencesAndValues.add(new String[]{"user.username LIKE ? ", "%"+username+"%"});
@@ -375,20 +378,20 @@ public class UserForm extends javax.swing.JPanel {
                 
                 usersContent.initUserContent();
                 
-            } else {
+            } else { //* Valida los inputs 
                 ValidateInput.isEmptyOrBlank(List.of(inputUsername, inputName, inputLastName, inputFicha, inputTlf, inputPassword));
                 
                 ValidateInput.isMinimumLength(inputPassword, 8);
                 ValidateInput.isMinimumLength(inputTlf, 11);
                 
-                if(mode==1) {
+                if(mode==1) { //* Crea el nuevo usuario
                     int userId = userService.createUser(username, password, role);
                     
                     PersonalData pd = new PersonalData(0, userId, name, lastName, ficha, tlf);
                     
                     pdService.createPersonalData(pd);
                 } else if(JOptionPane.showConfirmDialog(null,"¿Esta seguro de editar este usuario?", "Advertencia",
-                                                        JOptionPane.OK_CANCEL_OPTION,JOptionPane.WARNING_MESSAGE)==0) {
+                                                        JOptionPane.OK_CANCEL_OPTION,JOptionPane.WARNING_MESSAGE)==0) { //* Edita el usuario 
                     user.setUsername(username);
                     user.setPassword(password);
                     user.setRole(role);
@@ -401,7 +404,7 @@ public class UserForm extends javax.swing.JPanel {
                     data.setTlf(tlf);
                     
                     pdService.updatePersonalData(data);
-                } else return;
+                } else return; //* Si se Eligio Cancel 
                 
                 ScrollUserContent usersContent = new ScrollUserContent();
                 

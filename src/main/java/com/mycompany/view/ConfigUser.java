@@ -27,6 +27,7 @@ public class ConfigUser extends javax.swing.JPanel {
         setValues();
     }
     
+    //* Obtener todos los datos del usuario logeado
     private void getPersonalDataByUser() {
         try {
             PersonalDataService dataService = new PersonalDataService();
@@ -37,6 +38,7 @@ public class ConfigUser extends javax.swing.JPanel {
         }
     }
 
+    //* Insertar los datos en la interfaz
     private void setValues() {
         inputUsername.setText(FerromineraProject.user.getUsername());
         inputPassword.setText(FerromineraProject.user.getPassword());
@@ -302,6 +304,7 @@ public class ConfigUser extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    //* Validar e Editar los datos del usuario logeado insertandolos en la DB
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         if(JOptionPane.showConfirmDialog(null,"¿Esta seguro de editar este usuario?", "Advertencia",
                                          JOptionPane.OK_CANCEL_OPTION,JOptionPane.WARNING_MESSAGE)!=0) return; 

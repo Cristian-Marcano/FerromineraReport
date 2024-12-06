@@ -53,6 +53,7 @@ public class ReportItem extends javax.swing.JPanel {
         objItemText = new ItemText(this, scroll, text);
     }
     
+    //* Insertar los datos del reporte en la interfaz visual
     private void setValues() {
         publisher.setText(user.getUsername() + " publicó");
         if(userEdit==null) editor.setVisible(false);
@@ -322,7 +323,7 @@ public class ReportItem extends javax.swing.JPanel {
         objItemText.textResize();
     }//GEN-LAST:event_textComponentResized
 
-    //* 
+    //* Enfoca reporte y muestra comentarios del mismo
     private void commentsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_commentsMouseClicked
         ScrollReportContent reportsContent = new ScrollReportContent(report.getId());
         
@@ -332,6 +333,7 @@ public class ReportItem extends javax.swing.JPanel {
         reportsContent.initReportCommentContent();
     }//GEN-LAST:event_commentsMouseClicked
 
+    //* Checar reporte tras finalizar el timer (el timer es 30 seg)
     private void checkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkActionPerformed
         if(check.isSelected()) {
             // Iniciar el temporizador de 30 segundos
@@ -363,12 +365,14 @@ public class ReportItem extends javax.swing.JPanel {
             }
         }
     }//GEN-LAST:event_checkActionPerformed
-
+    
+    //* Dirigirse a la interfaz de ReportForm pero para editar este reporte
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         FerromineraProject.contentP.setPanel(new ReportForm(report));
         FerromineraProject.contentP.showPanel();
     }//GEN-LAST:event_btnEditActionPerformed
 
+    //* Desactivar reporte y cargar nuevamente las publicaciones con su filtro de busqueda
     private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
         if(JOptionPane.showConfirmDialog(null,"¿Esta seguro de eliminar este reporte?", "Advertencia",
                                          JOptionPane.OK_CANCEL_OPTION,JOptionPane.WARNING_MESSAGE)!=0) return;

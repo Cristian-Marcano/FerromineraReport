@@ -31,6 +31,7 @@ public class UserItem extends javax.swing.JPanel {
         setValues();
     }
     
+    //* Insertar los datos del usuario en la interfaz visual
     private void setValues() {
         labelUsername.setText("Nombre de Usuario: " + user.getUsername());
         labelName.setText("Nombre: " + data.getName());

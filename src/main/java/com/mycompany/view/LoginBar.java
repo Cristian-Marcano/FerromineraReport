@@ -181,6 +181,7 @@ public class LoginBar extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null,"No se puede avanzar \n" + e.getMessage(),"Advertencia",JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnLoginActionPerformed
+    
     //* Se dirige a la interfaz de que se le olvido la contraseña
     private void forgotPasswordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_forgotPasswordMouseClicked
         FerromineraProject.board.setPanel(new ForgotBar());

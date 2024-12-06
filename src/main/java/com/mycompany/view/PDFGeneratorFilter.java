@@ -136,9 +136,9 @@ public class PDFGeneratorFilter extends javax.swing.JPanel {
                 .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(362, Short.MAX_VALUE)
                 .addComponent(btnGeneratePDF, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(363, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -161,6 +161,7 @@ public class PDFGeneratorFilter extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    //* Generar PDF sobre informe mensual/semanal de los reportes publicados
     private void btnGeneratePDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGeneratePDFActionPerformed
         String plusName = "", title = "Informe ";
         PDFGenerator generator = null;
@@ -204,7 +205,7 @@ public class PDFGeneratorFilter extends javax.swing.JPanel {
             generator.insertText("Detalle de Novedades", summaryFont, 10);
             generator.insertReportTable(reports);
             
-            JOptionPane.showMessageDialog(null,"El PDF a sido generado con exito con el nombre de: " + plusName,"Info",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null,"El PDF a sido generado con exito con el nombre de: informe-" + plusName,"Info",JOptionPane.INFORMATION_MESSAGE);
             
         } catch(SQLException e) {
             System.err.println(e.getMessage());
