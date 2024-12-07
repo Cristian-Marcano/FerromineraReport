@@ -27,25 +27,40 @@ import java.util.List;
 /**
  *
  * @author Cristian
+ * Clase que se encarga de generar el documento PDF
  */
 public class PDFGenerator {
+    
+    /**
+     * name: nombre que se le asignara al pdf
+     * directory: dirección donde se generara/guardara el documento
+     * userHome: obtener el nombre del usuario en el OS para dirigir el documento a la direccion de ese usuario
+     * document: objeto que contendra el documento con su respectiva info
+     */
     
     private String name;
     private String directory = "Documents";
     private String userHome = System.getProperty("user.home");
     private Document document;
-
+    
+    /**
+     * 
+     * @param name: nombre que se le asignara al documento
+     */
+    
     public PDFGenerator(String name) {
         this.name = name;
         document = new Document(PageSize.A4, 80,80,50,50);
     }
     
+    //* Instancia el documento y lo abre para insertarle la informacion
     public void createDocument() throws DocumentException, FileNotFoundException {
         String documentPath = Paths.get(userHome, directory, name + ".pdf").toString();
         PdfWriter.getInstance(document, new FileOutputStream(documentPath));
         document.open();
     }
     
+    //* Insertar al documento cabecera con 2 imagenes (una a la izquierda y otra a la derecha)
     public void insertTableHeaderImage(URL imageUrl1, URL imageUrl2, int scaleX, int scaleY) throws DocumentException, BadElementException, IOException {
         PdfPTable headerTable = new PdfPTable(2); // Tabla con 2 columnas
         headerTable.setWidthPercentage(100);
@@ -77,6 +92,7 @@ public class PDFGenerator {
         document.add(headerTable);
     }
     
+    //* Insertar imagen al documento
     public void insertImage(URL imageUrl, int aligment, int scaleX, int scaleY) throws DocumentException, BadElementException, IOException {
         Image image = Image.getInstance(imageUrl);
         image.scaleToFit(scaleX, scaleY);
@@ -84,6 +100,7 @@ public class PDFGenerator {
         document.add(image);
     }
     
+    //* Insertar texto
     public void insertText(String text, Font font, int spacing) throws DocumentException {
         Paragraph paragraph = new Paragraph(text, font);
         paragraph.setSpacingBefore(spacing);
@@ -92,6 +109,7 @@ public class PDFGenerator {
         
     }
     
+    //* Insertar listado de texto
     public void insertTexts(List<String> texts, Font font, int spacing) throws DocumentException {
         for(String item: texts) {
             Paragraph paragraph = new Paragraph(item, font);
@@ -100,6 +118,7 @@ public class PDFGenerator {
         }
     }
     
+    //* Insertar texto con valor (texto en negritas y valor normal)
     public void insertTextAndValue(String text, String value, Font fontText, Font fontValues, int spacing) throws DocumentException {
         Chunk textChunk = new Chunk(text + ": ", fontText);
         Chunk valueChunk = new Chunk(value + "\n", fontValues);
@@ -114,6 +133,7 @@ public class PDFGenerator {
         document.add(paragraph);
     }
     
+    //* Insertar textos con sus valores
     public void insertTextsAndValues(List<String[]> textsAndValues, Font fontText, Font fontValues, int spacing) throws DocumentException {
         for(String[] item: textsAndValues) {
             Chunk text = new Chunk("\t- " + item[0] + ": ", fontText);
@@ -130,6 +150,7 @@ public class PDFGenerator {
         }
     }
     
+    //* Insertar Tabla (tabla especifica que necesita la app)
     public void insertReportTable(List<Object[]> reports) throws DocumentException {
         PdfPTable table = new PdfPTable(4);
         
@@ -153,6 +174,7 @@ public class PDFGenerator {
         document.add(table);
     }
     
+    //* Cerrar documento para poder leerlo
     public void closeDocument() {
         document.close();
     }
