@@ -205,8 +205,6 @@ public class PDFGeneratorFilter extends javax.swing.JPanel {
             generator.insertText("Detalle de Novedades", summaryFont, 10);
             generator.insertReportTable(reports);
             
-            JOptionPane.showMessageDialog(null,"El PDF a sido generado con exito con el nombre de: informe-" + plusName,"Info",JOptionPane.INFORMATION_MESSAGE);
-            
         } catch(SQLException e) {
             System.err.println(e.getMessage());
             JOptionPane.showMessageDialog(null,"Ocurrio un Error en la conexión con la Base de Datos","ERROR",JOptionPane.ERROR_MESSAGE);
@@ -219,7 +217,10 @@ public class PDFGeneratorFilter extends javax.swing.JPanel {
         } catch (IOException e) {
             System.err.println("Error: Problema al leer o escribir un archivo.");
         } finally {
-            if(generator != null) generator.closeDocument();
+            if(generator != null) {
+                generator.closeDocument();
+                JOptionPane.showMessageDialog(null,"El PDF a sido generado con exito con el nombre de: informe-" + plusName,"Info",JOptionPane.INFORMATION_MESSAGE);
+            }
         }
     }//GEN-LAST:event_btnGeneratePDFActionPerformed
 
