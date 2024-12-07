@@ -233,7 +233,6 @@ public class ScrollReportContent extends javax.swing.JPanel {
     
     //* Reescalar los panels de ReportItem y Commentary
     private void formComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentResized
-        // TODO add your handling code here:
         try {
             FerromineraProject.contentP.resizeScrollPane();
             if(commentaryForm!=null) changePosition();

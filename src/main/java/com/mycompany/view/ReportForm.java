@@ -249,7 +249,6 @@ public class ReportForm extends javax.swing.JPanel {
 
     //* Reescalamiento del panelFormType (barra lateral derecha), para cuando aumente de tamaño la ventana
     private void formComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentResized
-        // TODO add your handling code here:
         int width = (int) (this.getWidth() * 0.30);
         
         if(width >= panelFormType.getMinimumSize().width ) 
