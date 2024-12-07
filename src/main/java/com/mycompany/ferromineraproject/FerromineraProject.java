@@ -140,7 +140,6 @@ public class FerromineraProject extends javax.swing.JFrame {
 
     //* Reescalamiento del dashboard, para cuando aumente de tamaño la ventana
     private void formComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentResized
-        // TODO add your handling code here:
         int width = this.getWidth() / 4;
         
         if(width >= dashboard.getMinimumSize().width ) 
